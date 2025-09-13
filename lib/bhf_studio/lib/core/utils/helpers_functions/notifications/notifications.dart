@@ -10,16 +10,10 @@ class Notifications {
   static Widget _getTypeIcon(IconType iconType) {
     switch (iconType) {
       case IconType.done:
-        return const Icon(
-          Icons.check_circle,
-          color: Color.fromARGB(255, 114, 255, 89),
-        );
+        return const Icon(Icons.check_circle, color: Color(0xFF72FF59));
 
       case IconType.info:
-        return const Icon(
-          Icons.info_outline,
-          color: Color.fromARGB(245, 255, 255, 255),
-        );
+        return const Icon(Icons.info_outline, color: Color(0xF5FFFFFF));
 
       case IconType.error:
         return const Icon(Icons.error, color: Colors.redAccent);
@@ -31,7 +25,6 @@ class Notifications {
     IconType iconType = IconType.info,
   }) {
     FlashyFlushbar(
-      
       customWidget: Row(
         children: [
           Expanded(
@@ -47,7 +40,7 @@ class Notifications {
           _getTypeIcon(iconType),
         ],
       ),
-      horizontalPadding: const EdgeInsets.all(AppSizes.mainPadding),
+      horizontalPadding: const EdgeInsets.all(AppSizes.secondPadding),
       borderRadius: BorderRadius.circular(10),
       backgroundColor: const Color.fromARGB(255, 36, 44, 128).withAlpha(245),
     ).show();

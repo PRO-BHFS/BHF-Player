@@ -21,7 +21,7 @@ class EditCourseSheet extends BaseCourseSheet {
   Future<void> onSubmit(BuildContext sheetContext) async {
     if (keyForm.currentState?.validate() != true) return;
     if (course == null) return;
-    
+
     await context.read<UserCourseCubit>().updateCourse(
       course!.copyWith(
         courseTitle: courseNameController.text,
@@ -32,9 +32,9 @@ class EditCourseSheet extends BaseCourseSheet {
   }
 
   @override
-  Future<void> show({required String title})async {
+  Future<void> show({required String title}) async {
     courseNameController.text = course?.courseTitle ?? '';
     passwordController.text = course?.password.fullPassword ?? '';
-     await super.show(title: title);
+    await super.show(title: title);
   }
 }

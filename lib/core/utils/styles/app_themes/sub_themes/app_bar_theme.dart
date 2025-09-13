@@ -15,7 +15,7 @@ class AppAppBarTheme {
       statusBarBrightness: Brightness.light,
     ),
     titleTextStyle: TextStyle(
-      fontSize: 24.sp,
+      fontSize: 20.sp,
       color: DarkColors.onPrimary,
       fontWeight: FontWeight.bold,
     ),
@@ -30,16 +30,14 @@ class AppAppBarTheme {
   static AppBarTheme get light => AppBarTheme(
     backgroundColor: LightColors.appBar,
     centerTitle: true,
-    systemOverlayStyle: const SystemUiOverlayStyle(
+     systemOverlayStyle: const SystemUiOverlayStyle(
       statusBarColor: Color(0x99000000),
-
       statusBarBrightness: Brightness.light,
     ),
-    titleTextStyle: const TextStyle(
-      fontSize: 15,
-      color: LightColors.onPrimary,
+    titleTextStyle: TextStyle(
+      fontSize: 20.sp,
+      color: DarkColors.onPrimary,
       fontWeight: FontWeight.bold,
-      overflow: TextOverflow.ellipsis,
     ),
     shape: const Border(
       bottom: BorderSide(color: LightColors.borderAppBar, width: .3),

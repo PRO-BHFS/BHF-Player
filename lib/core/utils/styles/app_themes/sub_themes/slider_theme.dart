@@ -4,7 +4,7 @@ class AppSliderTheme {
   AppSliderTheme._();
   static SliderThemeData get dark => const SliderThemeData(
     thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6),
-    trackHeight: 1,
+    trackHeight: 3.5,
 
     thumbColor: Color.fromARGB(255, 7, 73, 255),
     
@@ -15,7 +15,7 @@ class AppSliderTheme {
 
   static SliderThemeData get light => const SliderThemeData(
     thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6),
-    trackHeight: 1,
+    trackHeight: 3.5,
     thumbColor: Color.fromARGB(255, 7, 36, 255),
     overlayShape: RoundSliderThumbShape(enabledThumbRadius: 10, elevation: 10),
     activeTrackColor: Color.fromARGB(255, 7, 176, 255),

@@ -35,6 +35,10 @@ class BHFPlayer extends StatelessWidget {
     return MaterialApp(
       title: 'BHF Player',
       debugShowCheckedModeBanner: false,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        physics: const BouncingScrollPhysics(),
+      ),
       themeMode: context.watch<ThemePlayerCubit>().themeMode,
       theme: lightThemeData(),
       darkTheme: darkThemeData(),

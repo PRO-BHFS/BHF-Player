@@ -19,12 +19,12 @@ class BuildVideoEncryptionPanel extends StatelessWidget {
       children: [
         const BuildCoursesDashboard(),
 
-        BuildPrimaryButton(
+        BuildButton(
           text: 'اختيار فيديوهات',
           onPress: () async => await encryptionCubit.pickVideos(),
         ),
 
-        BuildPrimaryButton(
+        BuildButton(
           text: 'اختيار مجلد الحفظ',
           onPress: () async => await encryptionCubit.selectOutputDirectory(),
         ),
@@ -36,10 +36,11 @@ class BuildVideoEncryptionPanel extends StatelessWidget {
               encryptionCubit.hasOutputDirectory
                   ? 'سيتم حفظ الفيديوهات في:\n $outputPath'
                   : 'لم يتم اختيار مسار الحفظ بعد.',
-            textAlign: TextAlign.center,);
+              textAlign: TextAlign.center,
+            );
           },
         ),
-        BuildPrimaryButton(
+        BuildButton(
           text: 'تشفير الفيديوهات',
           onPress: encryptionWatchCubit.isReadyVideo
               ? () async => await encryptionCubit.encryptSelectedVideos(

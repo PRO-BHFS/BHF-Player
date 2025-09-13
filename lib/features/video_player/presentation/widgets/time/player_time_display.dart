@@ -37,7 +37,7 @@ class PlayerTimeDisplay extends StatelessWidget {
 
           ConditionalBuilder(
             condition: middleWidget == null,
-            builder: (_) => Text(" / ", style: context.textTheme.displaySmall),
+            builder: (_) => Text("/", style: context.textTheme.displaySmall),
             fallback: (_) => Expanded(child: middleWidget!),
           ),
 

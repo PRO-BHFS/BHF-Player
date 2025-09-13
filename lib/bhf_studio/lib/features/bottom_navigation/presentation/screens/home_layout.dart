@@ -1,3 +1,5 @@
+import 'package:bhf_player/bhf_studio/lib/core/presentation/components/icons/build_svg_icon.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/app_constants/assests/icons.dart';
 import 'package:bhf_player/bhf_studio/lib/features/bottom_navigation/presentation/controllers/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:bhf_player/bhf_studio/lib/features/bottom_navigation/presentation/controllers/bottom_navigation/bottom_navigation_states.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
@@ -16,7 +18,7 @@ class HomeLayout extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(title: Text(controller.currentTitle)),
           floatingActionButton: FloatingActionButton(
-            onPressed: ()async =>await context.pushRoute(const BHFPlayer()),
+            onPressed: () async => await context.pushRoute(const BHFPlayer()),
             child: const Icon(Icons.play_circle_rounded),
           ),
 
@@ -30,11 +32,13 @@ class HomeLayout extends StatelessWidget {
             onTap: controller.changeIndex,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.lock),
+                icon: BuildSvgIcon(IconsAssets.password),
+                activeIcon: BuildSvgIcon(IconsAssets.passwordFill),
                 label: 'كلمة مرور ذكية',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.videocam),
+                icon: BuildSvgIcon(IconsAssets.videoLibrary),
+                activeIcon: BuildSvgIcon(IconsAssets.videoLibraryFill),
                 label: 'تشفير الفيديو',
               ),
             ],

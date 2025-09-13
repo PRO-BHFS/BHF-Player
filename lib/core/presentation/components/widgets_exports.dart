@@ -7,4 +7,4 @@ export 'build_progress_loading.dart';
 export 'build_image_svg.dart';
 export 'icons/build_icon.dart';
 export 'icons/build_svg_icon.dart';
-export 'icons/circle_icon_button.dart';
+export 'buttons/circle_icon_button.dart';

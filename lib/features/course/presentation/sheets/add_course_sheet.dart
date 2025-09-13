@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AddCourseSheet extends BaseCourseSheet {
   AddCourseSheet._({required super.context});
 
-  factory AddCourseSheet({required BuildContext context}) {
+  factory AddCourseSheet(BuildContext context) {
     return AddCourseSheet._(context: context);
   }
 

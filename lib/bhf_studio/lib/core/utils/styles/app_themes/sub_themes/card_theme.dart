@@ -7,10 +7,10 @@ class AppCardTheme {
   static CardThemeData get dark => const CardThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadiusDirectional.only(
-        topStart: Radius.circular(AppSizes.bigBorderRadius),
-        topEnd: Radius.circular(AppSizes.smallBorderRadius),
-        bottomStart: Radius.circular(AppSizes.smallBorderRadius),
-        bottomEnd: Radius.circular(AppSizes.bigBorderRadius),
+        topStart: Radius.circular(AppSizes.borderRadiusBig),
+        topEnd: Radius.circular(AppSizes.borderRadiusSmall),
+        bottomStart: Radius.circular(AppSizes.borderRadiusSmall),
+        bottomEnd: Radius.circular(AppSizes.borderRadiusBig),
       ),
     ),
     margin: EdgeInsets.symmetric(vertical: 2),
@@ -20,10 +20,10 @@ class AppCardTheme {
   static CardThemeData get light => const CardThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadiusDirectional.only(
-        topStart: Radius.circular(AppSizes.bigBorderRadius),
-        topEnd: Radius.circular(AppSizes.smallBorderRadius),
-        bottomStart: Radius.circular(AppSizes.smallBorderRadius),
-        bottomEnd: Radius.circular(AppSizes.bigBorderRadius),
+        topStart: Radius.circular(AppSizes.borderRadiusBig),
+        topEnd: Radius.circular(AppSizes.borderRadiusSmall),
+        bottomStart: Radius.circular(AppSizes.borderRadiusSmall),
+        bottomEnd: Radius.circular(AppSizes.borderRadiusBig),
       ),
     ),
     elevation: 2,

@@ -1,5 +1,5 @@
 
-import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_sizes/app_sizes.dart';
+import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:flashy_flushbar/flashy_flushbar_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -13,13 +13,13 @@ class Notifications {
       case IconType.done:
         return const Icon(
           Icons.check_circle,
-          color: Color.fromARGB(255, 114, 255, 89),
+          color: Color(0xFF72FF59),
         );
 
       case IconType.info:
         return const Icon(
           Icons.info_outline,
-          color: Color.fromARGB(245, 255, 255, 255),
+          color: Color(0xF5FFFFFF),
         );
 
       case IconType.error:

@@ -5,7 +5,7 @@ import 'package:bhf_player/bhf_studio/lib/core/utils/helpers_functions/helpers_e
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/bhf_studio/lib/features/course/presentation/controller/courses/course_controller.dart';
 import 'package:bhf_player/bhf_studio/lib/features/course/presentation/controller/courses/course_state.dart';
-import 'package:bhf_player/bhf_studio/lib/features/course/presentation/ui_helpers/exports.dart';
+import 'package:bhf_player/bhf_studio/lib/features/course/presentation/sheets/add_course_sheet.dart';
 import 'package:bhf_player/bhf_studio/lib/features/encryption_video/presentation/controllers/encryption_process/encryption_process_cubit.dart';
 import 'package:bhf_player/bhf_studio/lib/features/encryption_video/presentation/controllers/encryption_process/encryption_process_state.dart';
 import 'package:bhf_player/bhf_studio/lib/features/encryption_video/presentation/widgets/encryption_inner_loading.dart';
@@ -54,7 +54,8 @@ class VideoEncryptionScreen extends StatelessWidget {
               textButton: "إضافة دورة",
               textNote: "لم يتم اضافة دورات بعد",
               imagePath: Images.tutorial,
-              onPress: () async => await addCourse(context),
+              onPress: () async =>
+                  await AddCourseSheet(context).show(title: "إنشاء أول جديدة"),
             );
           }
 

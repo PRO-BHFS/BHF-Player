@@ -40,7 +40,7 @@ class BuildPasswordText extends StatelessWidget {
 
             SelectableText(state.smartPassword),
 
-            BuildPrimaryButton(
+            BuildButton(
               text: 'نسخ كلمة المرور',
               onPress: state.smartPassword.copyToClipboard,
             ),

@@ -70,9 +70,8 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
             imagePath: AppImagesAssests.tutorial,
             textButton: "إضافة دورة",
             textNote: "لم يتم اضافة دورات بعد",
-            onPress: () async => await AddCourseSheet(
-              context: context,
-            ).show(title: 'إضافة دورة جديدة'),
+            onPress: () async =>
+                await AddCourseSheet(context).show(title: 'إضافة دورة جديدة'),
           );
         }
 

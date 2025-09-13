@@ -28,9 +28,11 @@ class PlayerControlButtons extends StatelessWidget {
             alignment: Alignment.center,
             child: ControlButton<bool>(
               listenable: playerCubit.playerService.isPlaying,
-              iconBuilder: (isPlaying) => isPlaying
-                  ? const BuildIcon(Icons.pause_rounded)
-                  : const BuildIcon(Icons.play_arrow_rounded),
+              iconBuilder: (isPlaying) {
+                return BuildIcon(
+                  isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                );
+              },
               onPressed: () async => await playerCubit.playOrPause(),
             ),
           ),

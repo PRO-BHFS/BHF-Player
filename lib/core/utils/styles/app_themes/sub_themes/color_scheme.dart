@@ -20,11 +20,11 @@ class AppColorScheme {
     brightness: Brightness.light,
     primary: LightColors.primary,
     onPrimary: LightColors.onPrimary,
-    secondary: LightColors.row2,
+    secondary: LightColors.secondary,
     onSecondary: LightColors.fontMain,
     error: LightColors.fontError,
-    onError: LightColors.fontHeader,
-    surface: LightColors.row1,
+    onError: LightColors.fontError,
+    surface: LightColors.surface,
     onSurface: LightColors.fontMain,
   );
 }

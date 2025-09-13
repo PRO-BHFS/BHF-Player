@@ -1,70 +1,108 @@
+import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_colors/dark_colors.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_colors/light_colors.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppTextTheme {
   AppTextTheme._();
-  static TextTheme get dark => const TextTheme(
+
+  static TextTheme get dark => TextTheme(
+    headlineLarge: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 24.sp,
+      color: DarkColors.fontMain,
+      overflow: TextOverflow.ellipsis,
+    ),
+
     headlineMedium: TextStyle(
       fontWeight: FontWeight.w800,
-      fontSize: 17,
+      fontSize: 18.sp,
       color: Colors.white,
+      overflow: TextOverflow.ellipsis,
     ),
 
-    titleSmall: TextStyle(
-      fontWeight: FontWeight.w900,
+    titleSmall: const TextStyle(
+      fontWeight: FontWeight.w700,
       fontSize: 13,
-      height: 1.5,
+      height: 1.8,
       color: Colors.white,
+      overflow: TextOverflow.fade,
     ),
 
-    titleMedium: TextStyle(
+    titleMedium: const TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
 
-    labelSmall: TextStyle(
-      color: Colors.white,
-      fontSize: 10,
-      fontWeight: FontWeight.w500,
-      overflow: TextOverflow.ellipsis,
-      letterSpacing: 1,
-    ),
+    labelSmall: const TextStyle(color: DarkColors.fontMain, fontSize: 13),
 
     labelMedium: TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 13,
-      color: Colors.white,
+      fontSize: 17.sp,
+      color: DarkColors.fontMain,
+      overflow: TextOverflow.ellipsis,
     ),
 
-    labelLarge: TextStyle(
+    labelLarge: const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 13,
       color: Colors.white,
     ),
 
     bodySmall: TextStyle(
-      fontSize: 13,
-      color: Colors.white,
-      fontWeight: FontWeight.w600,
+      fontSize: 15.sp,
+      color: DarkColors.fontMain,
+      overflow: TextOverflow.visible,
+      height: 1.7.sp,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 8.sp,
+      color: DarkColors.fontMain,
+      fontWeight: FontWeight.bold,
+    ),
+    displaySmall: const TextStyle(
+      fontSize: 12,
+      color: DarkColors.fontMain,
+      letterSpacing: 1.5,
     ),
   );
 
-  static TextTheme get light => const TextTheme(
-    headlineMedium: TextStyle(
+  static TextTheme get light => TextTheme(
+    headlineLarge: const TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 24,
+      color: LightColors.fontMain,
+      overflow: TextOverflow.ellipsis,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 8.sp,
+      color: DarkColors.fontMain,
+      fontWeight: FontWeight.bold,
+    ),
+    headlineMedium: const TextStyle(
       fontWeight: FontWeight.w800,
       fontSize: 17,
       color: Colors.white,
     ),
-    titleSmall: TextStyle(fontWeight: FontWeight.w700, fontSize: 10),
+    titleSmall: const TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 13,
+      height: 1.8,
+      color: Colors.white,
+      overflow: TextOverflow.fade,
+    ),
+    titleMedium: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
 
-    titleMedium: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+    labelSmall: const TextStyle(color: LightColors.fontMain, fontSize: 13),
 
-    labelSmall: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+    labelMedium: const TextStyle(fontWeight: FontWeight.bold),
 
-    labelMedium: TextStyle(fontWeight: FontWeight.bold),
-
-    labelLarge: TextStyle(fontWeight: FontWeight.w600),
-
-    bodySmall: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+    labelLarge: const TextStyle(fontWeight: FontWeight.w600),
+    displaySmall: const TextStyle(
+      fontSize: 12,
+      color: DarkColors.fontMain,
+      letterSpacing: 1.5,
+    ),
+    bodySmall: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
   );
 }

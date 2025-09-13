@@ -24,8 +24,9 @@ class AppTextTheme {
     titleSmall: const TextStyle(
       fontWeight: FontWeight.w700,
       fontSize: 13,
-      height: 1.5,
+      height: 1.8,
       color: Colors.white,
+      overflow: TextOverflow.fade,
     ),
 
     titleMedium: const TextStyle(
@@ -60,7 +61,11 @@ class AppTextTheme {
       color: DarkColors.fontMain,
       fontWeight: FontWeight.bold,
     ),
-    displaySmall: const TextStyle(fontSize: 10, color: DarkColors.fontMain),
+    displaySmall: const TextStyle(
+      fontSize: 12,
+      color: DarkColors.fontMain,
+      letterSpacing: 1.5,
+    ),
   );
 
   static TextTheme get light => TextTheme(
@@ -80,8 +85,13 @@ class AppTextTheme {
       fontSize: 17,
       color: Colors.white,
     ),
-    titleSmall: const TextStyle(fontWeight: FontWeight.w700, fontSize: 10),
-
+    titleSmall: const TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 13,
+      height: 1.8,
+      color: Colors.white,
+      overflow: TextOverflow.fade,
+    ),
     titleMedium: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
 
     labelSmall: const TextStyle(color: LightColors.fontMain, fontSize: 13),
@@ -89,7 +99,11 @@ class AppTextTheme {
     labelMedium: const TextStyle(fontWeight: FontWeight.bold),
 
     labelLarge: const TextStyle(fontWeight: FontWeight.w600),
-    displaySmall: const TextStyle(fontSize: 10, color: LightColors.fontMain),
+    displaySmall: const TextStyle(
+      fontSize: 12,
+      color: DarkColors.fontMain,
+      letterSpacing: 1.5,
+    ),
     bodySmall: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
   );
 }

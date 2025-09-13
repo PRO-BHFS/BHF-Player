@@ -1,10 +1,12 @@
+import 'package:bhf_player/bhf_studio/lib/core/presentation/components/icons/build_svg_icon.dart';
 import 'package:bhf_player/bhf_studio/lib/core/presentation/components/widgets_exports.dart';
 import 'package:bhf_player/bhf_studio/lib/core/presentation/screens/nothing_screen.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/app_constants/app_constants_exports.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/app_constants/assests/icons.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/extensions/extensions.dart';
-import 'package:bhf_player/bhf_studio/lib/features/course/presentation/ui_helpers/add_course.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/bhf_studio/lib/features/course/presentation/controller/courses/course_controller.dart';
+import 'package:bhf_player/bhf_studio/lib/features/course/presentation/sheets/add_course_sheet.dart';
 import 'package:bhf_player/bhf_studio/lib/features/course/presentation/widgets/build_courses_dashboard.dart';
 import 'package:bhf_player/bhf_studio/lib/features/generate_smart_password/presentation/controller/generate_smart_password/generate_smart_password_cubit.dart';
 import 'package:bhf_player/bhf_studio/lib/features/generate_smart_password/presentation/widgets/build_password_text.dart';
@@ -28,7 +30,6 @@ class _SmartPasswordScreenState extends State<SmartPasswordScreen> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final courseCubit = context.watch<AdminCourseCubit>();
@@ -36,16 +37,18 @@ class _SmartPasswordScreenState extends State<SmartPasswordScreen> {
     if (courseCubit.courses.isEmpty) {
       return NothingScreen(
         textButton: "إضافة دورة",
-              textNote: "لم يتم اضافة دورات بعد",
+        textNote: "لم يتم اضافة دورات بعد",
 
         imagePath: Images.tutorial,
-        onPress: () async => await addCourse(context),
+        onPress: () async =>
+            await AddCourseSheet(context).show(title: "إنشاء دورة جديدة"),
       );
     }
 
     return ListView(
       padding: const EdgeInsets.all(AppSizes.mainPadding),
       shrinkWrap: true,
+      // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
 
       children: [
         const BuildCoursesDashboard(),
@@ -54,14 +57,14 @@ class _SmartPasswordScreenState extends State<SmartPasswordScreen> {
           key: _formKey,
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment:CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              BuildFormInputField(
+              BuildFormField(
                 labelText: 'ID',
                 hintText: "اكتب معرف جهاز المشتري هنا",
                 controller: _idController,
                 suffixIcon: IconButton(
-                  icon: const Icon(Icons.paste),
+                  icon: const BuildSvgIcon(IconsAssets.paste),
                   onPressed: _idController.pasteFromClipboard,
                 ),
                 textCapitalization: TextCapitalization.characters,
@@ -69,7 +72,7 @@ class _SmartPasswordScreenState extends State<SmartPasswordScreen> {
                 onFieldSubmitted: (_) => onSubmit(),
               ),
 
-              BuildPrimaryButton(text: 'إنشاء كلمة مرور', onPress: onSubmit),
+              BuildButton(text: 'إنشاء كلمة مرور', onPress: onSubmit),
             ].separatedBy(const SizedBox(height: 25)),
           ),
         ),

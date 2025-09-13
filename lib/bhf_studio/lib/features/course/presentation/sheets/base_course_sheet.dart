@@ -1,10 +1,10 @@
-
-import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
-import 'package:bhf_player/core/utils/app_constants/app_assests/app_icons_assests.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
-import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
-import 'package:bhf_player/core/utils/styles/app_colors/dark_colors.dart';
-import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
+import 'package:bhf_player/bhf_studio/lib/core/presentation/components/icons/build_svg_icon.dart';
+import 'package:bhf_player/bhf_studio/lib/core/presentation/components/widgets_exports.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/app_constants/assests/icons.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/helpers_functions/helpers_exports.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_colors/dark_colors.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +15,7 @@ abstract class BaseCourseSheet {
 
   final keyForm = GlobalKey<FormState>();
   final courseNameController = TextEditingController();
-  final passwordController = TextEditingController();
+  final encryptionCodeController = TextEditingController();
 
   Future<void> onSubmit(BuildContext sheetContext);
 
@@ -26,7 +26,7 @@ abstract class BaseCourseSheet {
       elevation: 12,
       backgroundColor: context.colorScheme.surface,
       shape: RoundedRectangleBorder(
-        borderRadius:  BorderRadius.vertical(
+        borderRadius: const BorderRadius.vertical(
           top: Radius.circular(AppSizes.borderRadiusBig),
         ),
         side: BorderSide(color: DarkColors.border, width: 1.r),
@@ -60,12 +60,12 @@ abstract class BaseCourseSheet {
                 ),
 
                 BuildFormField(
-                  labelText: 'الباسورد',
-                  hintText: "اكتب الباسورد هنا",
-                  controller: passwordController,
+                  labelText: 'كود التشفير',
+                  hintText: "اكتب كود التشفير هنا",
+                  controller: encryptionCodeController,
                   suffixIcon: BuildIconButton(
-                    icon: const BuildSvgIcon(AppIconsAssests.paste),
-                    onPressed: passwordController.pasteFromClipboard,
+                    icon: const BuildSvgIcon(IconsAssets.paste),
+                    onPressed: encryptionCodeController.pasteFromClipboard,
                   ),
                   validator: checkFieldEmpty,
                 ),
@@ -86,7 +86,6 @@ abstract class BaseCourseSheet {
                       height: 45.h,
                       child: BuildButton(
                         text: 'إلغاء',
-
                         colorBackground: const Color(0xFFC7191C),
                         onPress: sheetContext.popRoute,
                       ),
@@ -107,6 +106,6 @@ abstract class BaseCourseSheet {
 
   void dispose() {
     courseNameController.dispose();
-    passwordController.dispose();
+    encryptionCodeController.dispose();
   }
 }

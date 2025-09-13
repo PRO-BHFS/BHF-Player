@@ -35,14 +35,9 @@ class TopControllersActions extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
-                    filename,
-                    style: context.textTheme.labelSmall?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textScaler: const TextScaler.linear(0.7),
+                    filename*3,
+                    style: context.textTheme.titleSmall,
                     maxLines: 2,
-                    overflow: TextOverflow.fade,
                   ),
                 ),
               ],
@@ -54,11 +49,11 @@ class TopControllersActions extends StatelessWidget {
                 builder: (_, videoActions, _) {
                   return Row(
                     spacing: AppSizes.spacingMiddle,
-                    
+
                     children: [
                       CircleIconButton(
                         onPressed: playerCubit.toggleThemePlayerUi,
-                        icon: const BuildIcon(Icons.dark_mode_outlined),
+                        icon: const BuildSvgIcon(AppIconsAssests.dark),
                         isActive: videoActions.isDarkModeActive,
                       ),
 
@@ -78,14 +73,13 @@ class TopControllersActions extends StatelessWidget {
                               child: Text(
                                 "${speed}X",
                                 style: context.textTheme.labelSmall?.copyWith(
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w900,
                                 ),
                               ),
                             );
                           },
                         ),
                       ),
-                 
 
                       CircleIconButton(
                         onPressed: () async => await playerCubit.toggleMute(),
@@ -96,9 +90,7 @@ class TopControllersActions extends StatelessWidget {
                       CircleIconButton(
                         onPressed: () async =>
                             await playerCubit.toggleFullscreen(),
-                        icon: const BuildSvgIcon(
-                          AppIconsAssests.screenRotation,
-                        ),
+                        icon: const BuildIcon(Icons.screen_rotation_rounded,size: 20,),
                       ),
                     ],
                   );

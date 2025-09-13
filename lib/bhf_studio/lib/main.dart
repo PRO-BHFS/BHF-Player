@@ -26,6 +26,10 @@ class BHFStudio extends StatelessWidget {
     return MaterialApp(
       title: 'BHF Studio',
       debugShowCheckedModeBanner: false,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        physics: const BouncingScrollPhysics(),
+      ),
       themeMode: context.watch<ThemePlayerCubit>().themeMode,
       theme: lightThemeData(),
       darkTheme: darkThemeData(),

@@ -30,14 +30,14 @@ ThemeData lightThemeData() => ThemeData(
 
   cardTheme: AppCardTheme.light,
 
-  bottomNavigationBarTheme: BottomNavBarTheme.light,
-
   progressIndicatorTheme: AppProgressIndicatorTheme.dark,
 
-  iconTheme:  IconThemeData(color: LightColors.icon, size: AppSizes.icon),
+  iconTheme: IconThemeData(color: LightColors.icon, size: AppSizes.icon),
 
   dividerTheme: const DividerThemeData(
     color: LightColors.borderAppBar,
     thickness: 1,
   ),
+
+  bottomNavigationBarTheme: BottomNavBarTheme.light,
 );

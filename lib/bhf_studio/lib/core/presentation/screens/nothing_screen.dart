@@ -22,10 +22,13 @@ class NothingScreen extends StatelessWidget {
       padding: const EdgeInsets.all(AppSizes.mainPadding),
       shrinkWrap: true,
       children: [
-
         BuildImageSvg(imagePath),
-        Text(textNote, textAlign: TextAlign.center),
-        BuildPrimaryButton(onPress: onPress, text: textButton),
+        Text(
+          textNote,
+          textAlign: TextAlign.center,
+          style: context.textTheme.labelMedium,
+        ),
+        BuildButton(onPress: onPress, text: textButton),
       ].separatedBy(const SizedBox(height: 30)),
     );
   }

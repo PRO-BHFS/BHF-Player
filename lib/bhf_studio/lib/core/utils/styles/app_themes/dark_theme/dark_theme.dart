@@ -6,20 +6,17 @@ import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_themes/sub_theme
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_themes/sub_themes/button_theme.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_themes/sub_themes/card_theme.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_themes/sub_themes/color_scheme.dart';
-import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_themes/sub_themes/dropdown_menu_theme.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_themes/sub_themes/input_decoration_theme.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_themes/sub_themes/progress_indicator_theme.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_themes/sub_themes/text_theme.dart';
 import 'package:flutter/material.dart';
 
-
-
 ThemeData darkThemeData() => ThemeData(
   fontFamily: Fonts.spaceGrotesk,
+  brightness: Brightness.dark,
   scaffoldBackgroundColor: DarkColors.baseColor,
   hintColor: const Color(0xB5B8B8B8),
-  brightness: Brightness.dark,
-
+  disabledColor: const Color(0xFF465570),
   colorScheme: AppColorScheme.dark,
 
   appBarTheme: AppAppBarTheme.dark,
@@ -32,16 +29,18 @@ ThemeData darkThemeData() => ThemeData(
 
   cardTheme: AppCardTheme.dark,
 
-  dropdownMenuTheme: AppDropdownMenuTheme.dark,
-
-  bottomNavigationBarTheme: BottomNavBarTheme.dark,
-
   progressIndicatorTheme: AppProgressIndicatorTheme.dark,
 
   iconTheme: const IconThemeData(color: DarkColors.icon, size: AppSizes.icon),
 
+  textSelectionTheme: const TextSelectionThemeData(
+    selectionColor: Color(0xFF051E78),
+  ),
+
   dividerTheme: const DividerThemeData(
-    color: DarkColors.borderAppBar,
+    color: DarkColors.border,
     thickness: 0.3,
   ),
+
+  bottomNavigationBarTheme: BottomNavBarTheme.dark,
 );
