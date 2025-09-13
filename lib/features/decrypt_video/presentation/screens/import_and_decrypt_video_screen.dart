@@ -25,12 +25,6 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<VideoDecryptionCubit, VideoDecryptionState>(
-      listenWhen: (previous, current) {
-        if (current is VideoDecryptionCompleted) {
-          return previous is! VideoDecryptionCompleted;
-        }
-        return true;
-      },
       listener: (context, state) async {
         if (state is VideoDecryptionImported) {
           Notifications.showFlushbar(
@@ -40,12 +34,15 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
         }
 
         if (state is VideoDecryptionCompleted) {
+          context.read<VideoDecryptionCubit>().addState(state);
           await context.pushRoute(
             BlocProvider<VideoPlayerCubit>(
               create: (context) => VideoPlayerCubit(),
               child: VideoPlayerScreen(state.resultVideo),
             ),
           );
+          if (!context.mounted) return;
+          context.read<VideoDecryptionCubit>().resetState();
         }
 
         if (state is VideoDecryptionFailure) {

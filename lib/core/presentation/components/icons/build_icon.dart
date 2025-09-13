@@ -7,18 +7,19 @@ class BuildIcon extends StatelessWidget {
     this.icon, {
     super.key,
     this.isBlack = false,
-    this.color,
+    this.color, this.size,
   });
 
   final IconData icon;
   final bool isBlack;
   final Color? color;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
     return Icon(
       icon,
-      size: AppSizes.icon,
+      size:size?? AppSizes.icon,
       color:color?? (isBlack ? const Color(0xDB000000) : LightColors.icon),
     );
   }

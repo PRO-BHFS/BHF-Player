@@ -1,4 +1,5 @@
 import 'package:bhf_player/core/utils/app_constants/app_constants.dart';
+import 'package:bhf_player/core/utils/styles/app_colors/dark_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/video_player/presentation/controllers/video_player/video_player_controller.dart';
 import 'package:bhf_player/features/video_player/presentation/widgets/controls/progress_slider.dart';
@@ -16,20 +17,17 @@ class ControllersOverlay extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: playerCubit.playerService.isShowControllers,
       builder: (_, isVisible, builderChild) {
-        return AnimatedSwitcher(
+        return AnimatedOpacity(
+          opacity: isVisible ? 1.0 : 0,
           duration: AppConsts.fadeInDuration,
-          reverseDuration: AppConsts.fadeOutDuration,
-          switchInCurve: Curves.easeInToLinear,
-          switchOutCurve: Curves.easeInToLinear,
-          transitionBuilder: (child, animation) =>
-              FadeTransition(opacity: animation, child: child),
-          child: isVisible ? builderChild : null,
+          curve: Curves.easeInBack,
+          child: Visibility(visible: isVisible, child: builderChild!),
         );
       },
       child: Container(
-        color: const Color(0xCE000000),
+        color: DarkColors.transparent,
         child: Padding(
-          padding: const EdgeInsets.all(AppSizes.secondPadding),
+          padding: const EdgeInsets.all(AppSizes.mainPadding),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -30,9 +30,8 @@ Future<void> setFullScreenMode() async {
 }
 
 Future<void> setSystemUIVisibility(bool isVisible) async {
-  if (isVisible) {
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  } else {
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  }
+  await SystemChrome.setEnabledSystemUIMode(
+    isVisible ? SystemUiMode.edgeToEdge : SystemUiMode.immersiveSticky,
+    
+  );
 }

@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'package:bhf_player/features/video_player/presentation/services/player_ui.dart';
+import 'package:bhf_player/features/video_player/domain/entities/video_action_state.dart';
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:bhf_player/core/utils/enums/enums.dart';
 import 'package:media_kit_video/media_kit_video.dart';
-import 'package:volume_controller/volume_controller.dart';
 
 class VideoPlayerService {
   VideoPlayerService._();
@@ -25,6 +24,11 @@ class VideoPlayerService {
   final videoDuration = ValueNotifier(Duration.zero);
   final currentPosition = ValueNotifier(Duration.zero);
   final activeGesture = ValueNotifier<GestureArea?>(null);
+  final isUiLocked = ValueNotifier<bool>(false);
+  final videoActionState = ValueNotifier<VideoActionState>(
+    const VideoActionState(),
+  );
+  double lastSpeed = 1.0;
 
   Timer? inactivityTimer;
   Timer? uiIconTimer;
@@ -36,32 +40,28 @@ class VideoPlayerService {
     player = Player();
     videoController = VideoController(player!);
     await player?.open(Media(videoPath));
-    await _initVolume();
   }
-
-  Future<void> _initVolume() async {
-    final currentVolume = await VolumeController.instance.getVolume();
-    volume.value = currentVolume;
-  }
-
- 
 
   Future<void> dispose() async {
     inactivityTimer?.cancel();
     uiIconTimer?.cancel();
+
     isFullScreen.dispose();
     isShowControllers.dispose();
     isPlaying.dispose();
     uiIcon.dispose();
     playerSliderProgress.dispose();
     volume.dispose();
-    brightness.dispose();
     playbackSpeed.dispose();
     videoDuration.dispose();
     currentPosition.dispose();
     activeGesture.dispose();
+    isUiLocked.dispose();
+    videoActionState.dispose();
+    brightness.dispose();
     await player?.dispose();
+    player = null;
+    videoController = null;
     _instance = null;
-    await PlayerUi().changeVerticalBrightness(this, isInit: true);
   }
 }

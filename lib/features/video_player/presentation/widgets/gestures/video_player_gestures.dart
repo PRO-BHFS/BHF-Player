@@ -2,6 +2,7 @@ import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
 import 'package:bhf_player/core/presentation/components/icons/build_svg_icon.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/enums/enums.dart';
+import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/video_player/presentation/controllers/video_player/video_player_controller.dart';
 import 'package:bhf_player/features/video_player/presentation/widgets/gestures/build_gesture_area.dart';
 import 'package:bhf_player/features/video_player/presentation/widgets/controls/vertical_slider.dart';
@@ -52,8 +53,9 @@ class VideoPlayerGestures extends StatelessWidget {
                     await playerCubit.changeUiIcon(
                       icon: BuildIcon(
                         isPlaying
-                            ? Icons.pause_rounded
-                            : Icons.play_arrow_rounded,
+                            ? Icons.play_arrow_rounded
+                            : Icons.pause_rounded,
+                        size: AppSizes.bigIcon,
                       ),
                       area: GestureArea.center,
                     );
@@ -80,7 +82,7 @@ class VideoPlayerGestures extends StatelessWidget {
                 await playerCubit.changeUiIcon(
                   icon: VerticalSlider(
                     icon: Icons.volume_up_rounded,
-                    emptyIcon:Icons.volume_mute_rounded ,
+                    emptyIcon: Icons.volume_mute_rounded,
                     valueListenable: playerCubit.playerService.volume,
                   ),
                   area: GestureArea.left,

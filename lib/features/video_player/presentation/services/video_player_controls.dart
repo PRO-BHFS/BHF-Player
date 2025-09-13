@@ -1,3 +1,4 @@
+import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:bhf_player/core/utils/app_constants/app_constants.dart';
 import 'package:volume_controller/volume_controller.dart';
@@ -15,6 +16,7 @@ class PlayerControls {
   }
 
   void seekHorizontal(VideoPlayerService service, DragUpdateDetails details) {
+    
     final delta = details.primaryDelta;
     if (service.isNotPlayerInitialized || delta == null) return;
     if (delta > 0) {
@@ -32,7 +34,6 @@ class PlayerControls {
     VideoPlayerService service,
     DragUpdateDetails details,
   ) async {
-
     final delta = details.primaryDelta ?? 0;
     if (service.isNotPlayerInitialized) return;
     final newVolume = service.volume.value - delta;
@@ -55,8 +56,22 @@ class PlayerControls {
     await service.player?.playOrPause();
   }
 
-  void changePlaybackSpeed(VideoPlayerService service, double speed) =>
-      service.player?.setRate(speed);
+  Future<double> changePlaybackSpeed(
+    VideoPlayerService service,
+    double speed,
+  ) async {
+    final fitSpeed = speed.toStringAsFixed(2).toDouble;
+    await service.player?.setRate(fitSpeed);
+
+    final isSpeedControlActive = (fitSpeed != 1.0);
+    final videoActions = service.videoActionState.value;
+    
+    service.videoActionState.value = videoActions.copyWith(
+      isSpeedControlActive: isSpeedControlActive,
+    );
+
+    return fitSpeed;
+  }
 
   Future<void> _changeVolume(
     VideoPlayerService service,
@@ -66,5 +81,25 @@ class PlayerControls {
       (newVolume / 100).clamp(0.0, 1.0),
     );
     service.volume.value = newVolume;
+  }
+
+  void toggleUiLock(VideoPlayerService service) {
+    service.isUiLocked.value = !service.isUiLocked.value;
+  }
+
+  void toggleThemePlayerUi(VideoPlayerService service) {
+    final actionState = service.videoActionState.value;
+    final isDarkModeActive = !actionState.isDarkModeActive;
+    service.videoActionState.value = actionState.copyWith(
+      isDarkModeActive: isDarkModeActive,
+    );
+  }
+
+  Future<void> toggleMute(VideoPlayerService service) async {
+    final actionState = service.videoActionState.value;
+    final isMuted = !actionState.isMuted;
+
+    service.videoActionState.value = actionState.copyWith(isMuted: isMuted);
+    await service.player?.setVolume(isMuted ? 0.0 : 100.0);
   }
 }

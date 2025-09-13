@@ -34,7 +34,7 @@ class AppTextTheme {
       color: Colors.white,
     ),
 
-    labelSmall: TextStyle(color: const Color(0xFFFFFFFF), fontSize: 14.sp),
+    labelSmall: const TextStyle(color: DarkColors.fontMain, fontSize: 13),
 
     labelMedium: TextStyle(
       fontWeight: FontWeight.bold,
@@ -53,33 +53,43 @@ class AppTextTheme {
       fontSize: 15.sp,
       color: DarkColors.fontMain,
       overflow: TextOverflow.visible,
-      height: 1.7.sp
+      height: 1.7.sp,
     ),
+    headlineSmall: TextStyle(
+      fontSize: 8.sp,
+      color: DarkColors.fontMain,
+      fontWeight: FontWeight.bold,
+    ),
+    displaySmall: const TextStyle(fontSize: 10, color: DarkColors.fontMain),
   );
 
-  static TextTheme get light => const TextTheme(
-    headlineLarge: TextStyle(
+  static TextTheme get light => TextTheme(
+    headlineLarge: const TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 24,
       color: LightColors.fontMain,
       overflow: TextOverflow.ellipsis,
     ),
-
-    headlineMedium: TextStyle(
+    headlineSmall: TextStyle(
+      fontSize: 8.sp,
+      color: DarkColors.fontMain,
+      fontWeight: FontWeight.bold,
+    ),
+    headlineMedium: const TextStyle(
       fontWeight: FontWeight.w800,
       fontSize: 17,
       color: Colors.white,
     ),
-    titleSmall: TextStyle(fontWeight: FontWeight.w700, fontSize: 10),
+    titleSmall: const TextStyle(fontWeight: FontWeight.w700, fontSize: 10),
 
-    titleMedium: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+    titleMedium: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
 
-    labelSmall: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+    labelSmall: const TextStyle(color: LightColors.fontMain, fontSize: 13),
 
-    labelMedium: TextStyle(fontWeight: FontWeight.bold),
+    labelMedium: const TextStyle(fontWeight: FontWeight.bold),
 
-    labelLarge: TextStyle(fontWeight: FontWeight.w600),
-
-    bodySmall: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+    labelLarge: const TextStyle(fontWeight: FontWeight.w600),
+    displaySmall: const TextStyle(fontSize: 10, color: LightColors.fontMain),
+    bodySmall: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
   );
 }

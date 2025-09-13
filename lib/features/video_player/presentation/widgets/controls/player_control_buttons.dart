@@ -1,7 +1,8 @@
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
+import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
+import 'package:bhf_player/features/video_player/presentation/widgets/controls/lock_ui_action.dart';
 import 'package:flutter/material.dart';
 import 'package:bhf_player/features/video_player/presentation/controllers/video_player/video_player_controller.dart';
-import 'playback_speed_dropdown.dart';
 import 'control_button.dart';
 
 class PlayerControlButtons extends StatelessWidget {
@@ -11,28 +12,30 @@ class PlayerControlButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        // زر التشغيل والإيقاف
-        ControlButton<bool>(
-          listenable: playerCubit.playerService.isPlaying,
-          iconBuilder: (isPlaying) => isPlaying
-              ? const BuildIcon(Icons.pause_rounded)
-              : const BuildIcon(Icons.play_arrow_rounded),
-          onPressed: () async => await playerCubit.playOrPause(),
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSizes.mainPadding * 2),
+      child: Stack(
+        alignment: Alignment.centerLeft,
+        children: [
+          // ايقونة عمل قفل
+          Align(
+            alignment: Alignment.centerLeft,
+            child: LockUiAction(playerCubit),
+          ),
 
-        PlaybackSpeedDropdown(playerCubit: playerCubit),
-
-        // زر ملء الشاشة
-        ControlButton<bool>(
-          listenable: playerCubit.playerService.isFullScreen,
-          iconBuilder: (isFullScreen) =>
-              Icon(isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen),
-          onPressed: () async => await playerCubit.toggleFullscreen(),
-        ),
-      ],
+          // ايقونة التشغيل والإيقاف
+          Align(
+            alignment: Alignment.center,
+            child: ControlButton<bool>(
+              listenable: playerCubit.playerService.isPlaying,
+              iconBuilder: (isPlaying) => isPlaying
+                  ? const BuildIcon(Icons.pause_rounded)
+                  : const BuildIcon(Icons.play_arrow_rounded),
+              onPressed: () async => await playerCubit.playOrPause(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

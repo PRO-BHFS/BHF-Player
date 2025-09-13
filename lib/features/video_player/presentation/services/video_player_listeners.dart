@@ -9,7 +9,6 @@ class PlayerListeners {
     listenVideoProgress(service);
     listenIsPlaying(service);
     listenPlaybackSpeed(service);
-    listenVolume(service);
   }
 
   void listenIsPlaying(VideoPlayerService service) {
@@ -18,11 +17,7 @@ class PlayerListeners {
     });
   }
 
-  void listenVolume(VideoPlayerService service) {
-service.player?.stream.volume.listen((volume) {
-      service.volume.value = volume;
-    });
-  }
+  
 
   void listenPlaybackSpeed(VideoPlayerService service) {
    service.player?.stream.rate.listen((rate) {

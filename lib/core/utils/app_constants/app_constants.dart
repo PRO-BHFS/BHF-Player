@@ -18,7 +18,7 @@ class AppConsts {
   static const originalVideoExtension = 'mp4';
 
   static const videoControlsDuration = Duration(milliseconds: 1500);
-  static const seekStepDuration = Duration(seconds: 1);
+  static const seekStepDuration = Duration(seconds: 10);
   static const fadeInDuration = Duration(milliseconds: 200);
   static const fadeOutDuration = Duration(seconds: 1);
 

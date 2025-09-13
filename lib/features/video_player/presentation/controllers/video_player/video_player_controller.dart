@@ -9,10 +9,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'video_player_state.dart';
 
 class VideoPlayerCubit extends Cubit<VideoPlayerState> {
-  final VideoPlayerService playerService = VideoPlayerService();
-  final PlayerControls playerControls = PlayerControls();
-  final PlayerListeners playerListeners = PlayerListeners();
-  final PlayerUi playerUi = PlayerUi();
+  final playerService = VideoPlayerService();
+  final playerControls = PlayerControls();
+  final playerListeners = PlayerListeners();
+  final playerUi = PlayerUi();
 
   VideoPlayerCubit() : super(VideoPlayerInitial());
 
@@ -33,7 +33,8 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
     playerControls.seekTo(playerService, value);
   }
 
-  void seekHorizontal(DragUpdateDetails details) {
+  Future<void> seekHorizontal(DragUpdateDetails details) async {
+    await playerUi.showOrHideControls(playerService, true);
     playerControls.seekHorizontal(playerService, details);
   }
 
@@ -42,7 +43,7 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
   }
 
   Future<void> changeVerticalBrightness(DragUpdateDetails details) async {
-    await playerUi.changeVerticalBrightness(playerService,details: details);
+    await playerUi.changeVerticalBrightness(playerService, details: details);
   }
 
   Future<void> changeUiIcon({
@@ -62,16 +63,25 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
     await playerControls.playOrPause(playerService);
   }
 
-  void changePlaybackSpeed(double speed) =>
-      playerControls.changePlaybackSpeed(playerService, speed);
+  Future<double> changePlaybackSpeed(double speed) async =>
+      await playerControls.changePlaybackSpeed(playerService, speed);
 
   Future<void> toggleFullscreen() async {
     await playerUi.toggleFullscreen(playerService);
   }
 
-  void toggleControls() => playerUi.toggleControls(playerService);
+  Future<void> toggleControls() async =>
+      await playerUi.toggleControls(playerService);
+
+  void toggleUiLock() => playerControls.toggleUiLock(playerService);
+  void toggleThemePlayerUi() =>
+      playerControls.toggleThemePlayerUi(playerService);
+  Future<void> toggleMute() async =>
+      await playerControls.toggleMute(playerService);
 
   Future<void> disposePlayer() async {
+    emit(VideoPlayerInitial());
+    await playerUi.disopse(playerService);
     await playerService.dispose();
   }
 }

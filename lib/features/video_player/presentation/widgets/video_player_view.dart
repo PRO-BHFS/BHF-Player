@@ -3,6 +3,7 @@ import 'package:bhf_player/features/video_player/presentation/controllers/video_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:media_kit_video/media_kit_video.dart';
+
 class VideoPlayerView extends StatelessWidget {
   const VideoPlayerView({super.key});
 
@@ -13,12 +14,31 @@ class VideoPlayerView extends StatelessWidget {
           .watch<VideoPlayerCubit>()
           .playerService
           .isPlayerInitialized,
-      builder: (_) => Video(
-        controller: context
-            .read<VideoPlayerCubit>()
-            .playerService
-            .videoController!,
-        controls: null,
+      builder: (_) => Stack(
+        alignment: Alignment.center,
+
+        children: [
+          Video(
+            controller: context
+                .read<VideoPlayerCubit>()
+                .playerService
+                .videoController!,
+          aspectRatio: 2,
+            controls: null,
+          ),
+          ValueListenableBuilder(
+            valueListenable: context
+                .watch<VideoPlayerCubit>()
+                .playerService
+                .videoActionState,
+            builder: (context, videoAction, darkOverlay) {
+              return videoAction.isDarkModeActive ? darkOverlay! : const SizedBox.shrink();
+            },
+            child: const Positioned.fill(
+              child: Material(color: Color(0x9E000000)),
+            ),
+          ),
+        ],
       ),
       fallback: (_) => const Center(child: CircularProgressIndicator()),
     );

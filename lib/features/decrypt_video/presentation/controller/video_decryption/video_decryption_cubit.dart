@@ -12,6 +12,8 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
     with SingleRunner {
   VideoDecryptionCubit() : super(VideoDecryptionInitial());
 
+  final states = <VideoDecryptionState>[];
+
   final _service = VideoDecryptionService();
 
   VideoEntity? _selectedVideo;
@@ -49,6 +51,8 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
     required CourseEntity? selectedCourse,
   }) async {
     try {
+      if (states.any((s) => s is VideoDecryptionCompleted)) return;
+
       if (!_service.isUserAuthorized(selectedCourse!, userId)) {
         _handleError("الباسورد غير صحيح");
         return;
@@ -75,5 +79,14 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
 
   void _handleError(String errorMessage) {
     emit(VideoDecryptionFailure(errorMessage));
+  }
+
+  void addState(VideoDecryptionState state) {
+    states.add(state);
+  }
+
+  void resetState() {
+    states.clear();
+    emit(VideoDecryptionInitial());
   }
 }

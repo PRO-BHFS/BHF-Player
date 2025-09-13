@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/dark_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/light_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppAppBarTheme {
@@ -9,6 +10,10 @@ class AppAppBarTheme {
   static AppBarTheme get dark => AppBarTheme(
     backgroundColor: DarkColors.appBar,
     centerTitle: true,
+    systemOverlayStyle: const SystemUiOverlayStyle(
+      statusBarColor: Color(0x99000000),
+      statusBarBrightness: Brightness.light,
+    ),
     titleTextStyle: TextStyle(
       fontSize: 24.sp,
       color: DarkColors.onPrimary,
@@ -25,6 +30,11 @@ class AppAppBarTheme {
   static AppBarTheme get light => AppBarTheme(
     backgroundColor: LightColors.appBar,
     centerTitle: true,
+    systemOverlayStyle: const SystemUiOverlayStyle(
+      statusBarColor: Color(0x99000000),
+
+      statusBarBrightness: Brightness.light,
+    ),
     titleTextStyle: const TextStyle(
       fontSize: 15,
       color: LightColors.onPrimary,
