@@ -1,6 +1,7 @@
 import 'package:bhf_player/bhf_studio/lib/core/presentation/components/icons/build_icon.dart';
 import 'package:bhf_player/bhf_studio/lib/core/presentation/components/rounded_container.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/bhf_studio/lib/features/course/presentation/widgets/build_courses_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,12 +15,12 @@ class BuildCoursesDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Roundedcontainer(
+    return RoundedContainer(
       child: Column(
         spacing: 15.h,
         children: [
           Row(
-            spacing: 10,
+            spacing: AppSizes.spacingMiddle,
             children: [
               const BuildIcon(Icons.school),
               Text(

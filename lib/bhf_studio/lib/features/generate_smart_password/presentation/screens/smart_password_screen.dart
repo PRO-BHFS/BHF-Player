@@ -9,7 +9,8 @@ import 'package:bhf_player/bhf_studio/lib/features/course/presentation/controlle
 import 'package:bhf_player/bhf_studio/lib/features/course/presentation/sheets/add_course_sheet.dart';
 import 'package:bhf_player/bhf_studio/lib/features/course/presentation/widgets/build_courses_dashboard.dart';
 import 'package:bhf_player/bhf_studio/lib/features/generate_smart_password/presentation/controller/generate_smart_password/generate_smart_password_cubit.dart';
-import 'package:bhf_player/bhf_studio/lib/features/generate_smart_password/presentation/widgets/build_password_text.dart';
+import 'package:bhf_player/bhf_studio/lib/features/generate_smart_password/presentation/widgets/smart_password_viewer.dart';
+import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,7 +49,6 @@ class _SmartPasswordScreenState extends State<SmartPasswordScreen> {
     return ListView(
       padding: const EdgeInsets.all(AppSizes.mainPadding),
       shrinkWrap: true,
-      // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
 
       children: [
         const BuildCoursesDashboard(),
@@ -72,12 +72,16 @@ class _SmartPasswordScreenState extends State<SmartPasswordScreen> {
                 onFieldSubmitted: (_) => onSubmit(),
               ),
 
-              BuildButton(text: 'إنشاء كلمة مرور', onPress: onSubmit),
+              BuildButton(
+                text: 'إنشاء كلمة مرور',
+                icon: const BuildIcon(Icons.key),
+                onPress: onSubmit,
+              ),
             ].separatedBy(const SizedBox(height: 25)),
           ),
         ),
 
-        const BuildPasswordText(),
+        const SmartPasswordViewer(),
       ].separatedBy(const SizedBox(height: 50)),
     );
   }

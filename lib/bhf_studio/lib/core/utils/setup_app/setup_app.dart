@@ -4,6 +4,7 @@
 // import 'package:permission_handler/permission_handler.dart';
 
 import 'package:bhf_player/bhf_studio/lib/core/presentation/controllers/bloc_observer/bloc_observer.dart';
+import 'package:bhf_player/bhf_studio/lib/features/device_id/id_injection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'setup_storage_permission/setup_storage_permission.dart';
@@ -14,6 +15,7 @@ Future<void> setupBhfStudioApp() async {
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);  await setupScreenWindow();
   await setupServicesLocator();
   await setupStoragePermission();
+  setupAdminIdLocators(s1);
 
   // await clearCacheIfNeeded();
   Bloc.observer = MyBlocObserver();

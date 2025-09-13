@@ -8,16 +8,16 @@ class BottomNavBarTheme {
   static BottomNavigationBarThemeData get dark =>
       const BottomNavigationBarThemeData(
         backgroundColor: Color(0XFF172633),
-        unselectedIconTheme: IconThemeData(
-          color: DarkColors.unSelected,
-          size: AppSizes.icon + 1,
-        ),
-        selectedIconTheme: IconThemeData(
-          color: DarkColors.selected,
-          size: AppSizes.icon,
+
+        unselectedIconTheme: IconThemeData(color: DarkColors.unSelected),
+        selectedIconTheme: IconThemeData(color: DarkColors.selected),
+        unselectedLabelStyle: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
         ),
         selectedLabelStyle: TextStyle(
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w900,
+          fontSize: 14,
           color: DarkColors.selected,
         ),
         selectedItemColor: DarkColors.selected,

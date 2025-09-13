@@ -29,7 +29,7 @@ class BuildButton extends StatelessWidget {
 
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 3,
+        spacing: 5,
         children: [
           Text(
             text,

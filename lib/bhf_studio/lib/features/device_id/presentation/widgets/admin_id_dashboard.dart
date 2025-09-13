@@ -1,23 +1,23 @@
-import 'package:bhf_player/core/presentation/components/rounded_container.dart';
-import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
-import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
-import 'package:bhf_player/features/device_id/presentation/controller/device_id/device_id.dart';
+import 'package:bhf_player/bhf_studio/lib/core/presentation/components/buttons/icon_button.dart';
+import 'package:bhf_player/bhf_studio/lib/core/presentation/components/rounded_container.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/helpers_functions/share/share_whatsup.dart';
+import 'package:bhf_player/bhf_studio/lib/features/device_id/presentation/controller/device_id/device_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BuildIdDashboard extends StatelessWidget {
-  const BuildIdDashboard({super.key});
+class AdminIdDashboard extends StatelessWidget {
+  const AdminIdDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
-    final userId = context.read<DeviceIdCubit>().userId;
+    final userId = context.read<AdminDeviceIdCubit>().userId;
     return RoundedContainer(
       child: Column(
         spacing: 8,
         children: [
-          BlocBuilder<DeviceIdCubit, String>(
+          BlocBuilder<AdminDeviceIdCubit, String>(
             builder: (_, id) => FittedBox(
               fit: BoxFit.scaleDown,
               child: Row(

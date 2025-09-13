@@ -21,4 +21,8 @@ class Keys {
   static const encryptChunk = "encryptChunk";
   static const coursesList = "coursesList";
   static const recentSelectedCourse = "recentSelectedCourse";
+
+  static const adminId = "adminId";
+  static const balance = "balance";
+  static const expiredCodes = "expiredCodes";
 }

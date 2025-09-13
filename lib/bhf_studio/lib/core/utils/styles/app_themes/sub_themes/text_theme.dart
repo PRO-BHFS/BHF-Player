@@ -2,6 +2,7 @@ import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_colors/dark_colo
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_colors/light_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class AppTextTheme {
   AppTextTheme._();
 
@@ -34,7 +35,12 @@ class AppTextTheme {
       color: Colors.white,
     ),
 
-    labelSmall: const TextStyle(color: DarkColors.fontMain, fontSize: 13),
+    labelSmall: const TextStyle(
+      color: DarkColors.fontMain,
+      fontSize: 13,
+      fontWeight: FontWeight.bold,
+      height: 1.8,
+    ),
 
     labelMedium: TextStyle(
       fontWeight: FontWeight.bold,
@@ -93,7 +99,12 @@ class AppTextTheme {
     ),
     titleMedium: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
 
-    labelSmall: const TextStyle(color: LightColors.fontMain, fontSize: 13),
+    labelSmall: const TextStyle(
+      color: LightColors.fontMain,
+      fontSize: 13,
+      fontWeight: FontWeight.bold,
+      height: 1.8,
+    ),
 
     labelMedium: const TextStyle(fontWeight: FontWeight.bold),
 

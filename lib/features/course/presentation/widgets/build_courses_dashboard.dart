@@ -13,7 +13,7 @@ class BuildCoursesDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Roundedcontainer(
+    return RoundedContainer(
       child: Column(
         spacing: 15.h,
         children: [

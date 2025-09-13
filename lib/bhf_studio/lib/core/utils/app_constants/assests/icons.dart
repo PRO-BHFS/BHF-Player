@@ -18,4 +18,6 @@ final class IconsAssets {
   static const videoLibraryFill = 'assets/icons/video_library_fill.svg';
   static const password = 'assets/icons/password.svg';
   static const passwordFill = 'assets/icons/password_fill.svg';
+
+  static const createPassword = 'assets/icons/create_password.svg';
 }
