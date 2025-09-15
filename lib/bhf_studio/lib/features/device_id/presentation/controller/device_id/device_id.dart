@@ -5,7 +5,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class AdminDeviceIdCubit extends HydratedCubit<String> {
   AdminDeviceIdCubit() : super('');
-  String get userId => state;
+  String get adminId => state;
 
   Future<void> initDeviceId() async {
     if (state.isNotEmpty) return;

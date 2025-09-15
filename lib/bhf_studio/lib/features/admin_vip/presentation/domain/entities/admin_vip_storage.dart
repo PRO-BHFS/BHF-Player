@@ -14,9 +14,10 @@ class AdminVipStorage {
         expiredCodes: expiredCodes ?? this.expiredCodes,
       );
 
-  bool isAuthurizated(int featurePrice) =>
-      balance > 0 || featurePrice <= balance;
+  // تحقق من إمكانية استخدام ميزة بناءً على السعر والرصيد
 
+  bool canAffordFeature(int featurePrice) =>
+      balance > 0 || balance >= featurePrice;
 
   factory AdminVipStorage.fromJson(Map<String, dynamic> json) {
     final savedBalance = (json[Keys.balance] as int?) ?? 0;
@@ -26,7 +27,6 @@ class AdminVipStorage {
       expiredCodes: savedExpiredCodes.toSet(),
     );
   }
-
 
   Map<String, dynamic> toJson() {
     return {Keys.balance: balance, Keys.expiredCodes: expiredCodes.toList()};

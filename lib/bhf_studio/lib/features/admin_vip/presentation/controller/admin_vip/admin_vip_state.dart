@@ -14,6 +14,11 @@ class AdminVipLoadedState extends AdminVipState {
   AdminVipLoadedState(super.adminInfo);
 }
 
+class AdminVipCoinsAddedState extends AdminVipState {
+  final String message;
+  AdminVipCoinsAddedState(this.message, super.adminInfo);
+}
+
 class AdminVipUpdatedState extends AdminVipState {
   AdminVipUpdatedState(super.adminInfo);
 }

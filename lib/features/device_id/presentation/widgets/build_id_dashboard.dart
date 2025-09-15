@@ -13,41 +13,46 @@ class BuildIdDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
     final userId = context.read<DeviceIdCubit>().userId;
+    final primaryColor = context.colorScheme.primary;
     return RoundedContainer(
       child: Column(
-        spacing: 8,
+        spacing: 10,
         children: [
           BlocBuilder<DeviceIdCubit, String>(
-            builder: (_, id) => FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Row(
-                spacing: 15,
-                children: [
-                  Text("ID:", style: textTheme.labelSmall),
-                  SelectableText(
-                    id,
-                    maxLines: 1,
+            builder: (_, id) {
+              return FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Row(
+                  spacing: 15,
+                  children: [
+                    Text("ID:", style: textTheme.labelSmall),
+                    SelectableText(
+                      id.isEmpty ? "XXX-XXX-XXX" : id,
+                      maxLines: 1,
 
-                    style: textTheme.labelMedium?.copyWith(
-                      color: context.colorScheme.onSurface,
+                      style: textTheme.labelMedium?.copyWith(
+                        color: context.colorScheme.onSurface,
+                      ),
+                      onTap: () => id.copyToClipboard,
                     ),
-                    onTap: () => id.copyToClipboard,
-                  ),
-                ],
-              ),
-            ),
+                  ],
+                ),
+              );
+            },
           ),
           Row(
-            mainAxisSize: MainAxisSize.min,
+            spacing: 10,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Spacer(),
-              BuildIconButton(
-                icon: const Icon(Icons.copy_rounded),
-                onPressed: userId.copyToClipboard,
-              ),
-              BuildIconButton(
+              CircleIconButton(
                 icon: const Icon(Icons.share),
                 onPressed: () async => await shareOnWhatsApp(userId),
+                circleColor: primaryColor,
+              ),
+              CircleIconButton(
+                icon: const Icon(Icons.copy_rounded),
+                onPressed: userId.copyToClipboard,
+                circleColor: primaryColor,
               ),
             ],
           ),

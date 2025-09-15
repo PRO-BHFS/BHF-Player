@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bhf_player/bhf_studio/lib/core/utils/helpers_functions/notifications/notifications.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_sizes/app_sizes.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -94,4 +95,13 @@ extension Numbers on String {
   double get toDouble => double.tryParse(this)??0;
   int get toInt => int.tryParse(this)??0;
   
+}
+
+
+extension LogError on Object {
+  void logError({StackTrace? stack, String? methodName}) {
+    if (methodName != null) if (kDebugMode) print("Method name: $methodName");
+    if (kDebugMode) print("Error: $this");
+    if (stack != null) if (kDebugMode) print("Stack trace: $stack");
+  }
 }

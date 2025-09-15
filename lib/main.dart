@@ -1,5 +1,4 @@
 import 'package:bhf_player/bhf_studio/lib/core/utils/setup_app/setup_app.dart';
-import 'package:bhf_player/bhf_studio/lib/core/utils/setup_app/setup_multi_provider/setup_multi_provider.dart';
 import 'package:bhf_player/core/presentation/screens/main_screen.dart';
 import 'package:bhf_player/core/utils/setup_app/responsive_initializer/responsive_initializer.dart';
 import 'package:bhf_player/core/utils/setup_app/setup_app.dart';
@@ -19,10 +18,8 @@ void main() async {
   FlutterNativeSplash.remove();
 
   runApp(
-    const SetupMultiProvider(
-      child: SetupMultiBlocProvider(
-        child: ResponsiveInitializer(child: BHFPlayer()),
-      ),
+    const SetupMultiBlocProvider(
+      child: ResponsiveInitializer(child: BHFPlayer()),
     ),
   );
 }

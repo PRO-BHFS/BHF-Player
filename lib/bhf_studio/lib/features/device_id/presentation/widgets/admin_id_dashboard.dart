@@ -1,4 +1,4 @@
-import 'package:bhf_player/bhf_studio/lib/core/presentation/components/buttons/icon_button.dart';
+import 'package:bhf_player/bhf_studio/lib/core/presentation/components/buttons/circle_icon_button.dart';
 import 'package:bhf_player/bhf_studio/lib/core/presentation/components/rounded_container.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/helpers_functions/share/share_whatsup.dart';
@@ -12,10 +12,12 @@ class AdminIdDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
-    final userId = context.read<AdminDeviceIdCubit>().userId;
+    final userId = context.read<AdminDeviceIdCubit>().adminId;
+    final primaryColor = context.colorScheme.primary;
+
     return RoundedContainer(
       child: Column(
-        spacing: 8,
+        spacing: 10,
         children: [
           BlocBuilder<AdminDeviceIdCubit, String>(
             builder: (_, id) => FittedBox(
@@ -25,7 +27,7 @@ class AdminIdDashboard extends StatelessWidget {
                 children: [
                   Text("ID:", style: textTheme.labelSmall),
                   SelectableText(
-                    id,
+                    id.isNotEmpty? id: "XXX-XXX-XXX",
                     maxLines: 1,
 
                     style: textTheme.labelMedium?.copyWith(
@@ -38,16 +40,18 @@ class AdminIdDashboard extends StatelessWidget {
             ),
           ),
           Row(
-            mainAxisSize: MainAxisSize.min,
+            spacing: 10,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Spacer(),
-              BuildIconButton(
-                icon: const Icon(Icons.copy_rounded),
-                onPressed: userId.copyToClipboard,
-              ),
-              BuildIconButton(
+              CircleIconButton(
                 icon: const Icon(Icons.share),
                 onPressed: () async => await shareOnWhatsApp(userId),
+                circleColor: primaryColor,
+              ),
+              CircleIconButton(
+                icon: const Icon(Icons.copy_rounded),
+                onPressed: userId.copyToClipboard,
+                circleColor: primaryColor,
               ),
             ],
           ),

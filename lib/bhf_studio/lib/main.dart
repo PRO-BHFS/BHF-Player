@@ -1,7 +1,7 @@
 import 'package:bhf_player/bhf_studio/lib/core/utils/setup_app/setup_app.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/setup_app/setup_multi_provider/setup_multi_provider.dart';
 import 'package:bhf_player/bhf_studio/lib/features/bottom_navigation/presentation/screens/home_layout.dart';
-import 'package:bhf_player/features/theme_mode/presentation/controllers/theme/theme.dart';
+import 'package:bhf_player/bhf_studio/lib/features/theme_mode/presentation/controllers/theme/theme.dart';
 import 'package:flashy_flushbar/flashy_flushbar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +21,8 @@ class BHFStudio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeCubit = context.watch<ThemeCubit>();
+
     return MaterialApp(
       title: 'BHF Studio',
       debugShowCheckedModeBanner: false,
@@ -28,7 +30,7 @@ class BHFStudio extends StatelessWidget {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const BouncingScrollPhysics(),
       ),
-      themeMode: context.watch<ThemePlayerCubit>().themeMode,
+      themeMode: themeCubit.themeMode,
       theme: lightThemeData(),
       darkTheme: darkThemeData(),
       home: const HomeLayout(),

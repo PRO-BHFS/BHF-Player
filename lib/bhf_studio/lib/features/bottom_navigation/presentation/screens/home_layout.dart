@@ -1,6 +1,7 @@
 import 'package:bhf_player/bhf_studio/lib/core/presentation/components/icons/build_icon.dart';
 import 'package:bhf_player/bhf_studio/lib/core/presentation/widgets/more_options_button.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/bhf_studio/lib/core/utils/setup_app/setup_multi_provider/setup_multi_provider.dart';
 import 'package:bhf_player/bhf_studio/lib/core/utils/styles/app_colors/dark_colors.dart';
 import 'package:bhf_player/bhf_studio/lib/features/bottom_navigation/presentation/controllers/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:bhf_player/bhf_studio/lib/features/bottom_navigation/presentation/controllers/bottom_navigation/bottom_navigation_states.dart';
@@ -22,7 +23,9 @@ class HomeLayout extends StatelessWidget {
             actions: [const MoreOptionsButton()],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () async => await context.pushRoute(const BHFPlayer()),
+            onPressed: () async => await context.pushRoute(
+              const SetupMultiProvider(child: BHFPlayer()),
+            ),
             child: const Icon(Icons.play_circle_rounded),
           ),
 

@@ -8,11 +8,11 @@ class ThemeCubit extends HydratedCubit<ThemeMode> {
   ThemeCubit() : super(ThemeMode.system);
 
   ThemeMode get themeMode => state;
+  bool get isDarkMode => themeMode == ThemeMode.dark;
 
-  Future<void> selectTheme(ThemeMode newTheme) async {
-    if (newTheme == state) return;
-
-    emit(newTheme);
+ 
+  void selectTheme(bool isDark) {
+    emit(isDark ? ThemeMode.dark : ThemeMode.light);
   }
 
   @override

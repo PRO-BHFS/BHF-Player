@@ -1,3 +1,4 @@
+import 'package:bhf_player/bhf_studio/lib/core/utils/setup_app/setup_multi_provider/setup_multi_provider.dart';
 import 'package:bhf_player/bhf_studio/lib/main.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
@@ -15,7 +16,9 @@ class MainScreen extends StatelessWidget {
         appBar: AppBar(title: const Text('BHF Player')),
 
         floatingActionButton: FloatingActionButton(
-          onPressed: () async => await context.pushRoute(const BHFStudio()),
+          onPressed: () async => await context.pushRoute(
+            // ignore: prefer_const_constructors
+            SetupMultiProvider(child: const BHFStudio())),
           child: const Icon(Icons.settings_suggest_sharp),
         ),
         body: BlocProvider<UserCourseCubit>(

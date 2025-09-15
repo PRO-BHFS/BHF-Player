@@ -63,7 +63,7 @@ class _SmartPasswordScreenState extends State<SmartPasswordScreen> {
                 labelText: 'ID',
                 hintText: "اكتب معرف جهاز المشتري هنا",
                 controller: _idController,
-                suffixIcon: IconButton(
+                suffixIcon: BuildIconButton(
                   icon: const BuildSvgIcon(IconsAssets.paste),
                   onPressed: _idController.pasteFromClipboard,
                 ),
