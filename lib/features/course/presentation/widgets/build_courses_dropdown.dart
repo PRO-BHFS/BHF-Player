@@ -1,6 +1,4 @@
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
-import 'package:bhf_player/core/presentation/components/icons/build_svg_icon.dart';
-import 'package:bhf_player/core/utils/app_constants/app_assests/app_icons_assests.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
@@ -15,7 +13,7 @@ class BuildCoursesDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserCourseCubit, UserCourseState>(
+    return BlocConsumer<CourseCubit, CourseState>(
       listener: (context, state) {
         if (state case CourseAdded(:final course)) {
           Notifications.showFlushbar(
@@ -37,10 +35,10 @@ class BuildCoursesDropdown extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        final controller = context.watch<UserCourseCubit>();
+        final controller = context.watch<CourseCubit>();
         final textTheme = context.textTheme;
         if (state is CourseLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator.adaptive());
         }
 
         return DropdownMenu<int>(
@@ -49,15 +47,17 @@ class BuildCoursesDropdown extends StatelessWidget {
           maxLines: 1,
           width: double.infinity,
           requestFocusOnTap: false,
-          trailingIcon: const BuildSvgIcon(AppIconsAssests.moveUpDown),
-          selectedTrailingIcon: const BuildSvgIcon(AppIconsAssests.moveUpDown),
+          trailingIcon: const BuildIcon(Icons.keyboard_arrow_down_rounded),
+          selectedTrailingIcon: const BuildIcon(
+            Icons.keyboard_arrow_up_rounded,
+          ),
           textStyle: textTheme.labelSmall?.copyWith(fontSize: 15.sp),
           menuStyle: MenuStyle(
             maximumSize: WidgetStatePropertyAll(Size(300.w, 300.h)),
             alignment: AlignmentDirectional.bottomStart,
           ),
 
-          dropdownMenuEntries: controller.courses.map((course) {
+          dropdownMenuEntries: controller.state.courses.map((course) {
             return DropdownMenuEntry<int>(
               value: course.id!,
               label: course.courseTitle,

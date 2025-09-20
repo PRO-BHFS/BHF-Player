@@ -4,21 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 
 class BuildSvgIcon extends StatelessWidget {
-  const BuildSvgIcon(this.assetName, {super.key,this.size, this.isDisabled = false});
+  const BuildSvgIcon(
+    this.assetName, {
+    super.key,
+    this.size,
+    this.isDisabled = false, this.color,
+  });
 
   final String assetName;
   final bool isDisabled;
   final double? size;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     final color = isDisabled
         ? context.theme.disabledColor
-        : context.colorScheme.onPrimary;
+        : this.color ?? context.colorScheme.onPrimary;
 
     return SvgPicture.asset(
       assetName,
-      width:size?? AppSizes.icon,
+      width: size ?? AppSizes.icon,
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
     );
   }

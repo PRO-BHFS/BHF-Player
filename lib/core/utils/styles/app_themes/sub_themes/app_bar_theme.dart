@@ -36,14 +36,14 @@ class AppAppBarTheme {
     ),
     titleTextStyle: TextStyle(
       fontSize: 20.sp,
-      color: DarkColors.primary,
+      color: const Color(0xFF03185B),
       fontWeight: FontWeight.bold,
     ),
     shape: const Border(
       bottom: BorderSide(color: LightColors.borderAppBar, width: .3),
     ),
     scrolledUnderElevation: 0,
-    iconTheme: IconThemeData(color: LightColors.icon, size: AppSizes.icon),
+    iconTheme: IconThemeData(color: const Color(0xFF121212), size: AppSizes.icon),
     actionsPadding: const EdgeInsets.symmetric(horizontal: 12),
   );
 }

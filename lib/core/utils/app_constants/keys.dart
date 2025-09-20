@@ -15,4 +15,11 @@ class Keys {
   static const decryptedBytes = "decryptedBytes";
   static const error = "error";
 
+  static const title = "title";
+  static const localPath = "localPath";
+  static const size = "size";
+  static const duration = "duration";
+  static const thumbnailBytes = "thumbnailBytes";
+
+
 }

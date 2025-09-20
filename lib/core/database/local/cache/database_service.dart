@@ -68,4 +68,8 @@ class DatabaseService {
     await db.delete(table);
     await db.execute(Queries.resetTable(table));
   }
+
+  Future<void> close() async {
+    await db.close();
+  }
 }

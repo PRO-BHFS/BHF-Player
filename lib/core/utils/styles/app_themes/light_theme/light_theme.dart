@@ -13,7 +13,7 @@ import 'package:bhf_player/core/utils/styles/app_themes/sub_themes/text_theme.da
 
 ThemeData lightThemeData() => ThemeData(
   fontFamily: AppFontsAssests.spaceGrotesk,
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: const Color(0xF1FCFCFC),
   hintColor: const Color(0xB5B8B8B8),
 
   brightness: Brightness.light,
@@ -34,7 +34,7 @@ ThemeData lightThemeData() => ThemeData(
 
   sliderTheme: AppSliderTheme.light,
 
-  iconTheme:  IconThemeData(color: LightColors.icon, size: AppSizes.icon),
+  iconTheme: IconThemeData(color: LightColors.icon, size: AppSizes.icon),
 
   textSelectionTheme: const TextSelectionThemeData(
     selectionColor: Color.fromARGB(255, 199, 254, 255),

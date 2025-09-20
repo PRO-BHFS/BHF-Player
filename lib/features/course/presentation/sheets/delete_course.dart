@@ -14,6 +14,7 @@ Future<void> deleteCourse(BuildContext context, CourseEntity? course) async {
       return AlertDialog(
         title: const Text('تأكيد الحذف', textAlign: TextAlign.center),
         actionsAlignment: MainAxisAlignment.center,
+        actionsOverflowButtonSpacing: 10,
         titlePadding: const EdgeInsets.all(AppSizes.mainPadding),
         contentPadding: const EdgeInsets.only(
           left: AppSizes.mainPadding,
@@ -36,24 +37,16 @@ Future<void> deleteCourse(BuildContext context, CourseEntity? course) async {
           ],
         ),
         actions: [
-          SizedBox(
-            width: 120,
-            height: 50,
-            child: BuildButton(
-              text: 'حذف',
-              colorBackground: Colors.red,
+          BuildButton(
+            text: 'حذف',
+            colorBackground: Colors.red,
 
-              onPress: () async {
-                await context.read<UserCourseCubit>().removeCourse(course?.id);
-                if (dialogContext.mounted) dialogContext.popRoute();
-              },
-            ),
+            onPress: () async {
+              await context.read<CourseCubit>().removeCourse(course?.id);
+              if (dialogContext.mounted) dialogContext.popRoute();
+            },
           ),
-          SizedBox(
-            width: 120,
-            height: 50,
-            child: BuildButton(text: 'إلغاء', onPress: context.popRoute),
-          ),
+          BuildButton(text: 'إلغاء', onPress: context.popRoute),
         ].separatedBy(const SizedBox(width: 10)),
       );
     },

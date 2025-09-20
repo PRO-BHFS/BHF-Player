@@ -1,4 +1,3 @@
-
 import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
 import 'package:bhf_player/core/utils/app_constants/app_assests/app_icons_assests.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
@@ -24,9 +23,9 @@ abstract class BaseCourseSheet {
       context: context,
       isScrollControlled: true, // مهم لجعله يأخذ ارتفاعًا كاملاً عند الحاجة
       elevation: 12,
-      backgroundColor: context.colorScheme.surface,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
       shape: RoundedRectangleBorder(
-        borderRadius:  BorderRadius.vertical(
+        borderRadius: BorderRadius.vertical(
           top: Radius.circular(AppSizes.borderRadiusBig),
         ),
         side: BorderSide(color: DarkColors.border, width: 1.r),
@@ -64,7 +63,10 @@ abstract class BaseCourseSheet {
                   hintText: "اكتب الباسورد هنا",
                   controller: passwordController,
                   suffixIcon: BuildIconButton(
-                    icon: const BuildSvgIcon(AppIconsAssests.paste),
+                    icon: BuildSvgIcon(
+                      AppIconsAssests.paste,
+                      color: context.colorScheme.primary,
+                    ),
                     onPressed: passwordController.pasteFromClipboard,
                   ),
                   validator: checkFieldEmpty,
@@ -87,7 +89,7 @@ abstract class BaseCourseSheet {
                       child: BuildButton(
                         text: 'إلغاء',
 
-                        colorBackground: const Color(0xFFC7191C),
+                        colorBackground: const Color.fromARGB(255, 250, 60, 63),
                         onPress: sheetContext.popRoute,
                       ),
                     ),

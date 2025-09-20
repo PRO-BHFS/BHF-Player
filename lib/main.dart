@@ -7,15 +7,12 @@ import 'package:flashy_flushbar/flashy_flushbar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'core/utils/setup_app/setup_multi_bloc_provider/setup_multi_bloc_provider.dart';
 import 'features/theme_mode/presentation/controllers/theme/theme.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   await setupApp();
-  FlutterNativeSplash.remove();
-
   runApp(
     const SetupMultiBlocProvider(
       child: ResponsiveInitializer(child: BHFPlayer()),

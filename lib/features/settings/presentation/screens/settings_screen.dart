@@ -17,7 +17,7 @@ class SettingsScreen extends StatelessWidget {
     final isDarkMode = context.watch<ThemeCubit>().isDarkMode;
     final language = context.watch<LanguageCubit>().state;
     return Scaffold(
-      appBar: AppBar(title: const Text("Settings")),
+      appBar: AppBar(title: const Text("Settings"), ),
       body: ListView(
         padding: const EdgeInsets.all(AppSizes.mainPadding),
         shrinkWrap: true,

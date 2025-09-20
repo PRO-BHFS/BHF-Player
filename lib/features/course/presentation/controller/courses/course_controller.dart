@@ -2,39 +2,44 @@ import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/course/domain/entities/user_course_storage.dart';
 import 'package:bhf_player/features/course/domain/usecases/add_course.dart';
 import 'package:bhf_player/features/course/domain/usecases/delete_course.dart';
+import 'package:bhf_player/features/course/domain/usecases/get_all_courses.dart';
 import 'package:bhf_player/features/course/domain/usecases/reset_courses_id.dart';
 import 'package:bhf_player/features/course/domain/usecases/update_course.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_state.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-class UserCourseCubit extends HydratedCubit<UserCourseState> {
-  UserCourseCubit() : super(CourseInitial());
+class CourseCubit extends HydratedCubit<CourseState> {
+  CourseCubit() : super(const CourseInitial([]));
 
-  final List<CourseEntity> _courses = [];
   int? _currentSelectedCourseId;
   CourseEntity? _currentCourse;
 
   int? get currentSelectedCourseId => _currentSelectedCourseId;
   CourseEntity? get currentCourse => _currentCourse;
 
-  List<CourseEntity> get courses => _courses;
-  bool get isCoursesEmpty => _courses.isEmpty;
-  bool get isNotEmpty => !isCoursesEmpty;
   bool get isSelectedCourse => _currentSelectedCourseId != null;
   bool get isNotSelectedCourse => !isSelectedCourse;
 
   int _getCourseIndex(int? courseId) =>
-      courseId == null ? -1 : _courses.indexWhere((c) => c.id == courseId);
+      courseId == null ? -1 : state.courses.indexWhere((c) => c.id == courseId);
+
+  Future<void> loadCourses() async {
+    emit(CourseLoading(state.courses));
+    final courses = await GetIt.I<GetAllCoursesUseCase>().call();
+    final newCourses = [...state.courses, ...courses];
+    emit(CourseLoaded(state.copyWith(courses: newCourses)));
+    await _getRecentSelectedCourse();
+  }
 
   Future<void> addCourse(CourseEntity course) async {
     final courseId = await GetIt.I<AddCourseUseCase>().call(course);
 
     _currentCourse = course.copyWith(id: courseId);
-    _courses.add(_currentCourse!);
+    final newCourses = [...state.courses, _currentCourse!];
 
-    emit(CourseAdded(course: _currentCourse!));
-    emit(CourseLoaded(courses: _courses));
+    emit(CourseAdded(state.copyWith(courses: newCourses), course));
+    emit(CourseLoaded(state.courses));
 
     await selectCourse(courseId);
   }
@@ -43,11 +48,12 @@ class UserCourseCubit extends HydratedCubit<UserCourseState> {
     final index = _getCourseIndex(newCourse.id);
     if (index == -1) return;
 
-    _courses[index] = newCourse;
+    final updatedCourses = [...state.courses];
+    updatedCourses[index] = newCourse;
     _currentCourse = newCourse;
 
     await GetIt.I<UpdateCourseUseCase>().call(newCourse);
-    emit(CourseUpdated(course: newCourse));
+    emit(CourseUpdated(state.copyWith(courses: updatedCourses)));
 
     await selectCourse(newCourse.id);
   }
@@ -56,21 +62,23 @@ class UserCourseCubit extends HydratedCubit<UserCourseState> {
     final index = _getCourseIndex(courseId);
     if (index == -1) return;
 
-    final removedCourse = _courses.removeAt(index);
     await GetIt.I<DeleteCourseUseCase>().call(courseId);
 
-    emit(CourseRemoved(course: removedCourse));
+    final updatedCourses = [...state.courses];
+    final removedCourse = updatedCourses.removeAt(index);
 
-    await selectCourse(_courses.firstOrNull?.id);
+    emit(CourseRemoved(state.copyWith(courses: updatedCourses), removedCourse));
+
+    await selectCourse(updatedCourses.firstOrNull?.id);
     await _resetCoursesId();
   }
 
   Future<void> selectCourse(int? courseId) async {
     _currentSelectedCourseId = courseId;
     final index = _getCourseIndex(_currentSelectedCourseId);
-    if (index != -1) _currentCourse = _courses[index];
+    if (index != -1) _currentCourse = state.courses[index];
 
-    emit(CourseSelected(courseId: courseId));
+    emit(CourseSelected(state.courses, courseId: _currentSelectedCourseId));
   }
 
   Future<void> _getRecentSelectedCourse() async {
@@ -82,31 +90,31 @@ class UserCourseCubit extends HydratedCubit<UserCourseState> {
   // إذا لم توجد دورات، يعيد عداد الـ ID إلى الصفر
 
   Future<void> _resetCoursesId() async {
-    if (isCoursesEmpty) {
+    if (state.courses.isEmpty) {
       await GetIt.I<ResetCoursesIdUseCase>().call();
     }
   }
 
   @override
-  UserCourseState? fromJson(Map<String, dynamic> json) {
+  CourseState? fromJson(Map<String, dynamic> json) {
     try {
-      emit(CourseLoading());
+      emit(CourseLoading(state.courses));
       final courseStorage = UserCourseStorage.fromJson(json);
-      _courses.addAll(courseStorage.courses);
+      final updatedCourse = [...state.courses, ...courseStorage.courses];
 
       _currentSelectedCourseId = courseStorage.recentSelectedCourse;
       _getRecentSelectedCourse();
 
-      return CourseLoaded(courses: _courses);
+      return CourseLoaded(state.copyWith(courses: updatedCourse));
     } catch (_) {
-      return CourseInitial();
+      return const CourseInitial([]);
     }
   }
 
   @override
-  Map<String, dynamic>? toJson(UserCourseState state) {
+  Map<String, dynamic>? toJson(CourseState state) {
     final courseStorage = UserCourseStorage(
-      courses: _courses,
+      courses: state.courses,
       recentSelectedCourse: _currentSelectedCourseId,
     );
     return courseStorage.toJson();

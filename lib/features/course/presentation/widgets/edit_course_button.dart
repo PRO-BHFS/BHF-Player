@@ -12,7 +12,7 @@ class EditCourseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentCourse = context.watch<UserCourseCubit>().currentCourse;
+    final currentCourse = context.watch<CourseCubit>().currentCourse;
 
     return CircleIconButton(
       circleColor: context.colorScheme.secondary,

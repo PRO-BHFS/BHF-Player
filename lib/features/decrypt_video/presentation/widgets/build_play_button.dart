@@ -18,12 +18,15 @@ class BuildPlayButton extends StatelessWidget {
         final isVideoNotSelected = context
             .watch<VideoDecryptionCubit>()
             .isVideoNotSelected;
-        final courseCubit = context.read<UserCourseCubit>();
+        final courseCubit = context.read<CourseCubit>();
         final videoCubit = context.read<VideoDecryptionCubit>();
-        final icon=BuildSvgIcon(AppIconsAssests.playCircle,isDisabled: isVideoNotSelected ,);
+        final icon = BuildSvgIcon(
+          AppIconsAssests.playCircle,
+          isDisabled: isVideoNotSelected,
+        );
         return BuildButton(
           text: 'تشغيل الفيديو',
-          icon: icon  ,
+          icon: icon,
           onPress: isVideoNotSelected
               ? null
               : () async {

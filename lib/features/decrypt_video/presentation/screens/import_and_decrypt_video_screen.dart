@@ -2,13 +2,10 @@ import 'package:bhf_player/core/presentation/components/buttons/build_button.dar
 import 'package:bhf_player/core/presentation/components/build_progress_loading.dart';
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
 import 'package:bhf_player/core/presentation/components/icons/build_svg_icon.dart';
-import 'package:bhf_player/core/presentation/screens/nothing_screen.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
-import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
-import 'package:bhf_player/features/course/presentation/sheets/exports.dart';
 import 'package:bhf_player/features/course/presentation/widgets/build_courses_dashboard.dart';
 import 'package:bhf_player/features/decrypt_video/presentation/controller/video_decryption/video_decryption_cubit.dart';
 import 'package:bhf_player/features/decrypt_video/presentation/controller/video_decryption/video_decryption_state.dart';
@@ -65,16 +62,6 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
             .isVideoSelected;
         final theme = context.theme;
 
-        if (context.watch<UserCourseCubit>().isNotSelectedCourse) {
-          return NothingScreen(
-            imagePath: AppImagesAssests.tutorial,
-            textButton: "إضافة دورة",
-            textNote: "لم يتم اضافة دورات بعد",
-            onPress: () async =>
-                await AddCourseSheet(context).show(title: 'إضافة دورة جديدة'),
-          );
-        }
-
         return ListView(
           padding: const EdgeInsets.all(AppSizes.mainPadding),
           shrinkWrap: true,
@@ -98,13 +85,11 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
                 children: [
                   Text(
                     'تم اختيار:',
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: theme.textTheme.labelMedium,
                   ),
                   Text(
                     selectedFile,
-                    style: theme.textTheme.bodySmall,
+                    style: theme.textTheme.labelSmall,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -132,7 +117,7 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
             const SizedBox(height: AppSizes.spacingSmall),
 
             isLoading ? const BuildProgressLoading() : const BuildPlayButton(),
-          ].separatedBy(const SizedBox(height: AppSizes.mainPadding)),
+          ].separatedBy(const SizedBox(height: AppSizes.spacingMiddle)),
         );
       },
     );

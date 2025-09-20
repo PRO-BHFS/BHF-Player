@@ -21,7 +21,7 @@ class AddCourseSheet extends BaseCourseSheet {
       courseTitle: courseNameController.text,
       password: CoursePassword(passwordController.text),
     );
-    await context.read<UserCourseCubit>().addCourse(course);
+    await context.read<CourseCubit>().addCourse(course);
     if (context.mounted) context.popRoute();
   }
 }

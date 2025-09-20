@@ -22,7 +22,7 @@ class EditCourseSheet extends BaseCourseSheet {
     if (keyForm.currentState?.validate() != true) return;
     if (course == null) return;
 
-    await context.read<UserCourseCubit>().updateCourse(
+    await context.read<CourseCubit>().updateCourse(
       course!.copyWith(
         courseTitle: courseNameController.text,
         password: course!.password.copyWith(passwordController.text),

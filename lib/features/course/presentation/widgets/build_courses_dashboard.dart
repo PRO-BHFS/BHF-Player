@@ -1,10 +1,10 @@
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
 import 'package:bhf_player/core/presentation/components/rounded_container.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/features/course/presentation/widgets/add_course_button.dart';
 import 'package:bhf_player/features/course/presentation/widgets/build_courses_dropdown.dart';
 import 'package:bhf_player/features/course/presentation/widgets/delete_course_button.dart';
 import 'package:bhf_player/features/course/presentation/widgets/edit_course_button.dart';
+import 'package:bhf_player/features/settings/presentation/widgets/title_setting_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,16 +17,11 @@ class BuildCoursesDashboard extends StatelessWidget {
       child: Column(
         spacing: 15.h,
         children: [
-          Row(
-            spacing: 10,
-            children: [
-              const BuildIcon(Icons.school),
-              Text(
-                "اختر الدورة التدريبية",
-                style: context.textTheme.labelSmall,
-              ),
-            ],
+          const TitleSettingSection(
+            icon: BuildIcon(Icons.school),
+            title: "اختر الدورة التدريبية",
           ),
+
           const BuildCoursesDropdown(),
 
           const Row(

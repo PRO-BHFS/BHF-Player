@@ -1,4 +1,5 @@
 import 'package:bhf_player/core/utils/helpers_functions/cache/cache_utils.dart';
+import 'package:bhf_player/features/db_backup/inject.dart';
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
 import 'setup_app_window/setup_app_window.dart';
@@ -14,7 +15,7 @@ Future<void> setupApp() async {
   MediaKit.ensureInitialized();
   await setupDatabases();
   await setupUserServicesLocator();
-
+  setupLocatorsBackupDb();
   await clearCacheIfNeeded();
   FlutterNativeSplash.remove();
 }

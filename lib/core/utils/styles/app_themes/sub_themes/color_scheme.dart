@@ -20,7 +20,7 @@ class AppColorScheme {
     brightness: Brightness.light,
     primary: LightColors.primary,
     onPrimary: LightColors.onPrimary,
-    secondary: LightColors.secondary,
+    secondary: Color.fromARGB(110, 22, 156, 245),
     onSecondary: LightColors.fontMain,
     error: LightColors.fontError,
     onError: LightColors.fontError,

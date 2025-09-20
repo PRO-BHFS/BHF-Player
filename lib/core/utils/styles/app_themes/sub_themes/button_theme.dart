@@ -15,7 +15,6 @@ class AppButtonTheme {
       ),
       shadowColor: const Color(0x402A79C2),
       disabledBackgroundColor: const Color(0xFF21364A),
-      disabledIconColor: const Color.fromARGB(255, 47, 184, 6),
       minimumSize: Size(0, 55.h),
     ),
   );
@@ -24,11 +23,11 @@ class AppButtonTheme {
     style: ElevatedButton.styleFrom(
       foregroundColor: DarkColors.fontButton,
       backgroundColor: DarkColors.primary,
-      elevation: 3,
+      elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppSizes.borderRadiusMiddle),
       ),
-      shadowColor: DarkColors.shadowButton,
+      shadowColor: const Color(0x803B3B3B),
       minimumSize: const Size(0, 55),
     ),
   );

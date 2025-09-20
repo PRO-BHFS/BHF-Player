@@ -1,6 +1,7 @@
 
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
 import 'package:bhf_player/core/utils/enums/enums.dart';
+import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/styles/app_themes/sub_themes/dropdown_menu_entry.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class LanguageDropdown extends StatelessWidget {
       trailingIcon: const BuildIcon(Icons.expand_more),
       width: width,
       selectedTrailingIcon: const BuildIcon(Icons.expand_less_rounded),
-
+      textStyle: context.textTheme.labelMedium,
       dropdownMenuEntries: [
         DropdownMenuEntry(
           value: Language.en,

@@ -25,7 +25,7 @@ class BuildIdDashboard extends StatelessWidget {
                 child: Row(
                   spacing: 15,
                   children: [
-                    Text("ID:", style: textTheme.labelSmall),
+                    Text("ID:", style: textTheme.labelMedium),
                     SelectableText(
                       id.isEmpty ? "XXX-XXX-XXX" : id,
                       maxLines: 1,
