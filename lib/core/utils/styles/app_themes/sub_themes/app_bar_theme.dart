@@ -36,7 +36,7 @@ class AppAppBarTheme {
     ),
     titleTextStyle: TextStyle(
       fontSize: 20.sp,
-      color: DarkColors.onPrimary,
+      color: DarkColors.primary,
       fontWeight: FontWeight.bold,
     ),
     shape: const Border(

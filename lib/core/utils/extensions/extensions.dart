@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:bhf_player/core/utils/enums/enums.dart';
 import 'package:bhf_player/core/utils/helpers_functions/notifications/notifications.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:flutter/foundation.dart';
@@ -68,7 +68,7 @@ extension SeparatedWidgetList on List<Widget> {
   }
 }
 
-extension ThemeModeString on String {
+extension ThemeModeString on String? {
   ThemeMode toThemeMode() {
     final modes = {
       ThemeMode.dark.name: ThemeMode.dark,
@@ -76,6 +76,16 @@ extension ThemeModeString on String {
       ThemeMode.system.name: ThemeMode.system,
     };
     return modes[this] ?? ThemeMode.system;
+  }
+}
+
+extension LanguageChange on String? {
+  Language toLanguage() {
+    final langs = {
+      Language.ar.name: Language.ar,
+      Language.en.name: Language.en,
+    };
+    return langs[this] ?? Language.defaultLang;
   }
 }
 

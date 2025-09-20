@@ -9,6 +9,7 @@ class Keys {
   static const coursesList = "coursesList";
   static const recentSelectedCourse = "recentSelectedCourse";
   static const lastTheme = "lastTheme";
+  static const lastLanguage = "lastLanguage";
 
   static const chunkIndex = "chunkIndex";
   static const decryptedBytes = "decryptedBytes";

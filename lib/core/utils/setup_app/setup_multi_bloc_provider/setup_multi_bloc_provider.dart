@@ -13,7 +13,7 @@ class SetupMultiBlocProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ThemePlayerCubit>(create: (_) => ThemePlayerCubit()),
+        BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
         BlocProvider<DeviceIdCubit>(
           create: (context) => DeviceIdCubit()..initDeviceId(),
         ),

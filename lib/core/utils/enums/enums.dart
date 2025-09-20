@@ -23,3 +23,14 @@ enum OperationSystem {
 
 
 enum GestureArea { left, center, right }
+
+
+enum Language {
+  en("en"),
+  ar("ar");
+
+  final String code;
+  const Language(this.code);
+
+  static Language get defaultLang => Language.ar;
+}

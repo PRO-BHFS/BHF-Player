@@ -1,4 +1,4 @@
-import 'package:bhf_player/bhf_studio/lib/core/utils/mixins/single_runner/single_runner.dart';
+import 'package:bhf_player/core/utils/mixins/single_runner/single_runner.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/process_progress.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';

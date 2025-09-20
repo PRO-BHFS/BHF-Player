@@ -6,7 +6,7 @@ import 'service_locator/service_locator.dart';
 import 'setup_database/setup_database.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-Future<void> setupBhfPLayerApp() async {
+Future<void> setupApp() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
@@ -16,6 +16,5 @@ Future<void> setupBhfPLayerApp() async {
   await setupUserServicesLocator();
 
   await clearCacheIfNeeded();
-  // FlutterNativeSplash.remove();
-
+  FlutterNativeSplash.remove();
 }
