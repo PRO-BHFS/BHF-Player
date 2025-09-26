@@ -19,7 +19,9 @@ class Keys {
   static const localPath = "localPath";
   static const size = "size";
   static const duration = "duration";
-  static const thumbnailBytes = "thumbnailBytes";
+  static const thumbnailPath = "thumbnailPath";
+  static const aspectRatio = "aspectRatio";
 
-
+  static const videosLibrary = "videosLibrary";
+  static const courseTitle = "courseTitle";
 }

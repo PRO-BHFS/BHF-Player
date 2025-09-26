@@ -1,4 +1,5 @@
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
+import 'package:bhf_player/core/utils/enums/enums.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/video_player/presentation/widgets/controls/lock_ui_action.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,25 @@ class PlayerControlButtons extends StatelessWidget {
                 );
               },
               onPressed: () async => await playerCubit.playOrPause(),
+            ),
+          ),
+
+          // تغيير ابعاد الفيديو
+          Align(
+            alignment: Alignment.centerRight,
+            child: ControlButton<AspectRatioPlayer>(
+              listenable: playerCubit.playerService.asepectRatio,
+              iconBuilder: (aspectRatio) {
+                final icon = switch (aspectRatio) {
+                  AspectRatioPlayer.fit => Icons.aspect_ratio_rounded,
+                  AspectRatioPlayer.original =>
+                    Icons.screenshot_monitor_rounded,
+                  AspectRatioPlayer.fill => Icons.width_full_rounded,
+                };
+
+                return BuildIcon(icon);
+              },
+              onPressed: playerCubit.changeAspectRatio,
             ),
           ),
         ],

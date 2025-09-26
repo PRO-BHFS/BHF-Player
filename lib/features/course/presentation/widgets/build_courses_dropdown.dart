@@ -37,6 +37,7 @@ class BuildCoursesDropdown extends StatelessWidget {
       builder: (context, state) {
         final controller = context.watch<CourseCubit>();
         final textTheme = context.textTheme;
+
         if (state is CourseLoading) {
           return const Center(child: CircularProgressIndicator.adaptive());
         }

@@ -29,7 +29,7 @@ class TopControllersActions extends StatelessWidget {
             Row(
               spacing: AppSizes.spacingSmall,
               children: [
-                BuildIconButton(
+                CircleIconButton(
                   onPressed: () async => await handleExit(),
                   icon: const Icon(Icons.arrow_back),
                 ),

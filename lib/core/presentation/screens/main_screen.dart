@@ -27,7 +27,7 @@ class MainScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: BlocSelector<CourseCubit, CourseState, List<CourseEntity>>(
+        body: BlocSelector<CourseCubit, CourseState, Set<CourseEntity>>(
           selector: (state) => state.courses,
           builder: (context, courses) {
             if (courses.isNotEmpty) return const ImportAndDecryptVideoScreen();

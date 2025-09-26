@@ -4,7 +4,9 @@ import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/dark_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
+import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class BaseCourseSheet {
@@ -19,6 +21,8 @@ abstract class BaseCourseSheet {
   Future<void> onSubmit(BuildContext sheetContext);
 
   Future<void> show({required String title}) async {
+    final courses = context.read<CourseCubit>().state.courses;
+
     Future<void> future = showModalBottomSheet(
       context: context,
       isScrollControlled: true, // مهم لجعله يأخذ ارتفاعًا كاملاً عند الحاجة
@@ -28,7 +32,7 @@ abstract class BaseCourseSheet {
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(AppSizes.borderRadiusBig),
         ),
-        side: BorderSide(color: DarkColors.border, width: 1.r),
+        side: const BorderSide(color: DarkColors.border, width: 0.3),
       ),
 
       builder: (sheetContext) {
@@ -55,7 +59,14 @@ abstract class BaseCourseSheet {
                   textInputAction: TextInputAction.next,
                   autoFocus: true,
                   controller: courseNameController,
-                  validator: checkFieldEmpty,
+                  validator: (courseTitle) {
+                    final isTitleDublicated = courses.any(
+                      (c) => c.courseTitle == courseTitle,
+                    );
+                    if (isTitleDublicated) return "العنوان مكرر";
+                    
+                    return checkFieldEmpty(courseTitle);
+                  },
                 ),
 
                 BuildFormField(

@@ -15,7 +15,7 @@ class VideoDecryptionService {
 
   factory VideoDecryptionService() => instance;
 
-  Future<VideoEntity?> pickEncryptedVideo() async {
+  Future<VideoEntity?> pickEncryptedVideo(int courseId) async {
     final path = await pickFile();
     if (path == null) return null;
 
@@ -24,6 +24,7 @@ class VideoDecryptionService {
     return VideoEntity(
       filename: p.basename(path),
       encryptedPath: path,
+      courseId: courseId,
       bytesSize: fileSize,
     );
   }

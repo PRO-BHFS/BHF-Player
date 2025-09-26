@@ -3,7 +3,7 @@ import 'package:bhf_player/core/utils/app_constants/keys.dart';
 import 'course.dart';
 
 class UserCourseStorage {
-  final List<CourseEntity> courses;
+  final Set<CourseEntity> courses;
   final int? recentSelectedCourse;
 
   UserCourseStorage({required this.courses, this.recentSelectedCourse});
@@ -19,7 +19,7 @@ class UserCourseStorage {
   factory UserCourseStorage.fromJson(Map<String, dynamic> map) {
     final coursesList = (map[Keys.coursesList] as List? ?? [])
         .map((e) => CourseEntity.fromJson(e))
-        .toList();
+        .toSet();
     return UserCourseStorage(
       courses: coursesList,
       recentSelectedCourse: map[Keys.recentSelectedCourse] as int?,

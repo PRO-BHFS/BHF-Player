@@ -41,7 +41,8 @@ class VideoDecryptor {
       processProgress.startLoading(_numChunks);
 
       _preparedVideoInfo = await prepareTempFile(
-        encryptedPath: video.encryptedPath,
+        video: video,
+
         encryptionCode: course.password.encryptionCode,
       );
 

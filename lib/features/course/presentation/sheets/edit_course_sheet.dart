@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
 import 'package:bhf_player/features/course/presentation/sheets/base_course_sheet.dart';
+import 'package:bhf_player/features/decrypted_videos_library/presentation/controller/decrypted_videos/decrypted_video_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,13 +25,16 @@ class EditCourseSheet extends BaseCourseSheet {
     if (keyForm.currentState?.validate() != true) return;
     if (course == null) return;
 
-    await context.read<CourseCubit>().updateCourse(
-      course!.copyWith(
-        courseTitle: courseNameController.text,
-        password: course!.password.copyWith(passwordController.text),
-      ),
+    if (!context.mounted) return;
+
+    final updatedCourse = course!.copyWith(
+      courseTitle: courseNameController.text,
+      password: course!.password.copyWith(passwordController.text),
     );
-    if (context.mounted) context.popRoute();
+    await context.read<CourseCubit>().updateCourse(updatedCourse);
+
+    await context.read<DecryptedVideoCubit>().updateCourse(updatedCourse);
+    context.popRoute();
   }
 
   @override

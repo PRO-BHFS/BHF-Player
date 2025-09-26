@@ -5,6 +5,7 @@ import 'package:bhf_player/features/video_player/presentation/services/video_pla
 import 'package:bhf_player/features/video_player/presentation/services/player_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path/path.dart';
 
 import 'video_player_state.dart';
 
@@ -16,8 +17,9 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
 
   VideoPlayerCubit() : super(VideoPlayerInitial());
 
-  Future<void> initializeVideoPlayer(String path) async {
+  Future<void> initializeVideoPlayer(String? path) async {
     try {
+      if (path == null) throw PathException("لا يوجد فيديو في المسار");
       await playerService.initialize(path);
       playerListeners.listenPlayer(playerService);
       await playerUi.resetInactivityTimer(playerService);
@@ -61,6 +63,11 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
 
   Future<void> playOrPause() async {
     await playerControls.playOrPause(playerService);
+  }
+
+  void changeAspectRatio() {
+    playerService.asepectRatio.value = playerService.asepectRatio.value
+        .switchAspect();
   }
 
   Future<double> changePlaybackSpeed(double speed) async =>

@@ -3,6 +3,7 @@ import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/features/db_backup/presentation/controller/backup/backup_controller.dart';
 import 'package:bhf_player/features/db_backup/presentation/controller/backup/backup_state.dart';
 import 'package:bhf_player/features/db_backup/presentation/helpers/backup_helpers.dart';
+import 'package:bhf_player/features/decrypted_videos_library/presentation/screens/courses_library_screen.dart';
 import 'package:bhf_player/features/settings/presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +26,8 @@ class MoreOptionsButton extends StatelessWidget {
                 label: "مكتبة الفيديوهات",
                 iconData: Icons.video_library_outlined,
               ),
-              onTap: () async => await context.read<BackupCubit>().backup(),
+              onTap: () async =>
+                  await context.pushRoute(const CoursesLibraryScreen()),
             ),
 
             PopupMenuItem(

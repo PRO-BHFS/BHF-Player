@@ -3,11 +3,23 @@ import 'package:bhf_player/features/course/domain/entities/sub_entity/course_pas
 import 'package:equatable/equatable.dart';
 
 class CourseEntity extends Equatable {
- final int? id;
- final String courseTitle;
- final CoursePassword password;
+  final int? id;
+  final String courseTitle;
+  final CoursePassword password;
 
-  const CourseEntity({this.id, required this.courseTitle, required this.password});
+  const CourseEntity({
+    this.id,
+    required this.courseTitle,
+    required this.password,
+  });
+
+  factory CourseEntity.empty(int courseId) {
+    return CourseEntity(
+      id: courseId,
+      courseTitle: "",
+      password: CoursePassword(""),
+    );
+  }
 
   CourseEntity copyWith({
     int? id,
@@ -39,7 +51,15 @@ class CourseEntity extends Equatable {
       password: CoursePassword.fromJson(json),
     );
   }
-  
+
   @override
-  List<Object?> get props => [id,courseTitle,password];
+  String toString() {
+    return """
+    ID: $id
+    Title: $courseTitle
+    """;
+  }
+
+  @override
+  List<Object?> get props => [id];
 }

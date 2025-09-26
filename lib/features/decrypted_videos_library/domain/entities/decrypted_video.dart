@@ -1,45 +1,61 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
-import 'package:equatable/equatable.dart';
+import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
 
-class DecryptedVideo extends Equatable {
-  final String title;
-  final String courseId;
-  final String localPath;
-  final int size;
+class DecryptedVideo extends VideoEntity {
   final Duration duration;
-  final Uint8List thumbnailBytes;
 
   const DecryptedVideo({
-    required this.title,
-    required this.courseId,
-    required this.localPath,
-    required this.size,
     required this.duration,
-    required this.thumbnailBytes,
+    required super.aspectRatio,
+    required super.thumbnailPath,
+    required super.filename,
+    required super.courseId,
+    required super.bytesSize,
+     super.decryptedPath,
+     super.encryptedPath,
   });
+
+  factory DecryptedVideo.fromVideo(
+    VideoEntity video, {
+    required Duration duration,
+    required double? aspectRatio,
+    required String? thumbnailPath,
+  }) {
+    return DecryptedVideo(
+      duration: duration,
+      thumbnailPath: thumbnailPath,
+      courseId: video.courseId,
+      filename: video.filename,
+      encryptedPath: video.encryptedPath,
+      decryptedPath: video.decryptedPath,
+      bytesSize: video.bytesSize,
+      aspectRatio: aspectRatio
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {
-      Keys.title: title,
+      Keys.title: filename,
       Keys.courseId: courseId,
-      Keys.localPath: localPath,
-      Keys.size: size,
+      Keys.localPath: decryptedPath,
+      Keys.size: bytesSize,
       Keys.duration: duration.inMilliseconds,
-      Keys.thumbnailBytes: base64Encode(thumbnailBytes),
+      Keys.thumbnailPath: thumbnailPath,
+      Keys.aspectRatio: aspectRatio
     };
   }
 
   factory DecryptedVideo.fromMap(Map<String, dynamic> map) {
     return DecryptedVideo(
-      title: map[Keys.title] as String,
-      courseId: map[Keys.courseId] as String,
-      localPath: map[Keys.localPath] as String,
-      size: map[Keys.size] as int,
+      filename: map[Keys.title] as String,
+      courseId: map[Keys.courseId] as int,
+      encryptedPath: map[Keys.localPath] as String,
+      bytesSize: map[Keys.size] as int,
       duration: Duration(milliseconds: map[Keys.duration] as int),
-      thumbnailBytes: base64Decode(map[Keys.thumbnailBytes] as String),
+      thumbnailPath: map[Keys.thumbnailPath] as String,
+      aspectRatio: map[Keys.aspectRatio] as double?
     );
   }
 
@@ -49,5 +65,5 @@ class DecryptedVideo extends Equatable {
       DecryptedVideo.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  List<Object?> get props => [courseId, localPath];
+  List<Object?> get props => [courseId, decryptedPath];
 }

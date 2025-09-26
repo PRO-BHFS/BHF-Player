@@ -1,17 +1,23 @@
 import 'package:bhf_player/core/utils/mixins/single_runner/single_runner.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
+import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/process_progress.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
 import 'package:bhf_player/features/decrypt_video/domain/services/logic/video_decryptor.dart';
 import 'package:bhf_player/features/decrypt_video/domain/services/video_decryption_service.dart';
+import 'package:bhf_player/features/decrypted_videos_library/presentation/controller/decrypted_videos/decrypted_video_controller.dart';
+import 'package:bhf_player/features/video_info/domain/usecases/get_video_info_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 import 'video_decryption_state.dart';
 
 class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
     with SingleRunner {
-  VideoDecryptionCubit() : super(VideoDecryptionInitial());
-
+  VideoDecryptionCubit(this._decrtptedVideoCubit, this._courseCubit)
+    : super(VideoDecryptionInitial());
+  final DecryptedVideoCubit _decrtptedVideoCubit;
+  final CourseCubit _courseCubit;
   final states = <VideoDecryptionState>[];
 
   final _service = VideoDecryptionService();
@@ -31,8 +37,9 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
   Future<void> _pickVideo() async {
     try {
       _processProgress.emit = emit;
-
-      final video = await _service.pickEncryptedVideo();
+      final currentCourseId = _courseCubit.currentSelectedCourseId;
+      if (currentCourseId == null) return;
+      final video = await _service.pickEncryptedVideo(currentCourseId);
       if (video == null) return;
 
       _selectedVideo = video;
@@ -68,10 +75,17 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
         course: selectedCourse,
         processProgress: _processProgress,
       );
-
+      
       final resultVideo = await _service.decrypt(decryptor);
-      _selectedVideo = resultVideo;
+
+      final videoInfo = await GetIt.I<GetVideoInfoUseCase>().call(
+        resultVideo.decryptedPath ?? "",
+      );
+      
+      _selectedVideo = resultVideo.copyWith(aspectRatio: videoInfo.aspectRatio);
       emit(VideoDecryptionCompleted(_selectedVideo!));
+      
+      await _decrtptedVideoCubit.addVideo(_selectedVideo!);
     } catch (_) {
       _handleError("لايمكنك تشغيل هذا الفيديو");
     }

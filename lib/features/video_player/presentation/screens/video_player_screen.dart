@@ -27,7 +27,7 @@ class VideoPlayerScreen extends StatefulWidget {
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late final VideoPlayerCubit playerCubit;
 
-  String get videoPath => widget.video.decryptedPath!;
+  String? get videoPath => widget.video.decryptedPath;
 
   @override
   void initState() {
@@ -77,7 +77,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               fallback: (_) => Stack(
                 alignment: Alignment.center,
                 children: [
-                  const VideoPlayerView(),
+                   VideoPlayerView(widget.video),
                   Positioned.fill(
                     child: GestureDetector(onTap: playerCubit.toggleControls),
                   ),
@@ -94,7 +94,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             alignment: Alignment.center,
 
             children: [
-              const VideoPlayerView(),
+               VideoPlayerView(widget.video),
               VideoPlayerGestures(playerCubit: playerCubit),
               ValueListenableBuilder(
                 valueListenable: playerCubit.playerService.isShowControllers,

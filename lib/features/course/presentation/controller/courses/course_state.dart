@@ -3,9 +3,9 @@ import 'package:equatable/equatable.dart';
 
 abstract class CourseState extends Equatable {
   const CourseState(this.courses);
-  final List<CourseEntity> courses;
+  final Set<CourseEntity> courses;
 
-  List<CourseEntity> copyWith({List<CourseEntity>? courses}) {
+  Set<CourseEntity> copyWith({Set<CourseEntity>? courses}) {
     return courses ?? this.courses;
   }
 

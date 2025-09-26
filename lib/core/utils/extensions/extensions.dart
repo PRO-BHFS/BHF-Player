@@ -52,6 +52,7 @@ extension Layout on BuildContext {
   MediaQueryData get _mq => MediaQuery.of(this);
 
   double get screenWidth => _mq.size.width;
+  double get devicePixelRatio => _mq.devicePixelRatio;
   double get screenHeight => _mq.size.height;
   double get widthExceptPadding => screenWidth - AppSizes.mainPadding;
   EdgeInsets get mediaViewInsets => _mq.viewInsets;

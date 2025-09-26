@@ -6,29 +6,30 @@ import 'package:bhf_player/core/errors/app_exceptions/app_exceptions.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/prepared_temp_file.dart';
+import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:path_provider/path_provider.dart';
 
 Future<PreparedTempFile> prepareTempFile({
-  required String? encryptedPath,
+  required VideoEntity video,
   required String? encryptionCode,
 }) async {
   RandomAccessFile? raf;
   try {
-    if (encryptedPath == null || encryptionCode == null) {
+    if (video.encryptedPath == null || encryptionCode == null) {
       throw DecryptionException("حدثت مشكلة اثناء فك التشفير");
     }
     final videoDir = await getApplicationDocumentsDirectory();
 
     final resultVideoPath = videoDir.joinPath(
       separator: '/',
-      filename: AppConsts.decryptedFileName,
+      filename: video.filename,
       fileExtension: AppConsts.originalVideoExtension,
     );
 
     final resultFile = File(resultVideoPath);
 
-    final inputFile = File(encryptedPath);
+    final inputFile = File(video.encryptedPath!);
     if (!await inputFile.exists()) {
       throw DecryptionException("الملف غير موجود");
     }

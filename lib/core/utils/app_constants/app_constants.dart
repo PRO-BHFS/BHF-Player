@@ -23,4 +23,5 @@ class AppConsts {
   static const fadeOutDuration = Duration(seconds: 1);
 
   static const fileExtension = "bhf";
+  static const imagesFolder = "images";
 }

@@ -1,30 +1,39 @@
 import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
+import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
 import 'package:bhf_player/features/video_player/presentation/controllers/video_player/video_player_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
 class VideoPlayerView extends StatelessWidget {
-  const VideoPlayerView({super.key});
+  const VideoPlayerView(this.video,{super.key});
 
+final VideoEntity video;
   @override
   Widget build(BuildContext context) {
+    final playerService = context.read<VideoPlayerCubit>().playerService;
+    final isPlayerInitialized = context
+        .watch<VideoPlayerCubit>()
+        .playerService
+        .isPlayerInitialized;
+
     return ConditionalBuilder(
-      condition: context
-          .watch<VideoPlayerCubit>()
-          .playerService
-          .isPlayerInitialized,
+      condition: isPlayerInitialized,
       builder: (_) => Stack(
         alignment: Alignment.center,
 
         children: [
-          Video(
-            controller: context
-                .read<VideoPlayerCubit>()
-                .playerService
-                .videoController!,
-          aspectRatio: 2,
-            controls: null,
+          ValueListenableBuilder(
+            valueListenable: playerService.asepectRatio,
+            builder: (_, asepectRatio, _) {
+              return Video(
+                controller: playerService.videoController!,
+                aspectRatio: asepectRatio.isOriginal
+                    ? video.aspectRatio
+                    : asepectRatio.value,
+                controls: null,
+              );
+            },
           ),
           ValueListenableBuilder(
             valueListenable: context
@@ -32,7 +41,9 @@ class VideoPlayerView extends StatelessWidget {
                 .playerService
                 .videoActionState,
             builder: (context, videoAction, darkOverlay) {
-              return videoAction.isDarkModeActive ? darkOverlay! : const SizedBox.shrink();
+              return videoAction.isDarkModeActive
+                  ? darkOverlay!
+                  : const SizedBox.shrink();
             },
             child: const Positioned.fill(
               child: Material(color: Color(0x9E000000)),

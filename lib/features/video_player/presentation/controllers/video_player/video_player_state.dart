@@ -9,7 +9,6 @@ abstract class VideoPlayerState extends Equatable {
 
 class VideoPlayerInitial extends VideoPlayerState {}
 
-
 class VideoPlayerFailure extends VideoPlayerState {
   final String errorMessage;
 
@@ -18,4 +17,3 @@ class VideoPlayerFailure extends VideoPlayerState {
   @override
   List<Object?> get props => [errorMessage];
 }
-
