@@ -3,6 +3,7 @@ import 'package:bhf_player/core/utils/setup_app/setup_app.dart';
 import 'package:bhf_player/core/utils/styles/app_themes/dark_theme/dark_theme.dart';
 import 'package:bhf_player/core/utils/styles/app_themes/light_theme/light_theme.dart';
 import 'package:bhf_player/features/bottom_navigation/presentation/screens/home_layout.dart';
+import 'package:bhf_player/features/language/presentation/controllers/language/language.dart';
 import 'package:flashy_flushbar/flashy_flushbar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +27,7 @@ class BHFPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final languageCode = context.watch<LanguageCubit>().language.code;
     return MaterialApp(
       title: 'BHF Player',
       debugShowCheckedModeBanner: false,
@@ -35,6 +37,7 @@ class BHFPlayer extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      locale: Locale(languageCode),
       supportedLocales: S.delegate.supportedLocales,
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,

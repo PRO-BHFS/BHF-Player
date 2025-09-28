@@ -125,6 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "iv_extraction_error": MessageLookupByLibrary.simpleMessage(
       "Error while extracting IV",
     ),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
     "no_courses_added_yet": MessageLookupByLibrary.simpleMessage(
       "No courses added yet",
     ),
@@ -135,6 +136,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "No video in path",
     ),
     "no_videos": MessageLookupByLibrary.simpleMessage("No videos"),
+    "open_shared_file_error": MessageLookupByLibrary.simpleMessage(
+      "Error: Can not Open this Shared File",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "password_incorrect": MessageLookupByLibrary.simpleMessage(
       "Password incorrect",

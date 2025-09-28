@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/mixins/single_runner/single_runner.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
@@ -10,6 +13,7 @@ import 'package:bhf_player/features/video_info/domain/usecases/get_video_metadat
 import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:path/path.dart' as p;
 
 import 'video_decryption_state.dart';
 
@@ -34,6 +38,28 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
 
   String? get selectedVideoPath => _selectedVideo?.encryptedPath;
   String get selectedVideoName => _selectedVideo?.filename ?? "";
+
+  Future<void> selectSharedFile(String path) async {
+    final file = File(path);
+    try {
+      if (_courseCubit.currentSelectedCourseId == null) throw Exception();
+
+      if (await file.exists() == false) {
+        throw PathNotFoundException(path, const OSError());
+      }
+
+      _selectedVideo = VideoEntity.encrypted(
+        filename: p.basename(path),
+        courseId: _courseCubit.currentSelectedCourseId!,
+        encryptedPath: path,
+        bytesSize: await file.length(),
+      );
+
+      emit(VideoDecryptionImported(_selectedVideo!));
+    } catch (e, stack) {
+      e.logError(stack: stack);
+    }
+  }
 
   Future<void> _pickVideo() async {
     try {

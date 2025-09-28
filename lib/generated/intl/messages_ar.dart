@@ -123,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "iv_extraction_error": MessageLookupByLibrary.simpleMessage(
       "خطأ أثناء استخراج IV",
     ),
+    "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "no_courses_added_yet": MessageLookupByLibrary.simpleMessage(
       "لم يتم اضافة دورات بعد",
     ),
@@ -133,6 +134,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا يوجد فيديو في المسار",
     ),
     "no_videos": MessageLookupByLibrary.simpleMessage("لا يوجد فيدوهات"),
+    "open_shared_file_error": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ عند محاولة فتح الملف الذي تمت مشاركته أو فتحه عبر التطبيق",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("الباسورد"),
     "password_incorrect": MessageLookupByLibrary.simpleMessage(
       "الباسورد غير صحيح",

@@ -2,6 +2,7 @@
   "app_title": "BHF Player",
   "import": "Import",
   "courses": "Courses",
+  "language": "Language",
   "import_a_file": "Import a File",
   "choose_encrypted_file": "Choose Encrypted File",
   "play_video": "Play Video",
@@ -64,5 +65,6 @@
   "file_read_error": "File read error occurred",
   "field_cannot_be_empty": "Field cannot be empty",
   "field_cannot_contain_only_spaces": "Field cannot contain only spaces",
-  "save_backup_file_as": "Save Backup File As"
+  "save_backup_file_as": "Save Backup File As",
+  "open_shared_file_error": "Error: Can not Open this Shared File"
 }

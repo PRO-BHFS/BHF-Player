@@ -26,7 +26,7 @@ class DeviceIdPanel extends StatelessWidget {
                 child: Row(
                   spacing: 15,
                   children: [
-                    Text(S.of(context).id, style: textTheme.labelMedium),
+                    Text("ID:", style: textTheme.labelMedium),
                     SelectableText(
                       id.isEmpty ? S.of(context).device_id_placeholder : id,
                       maxLines: 1,

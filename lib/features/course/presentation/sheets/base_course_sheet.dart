@@ -87,24 +87,27 @@ abstract class BaseCourseSheet {
                 ),
 
                 Row(
-                  spacing: 15,
+                  spacing: 20,
                   children: [
-                    SizedBox(
-                      width: 100.w,
-                      height: 45.h,
-                      child: BuildButton(
-                        text: S.of(context).save,
-                        onPress: () async => await onSubmit(sheetContext),
+                    Expanded(
+                      flex: 2,
+                      child: SizedBox(
+                        height: 45.h,
+                        child: BuildButton(
+                          text: S.of(context).save,
+                          onPress: () async => await onSubmit(sheetContext),
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      width: 100.w,
-                      height: 45.h,
-                      child: BuildButton(
-                        text: S.of(context).cancel,
-
-                        colorBackground: const Color.fromARGB(255, 250, 60, 63),
-                        onPress: sheetContext.popRoute,
+                    Expanded(
+                      child: SizedBox(
+                        height: 45.h,
+                        child: BuildButton(
+                          text: S.of(context).cancel,
+                      
+                          colorBackground: const Color.fromARGB(255, 250, 60, 63),
+                          onPress: sheetContext.popRoute,
+                        ),
                       ),
                     ),
                   ],

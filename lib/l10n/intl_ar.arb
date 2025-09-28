@@ -2,6 +2,7 @@
   "app_title": "مشغل BHF",
   "import": "استيراد",
   "courses": "الدورات",
+  "language": "اللغة",
   "import_a_file": "استيراد ملف",
   "choose_encrypted_file": "اختر ملف مشفر",
   "play_video": "تشغيل الفيديو",
@@ -64,5 +65,6 @@
   "file_read_error": "حدث خطأ أثناء قراءة الملف",
   "field_cannot_be_empty": "لايمكن ان يكون الحقل فارغا",
   "field_cannot_contain_only_spaces": "لا يمكن ان يحتوي الحقل على مسافات فقط",
-  "save_backup_file_as": "حفظ نسخة احتياطية باسم"
+  "save_backup_file_as": "حفظ نسخة احتياطية باسم",
+  "open_shared_file_error": "حدث خطأ عند محاولة فتح الملف الذي تمت مشاركته أو فتحه عبر التطبيق"
 }

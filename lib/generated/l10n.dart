@@ -69,6 +69,11 @@ class S {
     return Intl.message('Courses', name: 'courses', desc: '', args: []);
   }
 
+  /// `Language`
+  String get language {
+    return Intl.message('Language', name: 'language', desc: '', args: []);
+  }
+
   /// `Import a File`
   String get import_a_file {
     return Intl.message(
@@ -599,6 +604,16 @@ class S {
     return Intl.message(
       'Save Backup File As',
       name: 'save_backup_file_as',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error: Can not Open this Shared File`
+  String get open_shared_file_error {
+    return Intl.message(
+      'Error: Can not Open this Shared File',
+      name: 'open_shared_file_error',
       desc: '',
       args: [],
     );

@@ -18,7 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VideoImportScreen extends StatelessWidget {
-  const VideoImportScreen({super.key});
+  const VideoImportScreen({super.key, this.sharedFilePath});
+  final String? sharedFilePath;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +63,11 @@ class VideoImportScreen extends StatelessWidget {
         final isVideoSelected = context
             .watch<VideoDecryptionCubit>()
             .isVideoSelected;
-        final theme = context.theme;
 
+        final theme = context.theme;
+        if (sharedFilePath != null) {
+          videoCubit.selectSharedFile(sharedFilePath!).then((_) {});
+        }
         return ListView(
           padding: const EdgeInsets.all(AppSizes.mainPadding),
           shrinkWrap: true,

@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bottom_navigation_states.dart';
-
-class BottomNavigationCubit extends Cubit<BottomNabigationSatates> {
-  BottomNavigationCubit() : super(BottomNavigationInitial());
+class BottomNavigationCubit extends Cubit<int> {
+  BottomNavigationCubit() : super(0);
   final _pageController = PageController();
-  final _titles = ["import_a_file", "courses"];
 
   int _currentIndex = 0;
 
   int get currentIndex => _currentIndex;
   PageController get pageController => _pageController;
-  String get currentTitle => _titles[_currentIndex];
 
   void changeIndex(int index) {
     if (index == _currentIndex) return;
@@ -23,7 +19,7 @@ class BottomNavigationCubit extends Cubit<BottomNabigationSatates> {
       duration: const Duration(milliseconds: 400),
       curve: Curves.fastOutSlowIn,
     );
-    emit(BottomNavigationChanged());
+    emit(_currentIndex);
   }
 
   void onPageChanged(int index) {
@@ -31,7 +27,7 @@ class BottomNavigationCubit extends Cubit<BottomNabigationSatates> {
 
     _currentIndex = index;
 
-    emit(BottomNavigationChanged());
+    emit(_currentIndex);
   }
 
   @override

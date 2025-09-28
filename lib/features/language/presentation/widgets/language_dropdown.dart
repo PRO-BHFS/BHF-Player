@@ -1,7 +1,6 @@
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
 import 'package:bhf_player/core/utils/enums/enums.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
-import 'package:bhf_player/core/utils/styles/app_themes/sub_themes/dropdown_menu_entry.dart';
 import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -19,26 +18,26 @@ class LanguageDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownMenu<Language>(
-      initialSelection: value,
-      trailingIcon: const BuildIcon(Icons.expand_more),
-      width: width,
-      selectedTrailingIcon: const BuildIcon(Icons.expand_less_rounded),
-      textStyle: context.textTheme.labelMedium,
-      dropdownMenuEntries: [
-        DropdownMenuEntry(
-          value: Language.en,
-          label: S.of(context).english,
+    final textTheme = context.textTheme.labelMedium;
+    return DropdownButtonFormField<Language>(
+      value: value,
+      style: textTheme,
+      icon: const BuildIcon(Icons.language),
+      decoration: const InputDecoration(
+        prefixIcon: BuildIcon(Icons.expand_more_rounded),
+      ),
 
-          style: dropdownEntryStyle(context),
+      items: [
+        DropdownMenuItem(
+          value: Language.en,
+          child: Text(S.of(context).english, style: textTheme),
         ),
-        DropdownMenuEntry(
+        DropdownMenuItem(
           value: Language.ar,
-          label: S.of(context).arabic,
-          style: dropdownEntryStyle(context),
+          child: Text(S.of(context).arabic, style: textTheme),
         ),
       ],
-      onSelected: onChanged,
+      onChanged: onChanged,
     );
   }
 }
