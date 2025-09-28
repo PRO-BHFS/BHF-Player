@@ -3,9 +3,8 @@ import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
 import 'package:bhf_player/features/decrypted_videos_library/domain/entities/card_course.dart';
-import 'package:bhf_player/features/decrypted_videos_library/domain/entities/decrypted_video.dart';
 import 'package:bhf_player/features/decrypted_videos_library/presentation/controller/decrypted_videos/decrypted_video_state.dart';
-import 'package:bhf_player/features/video_info/domain/usecases/get_video_info_usecase.dart';
+import 'package:bhf_player/features/video_info/domain/usecases/get_video_metadata_usecase.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -56,17 +55,15 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
     emit(state.copyWith(courses: copiedCourses));
   }
 
-  Future<DecryptedVideo> _setupVideoConfig(VideoEntity video) async {
-    final videoInfo = await GetIt.I<GetVideoInfoUseCase>().call(
+  Future<VideoEntity> _setupVideoConfig(VideoEntity video) async {
+    final videoInfo = await GetIt.I<GetVideoMetadataUseCase>().call(
       video.decryptedPath ?? "",
     );
 
     final thumbnailPath = await extractVideoThumbnail(video);
-    final decryptedVideo = DecryptedVideo.fromVideo(
-      video,
+    final decryptedVideo = video.copyWith(
       thumbnailPath: thumbnailPath,
-      duration: videoInfo.duration ?? Duration.zero,
-      aspectRatio: videoInfo.aspectRatio,
+      metadata: videoInfo,
     );
 
     return decryptedVideo;

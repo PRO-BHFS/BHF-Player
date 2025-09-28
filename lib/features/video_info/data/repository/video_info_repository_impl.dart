@@ -1,4 +1,4 @@
-import 'package:bhf_player/features/video_info/domain/entities/video_info_entity.dart';
+import 'package:bhf_player/features/video_info/domain/entities/video_meta_data_entity.dart';
 import 'package:bhf_player/features/video_info/domain/repository/video_info_repository.dart';
 import 'package:bhf_player/features/video_info/data/datasources/video_info_datasource.dart';
 
@@ -9,8 +9,7 @@ class VideoInfoRepositoryImpl implements VideoInfoRepository {
   VideoInfoRepositoryImpl(this._dataSource);
 
   @override
-  Future<VideoInfoEntity> getVideoInfo(String videoPath) async {
+  Future<VideoMetadata> getVideoMetadata(String videoPath) async {
     return await _dataSource.getVideoInfo(videoPath);
   }
-
 }

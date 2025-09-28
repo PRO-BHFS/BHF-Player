@@ -78,7 +78,7 @@ Future<String?> extractVideoThumbnail(VideoEntity video) async {
   }
 }
 
-double? calculateAspectRatio(int? width, int? height) {
+double? calculateAspectRatio({int? width, int? height}) {
   if (width == null || height == null || height == 0) return null;
 
   final ratio = width / height;

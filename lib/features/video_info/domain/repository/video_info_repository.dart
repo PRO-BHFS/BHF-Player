@@ -1,6 +1,5 @@
-import 'package:bhf_player/features/video_info/domain/entities/video_info_entity.dart';
+import 'package:bhf_player/features/video_info/domain/entities/video_meta_data_entity.dart';
 
 abstract class VideoInfoRepository {
-  Future<VideoInfoEntity> getVideoInfo(String videoPath);
-
+  Future<VideoMetadata> getVideoMetadata(String videoPath);
 }

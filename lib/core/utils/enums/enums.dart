@@ -37,8 +37,8 @@ enum Language {
 
 enum AspectRatioPlayer {
   fit(16 / 9),
-  original(4 / 3),
-  fill(-1);
+  original(1),
+  fill(1);
 
   final double value;
 

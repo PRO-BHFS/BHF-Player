@@ -21,7 +21,7 @@ class VideoDecryptionService {
 
     final fileSize = await File(path).length();
 
-    return VideoEntity(
+    return VideoEntity.encrypted(
       filename: p.basename(path),
       encryptedPath: path,
       courseId: courseId,

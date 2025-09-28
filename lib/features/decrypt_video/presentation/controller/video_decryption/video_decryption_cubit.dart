@@ -6,7 +6,7 @@ import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.d
 import 'package:bhf_player/features/decrypt_video/domain/services/logic/video_decryptor.dart';
 import 'package:bhf_player/features/decrypt_video/domain/services/video_decryption_service.dart';
 import 'package:bhf_player/features/decrypted_videos_library/presentation/controller/decrypted_videos/decrypted_video_controller.dart';
-import 'package:bhf_player/features/video_info/domain/usecases/get_video_info_usecase.dart';
+import 'package:bhf_player/features/video_info/domain/usecases/get_video_metadata_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -75,16 +75,16 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
         course: selectedCourse,
         processProgress: _processProgress,
       );
-      
+
       final resultVideo = await _service.decrypt(decryptor);
 
-      final videoInfo = await GetIt.I<GetVideoInfoUseCase>().call(
+      final videoInfo = await GetIt.I<GetVideoMetadataUseCase>().call(
         resultVideo.decryptedPath ?? "",
       );
-      
-      _selectedVideo = resultVideo.copyWith(aspectRatio: videoInfo.aspectRatio);
+
+      _selectedVideo = resultVideo.copyWith(metadata: videoInfo);
       emit(VideoDecryptionCompleted(_selectedVideo!));
-      
+
       await _decrtptedVideoCubit.addVideo(_selectedVideo!);
     } catch (_) {
       _handleError("لايمكنك تشغيل هذا الفيديو");

@@ -14,7 +14,7 @@ class CourseCardThumbnail extends StatelessWidget {
         ? FileImage(File(thumbnailPath!))
         : const AssetImage(AppImagesAssests.error);
     return Container(
-      width: 60,
+      width: 80,
       decoration: BoxDecoration(
         image: DecorationImage(image: image, fit: BoxFit.cover),
         borderRadius: BorderRadius.circular(15),

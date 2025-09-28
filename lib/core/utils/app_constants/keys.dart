@@ -15,12 +15,21 @@ class Keys {
   static const decryptedBytes = "decryptedBytes";
   static const error = "error";
 
+  static const videoMetadata = "videoMetadata";
   static const title = "title";
+  static const author = "author";
   static const localPath = "localPath";
   static const size = "size";
   static const duration = "duration";
   static const thumbnailPath = "thumbnailPath";
   static const aspectRatio = "aspectRatio";
+  static const frameRate = "frameRate";
+  static const date = 'date';
+  static const width = 'width';
+  static const height = 'height';
+
+
+
 
   static const videosLibrary = "videosLibrary";
   static const courseTitle = "courseTitle";

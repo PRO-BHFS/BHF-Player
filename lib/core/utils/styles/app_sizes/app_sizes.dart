@@ -11,5 +11,5 @@ class AppSizes {
   static double bigIcon = 80.r;
   static double borderRadiusBig = 35.r;
   static double borderRadiusMiddle = 15.r;
-  static const borderRadiusSmall = 8.0;
+  static const borderRadiusSmall = 6.0;
 }
