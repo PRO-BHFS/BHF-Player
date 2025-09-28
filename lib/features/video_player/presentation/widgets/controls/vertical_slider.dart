@@ -33,7 +33,7 @@ class VerticalSlider extends StatelessWidget {
             spacing: 5,
             children: [
               Text(
-                progress.range(0, 15),
+                progress.range(0, 15).toString(),
                 style: context.textTheme.displaySmall?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),

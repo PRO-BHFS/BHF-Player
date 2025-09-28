@@ -5,6 +5,7 @@ import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/dark_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,8 +54,8 @@ abstract class BaseCourseSheet {
                 ),
 
                 BuildFormField(
-                  labelText: 'اسم الدورة',
-                  hintText: "اكتب اسم الدورة هنا",
+                  labelText: S.of(context).course_name,
+                  hintText: S.of(context).enter_course_name,
                   textCapitalization: TextCapitalization.words,
                   textInputAction: TextInputAction.next,
                   autoFocus: true,
@@ -63,15 +64,17 @@ abstract class BaseCourseSheet {
                     final isTitleDublicated = courses.any(
                       (c) => c.courseTitle == courseTitle,
                     );
-                    if (isTitleDublicated) return "العنوان مكرر";
-                    
+                    if (isTitleDublicated) {
+                      return S.of(context).title_duplicated;
+                    }
+
                     return checkFieldEmpty(courseTitle);
                   },
                 ),
 
                 BuildFormField(
-                  labelText: 'الباسورد',
-                  hintText: "اكتب الباسورد هنا",
+                  labelText: S.of(context).password,
+                  hintText: S.of(context).enter_password,
                   controller: passwordController,
                   suffixIcon: BuildIconButton(
                     icon: BuildSvgIcon(
@@ -90,7 +93,7 @@ abstract class BaseCourseSheet {
                       width: 100.w,
                       height: 45.h,
                       child: BuildButton(
-                        text: 'حفظ',
+                        text: S.of(context).save,
                         onPress: () async => await onSubmit(sheetContext),
                       ),
                     ),
@@ -98,7 +101,7 @@ abstract class BaseCourseSheet {
                       width: 100.w,
                       height: 45.h,
                       child: BuildButton(
-                        text: 'إلغاء',
+                        text: S.of(context).cancel,
 
                         colorBackground: const Color.fromARGB(255, 250, 60, 63),
                         onPress: sheetContext.popRoute,

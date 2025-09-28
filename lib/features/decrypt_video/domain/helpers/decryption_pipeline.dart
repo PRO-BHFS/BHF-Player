@@ -8,6 +8,7 @@ import 'package:bhf_player/features/decrypt_video/domain/entities/decrypt_chunk_
 import 'package:bhf_player/features/decrypt_video/domain/entities/prepared_temp_file.dart';
 import 'package:bhf_player/features/decrypt_video/domain/services/workers/decrypt_chunk_isolate.dart';
 import 'package:bhf_player/features/decrypt_video/domain/services/workers/file_reader_isolate.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:pool/pool.dart';
 
 Future<void> runDecryptionPipeline({
@@ -34,7 +35,9 @@ Future<void> runDecryptionPipeline({
 
     await completer.future;
     for (final chunk in decryptedChunks) {
-      if (chunk == null) throw DecryptionException("فشل كتابة الملف النهائي");
+      if (chunk == null) {
+        throw DecryptionException(S.current.final_file_write_failed);
+      }
       output.add(chunk);
     }
   } catch (e) {

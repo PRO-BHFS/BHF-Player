@@ -1,4 +1,5 @@
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
+import 'package:bhf_player/core/utils/styles/app_themes/sub_themes/bottom_nav_bar_theme.dart';
 import 'package:bhf_player/core/utils/styles/app_themes/sub_themes/progress_indicator_theme.dart';
 import 'package:bhf_player/core/utils/styles/app_themes/sub_themes/slider_theme.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,9 @@ ThemeData darkThemeData() => ThemeData(
 
   sliderTheme: AppSliderTheme.dark,
 
-  iconTheme: IconThemeData(color: DarkColors.icon, size: AppSizes.icon),
+  bottomNavigationBarTheme: BottomNavBarTheme.dark,
+
+  iconTheme: const IconThemeData(color: DarkColors.icon, size: AppSizes.icon),
 
   textSelectionTheme: const TextSelectionThemeData(
     selectionColor: Color(0xFF051E78),

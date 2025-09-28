@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -34,7 +35,11 @@ class BackupLocalDataSource {
       final encrtptedBytes = Uint8List.fromList(iv.bytes + encrypted.bytes);
 
       // نحفظ النسخة باسم معين
-      final backupPath = await saveFile(bytes: encrtptedBytes);
+      final backupPath = await saveFile(
+        filename: "backup.bhf",
+        dialogTitle: S.current.save_backup_file_as,
+        bytes: encrtptedBytes,
+      );
 
       return backupPath;
     } catch (e, stack) {

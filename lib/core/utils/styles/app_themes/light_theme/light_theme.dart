@@ -1,4 +1,5 @@
 import 'package:bhf_player/core/utils/app_constants/app_assests/app_fonts_assests.dart';
+import 'package:bhf_player/core/utils/styles/app_themes/sub_themes/bottom_nav_bar_theme.dart';
 import 'package:bhf_player/core/utils/styles/app_themes/sub_themes/progress_indicator_theme.dart';
 import 'package:bhf_player/core/utils/styles/app_themes/sub_themes/slider_theme.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +31,13 @@ ThemeData lightThemeData() => ThemeData(
 
   cardTheme: AppCardTheme.light,
 
-  progressIndicatorTheme: AppProgressIndicatorTheme.dark,
+  progressIndicatorTheme: AppProgressIndicatorTheme.light,
 
   sliderTheme: AppSliderTheme.light,
 
-  iconTheme: IconThemeData(color: LightColors.icon, size: AppSizes.icon),
+  bottomNavigationBarTheme: BottomNavBarTheme.light,
+
+  iconTheme: const IconThemeData(color: LightColors.icon, size: AppSizes.icon),
 
   textSelectionTheme: const TextSelectionThemeData(
     selectionColor: Color.fromARGB(255, 199, 254, 255),

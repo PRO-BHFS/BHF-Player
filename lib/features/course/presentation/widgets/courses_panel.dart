@@ -5,11 +5,12 @@ import 'package:bhf_player/features/course/presentation/widgets/build_courses_dr
 import 'package:bhf_player/features/course/presentation/widgets/delete_course_button.dart';
 import 'package:bhf_player/features/course/presentation/widgets/edit_course_button.dart';
 import 'package:bhf_player/features/settings/presentation/widgets/title_setting_section.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BuildCoursesDashboard extends StatelessWidget {
-  const BuildCoursesDashboard({super.key});
+class CoursesPanel extends StatelessWidget {
+  const CoursesPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +18,9 @@ class BuildCoursesDashboard extends StatelessWidget {
       child: Column(
         spacing: 15.h,
         children: [
-          const TitleSettingSection(
-            icon: BuildIcon(Icons.school),
-            title: "اختر الدورة التدريبية",
+          TitleSettingSection(
+            icon: const BuildIcon(Icons.school),
+            title: S.of(context).choose_training_course,
           ),
 
           const BuildCoursesDropdown(),

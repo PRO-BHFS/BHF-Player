@@ -23,14 +23,14 @@ class AppAppBarTheme {
       bottom: BorderSide(color: DarkColors.border, width: .3),
     ),
     scrolledUnderElevation: 0,
-    iconTheme: IconThemeData(color: DarkColors.icon, size: AppSizes.icon),
+    iconTheme: const IconThemeData(color: DarkColors.icon, size: AppSizes.icon),
     actionsPadding: const EdgeInsets.symmetric(horizontal: 12),
   );
 
   static AppBarTheme get light => AppBarTheme(
     backgroundColor: LightColors.appBar,
     centerTitle: true,
-     systemOverlayStyle: const SystemUiOverlayStyle(
+    systemOverlayStyle: const SystemUiOverlayStyle(
       statusBarColor: Color(0x99000000),
       statusBarBrightness: Brightness.light,
     ),
@@ -43,7 +43,10 @@ class AppAppBarTheme {
       bottom: BorderSide(color: LightColors.borderAppBar, width: .3),
     ),
     scrolledUnderElevation: 0,
-    iconTheme: IconThemeData(color: const Color(0xFF121212), size: AppSizes.icon),
+    iconTheme: const IconThemeData(
+      color: Color(0xFF121212),
+      size: AppSizes.icon,
+    ),
     actionsPadding: const EdgeInsets.symmetric(horizontal: 12),
   );
 }

@@ -15,6 +15,7 @@ class LightColors {
 
   static const appBar = Color(0xFFFFFFFF);
 
+
   static const selected = Color(0xFF172633);
   static const unSelected = Color(0xFF888888);
 

@@ -3,11 +3,12 @@ import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/features/device_id/presentation/controller/device_id/device_id.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BuildIdDashboard extends StatelessWidget {
-  const BuildIdDashboard({super.key});
+class DeviceIdPanel extends StatelessWidget {
+  const DeviceIdPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +26,9 @@ class BuildIdDashboard extends StatelessWidget {
                 child: Row(
                   spacing: 15,
                   children: [
-                    Text("ID:", style: textTheme.labelMedium),
+                    Text(S.of(context).id, style: textTheme.labelMedium),
                     SelectableText(
-                      id.isEmpty ? "XXX-XXX-XXX" : id,
+                      id.isEmpty ? S.of(context).device_id_placeholder : id,
                       maxLines: 1,
 
                       style: textTheme.labelMedium?.copyWith(

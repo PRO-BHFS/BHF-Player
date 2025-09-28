@@ -18,13 +18,13 @@ class PlayerControlButtons extends StatelessWidget {
       child: Stack(
         alignment: Alignment.centerLeft,
         children: [
-          // ايقونة عمل قفل
+          // Lock icon
           Align(
             alignment: Alignment.centerLeft,
             child: LockUiAction(playerCubit),
           ),
 
-          // ايقونة التشغيل والإيقاف
+          // Play/Pause icon
           Align(
             alignment: Alignment.center,
             child: ControlButton<bool>(
@@ -38,11 +38,11 @@ class PlayerControlButtons extends StatelessWidget {
             ),
           ),
 
-          // تغيير ابعاد الفيديو
+          // Change video dimensions
           Align(
             alignment: Alignment.centerRight,
             child: ControlButton<AspectRatioPlayer>(
-              listenable: playerCubit.playerService.asepectRatio,
+              listenable: playerCubit.playerService.aspectRatio,
               iconBuilder: (aspectRatio) {
                 final icon = switch (aspectRatio) {
                   AspectRatioPlayer.fit => Icons.aspect_ratio_rounded,

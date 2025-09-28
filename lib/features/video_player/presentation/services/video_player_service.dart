@@ -25,7 +25,9 @@ class VideoPlayerService {
   final currentPosition = ValueNotifier(Duration.zero);
   final activeGesture = ValueNotifier<GestureArea?>(null);
   final isUiLocked = ValueNotifier<bool>(false);
-  final asepectRatio = ValueNotifier<AspectRatioPlayer>(AspectRatioPlayer.original);
+  final aspectRatio = ValueNotifier<AspectRatioPlayer>(
+    AspectRatioPlayer.original,
+  );
   final videoActionState = ValueNotifier<VideoActionState>(
     const VideoActionState(),
   );
@@ -60,7 +62,7 @@ class VideoPlayerService {
     isUiLocked.dispose();
     videoActionState.dispose();
     brightness.dispose();
-    asepectRatio.dispose();
+    aspectRatio.dispose();
     await player?.dispose();
     player = null;
     videoController = null;

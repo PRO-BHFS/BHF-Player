@@ -35,7 +35,7 @@ class TopControllersActions extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
-                    filename*3,
+                    filename,
                     style: context.textTheme.titleSmall,
                     maxLines: 2,
                   ),
@@ -90,7 +90,10 @@ class TopControllersActions extends StatelessWidget {
                       CircleIconButton(
                         onPressed: () async =>
                             await playerCubit.toggleFullscreen(),
-                        icon: const BuildIcon(Icons.screen_rotation_rounded,size: 20,),
+                        icon: const BuildIcon(
+                          Icons.screen_rotation_rounded,
+                          size: 20,
+                        ),
                       ),
                     ],
                   );

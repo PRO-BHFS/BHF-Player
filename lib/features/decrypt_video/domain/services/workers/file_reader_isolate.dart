@@ -4,6 +4,7 @@ import 'package:bhf_player/core/errors/app_exceptions/app_exceptions.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/file_read_request.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/file_read_response.dart';
+import 'package:bhf_player/generated/l10n.dart';
 
 Stream<FileReadResponse> readFileStreamedInIsolate(String filePath) {
   return Stream<FileReadResponse>.multi((controller) async {
@@ -23,7 +24,7 @@ Stream<FileReadResponse> readFileStreamedInIsolate(String filePath) {
         } else if (message.isDone) {
           break;
         } else if (message.hasError) {
-          controller.addError(FileReadException("حدث خطأ أثناء قراءة الملف"));
+          controller.addError(FileReadException(S.current.file_read_error));
           break;
         }
       }

@@ -7,6 +7,7 @@ import 'package:bhf_player/features/decrypt_video/domain/services/logic/video_de
 import 'package:bhf_player/features/decrypt_video/domain/services/video_decryption_service.dart';
 import 'package:bhf_player/features/decrypted_videos_library/presentation/controller/decrypted_videos/decrypted_video_controller.dart';
 import 'package:bhf_player/features/video_info/domain/usecases/get_video_metadata_usecase.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -45,7 +46,7 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
       _selectedVideo = video;
       emit(VideoDecryptionImported(_selectedVideo!));
     } catch (_) {
-      _handleError("حدث خطأ اثناء اختيار ملف");
+      _handleError(S.current.file_read_error);
     }
   }
 
@@ -61,7 +62,7 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
       if (states.any((s) => s is VideoDecryptionCompleted)) return;
 
       if (!_service.isUserAuthorized(selectedCourse!, userId)) {
-        _handleError("الباسورد غير صحيح");
+        _handleError(S.current.password_incorrect);
         return;
       }
 
@@ -87,7 +88,7 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
 
       await _decrtptedVideoCubit.addVideo(_selectedVideo!);
     } catch (_) {
-      _handleError("لايمكنك تشغيل هذا الفيديو");
+      _handleError(S.current.cannot_play_video);
     }
   }
 

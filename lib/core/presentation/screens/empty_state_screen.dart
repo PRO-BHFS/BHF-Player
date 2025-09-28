@@ -1,15 +1,15 @@
 import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
-import 'package:bhf_player/features/device_id/presentation/widgets/build_id_dashboard.dart';
+import 'package:bhf_player/features/device_id/presentation/widgets/device_id_panel.dart';
 import 'package:flutter/material.dart';
 
-class NothingScreen extends StatelessWidget {
+class EmptyStateScreen extends StatelessWidget {
   final String textButton;
   final String textNote;
   final String imagePath;
   final VoidCallback onPress;
-  const NothingScreen({
+  const EmptyStateScreen({
     super.key,
     required this.textButton,
     required this.onPress,
@@ -23,7 +23,7 @@ class NothingScreen extends StatelessWidget {
       padding: const EdgeInsets.all(AppSizes.mainPadding),
       shrinkWrap: true,
       children: [
-        const BuildIdDashboard(),
+        const DeviceIdPanel(),
 
         BuildImageSvg(imagePath),
         Text(

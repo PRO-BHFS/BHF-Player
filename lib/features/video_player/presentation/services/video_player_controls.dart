@@ -16,7 +16,6 @@ class PlayerControls {
   }
 
   void seekHorizontal(VideoPlayerService service, DragUpdateDetails details) {
-    
     final delta = details.primaryDelta;
     if (service.isNotPlayerInitialized || delta == null) return;
     if (delta > 0) {
@@ -65,7 +64,7 @@ class PlayerControls {
 
     final isSpeedControlActive = (fitSpeed != 1.0);
     final videoActions = service.videoActionState.value;
-    
+
     service.videoActionState.value = videoActions.copyWith(
       isSpeedControlActive: isSpeedControlActive,
     );

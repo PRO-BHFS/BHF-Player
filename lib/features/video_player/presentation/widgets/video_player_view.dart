@@ -26,7 +26,7 @@ class VideoPlayerView extends StatelessWidget {
 
         children: [
           ValueListenableBuilder(
-            valueListenable: playerService.asepectRatio,
+            valueListenable: playerService.aspectRatio,
             builder: (_, asepectRatio, _) {
               final ratioValue = switch (asepectRatio) {
                 AspectRatioPlayer.fit => asepectRatio.value,

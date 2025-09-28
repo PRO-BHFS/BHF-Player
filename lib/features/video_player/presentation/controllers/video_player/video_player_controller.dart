@@ -3,6 +3,7 @@ import 'package:bhf_player/features/video_player/presentation/services/video_pla
 import 'package:bhf_player/features/video_player/presentation/services/video_player_listeners.dart';
 import 'package:bhf_player/features/video_player/presentation/services/video_player_service.dart';
 import 'package:bhf_player/features/video_player/presentation/services/player_ui.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
@@ -19,13 +20,13 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
 
   Future<void> initializeVideoPlayer(String? path) async {
     try {
-      if (path == null) throw PathException("لا يوجد فيديو في المسار");
+      if (path == null) throw PathException(S.current.no_video_in_path);
       await playerService.initialize(path);
       playerListeners.listenPlayer(playerService);
       await playerUi.resetInactivityTimer(playerService);
       await toggleFullscreen();
     } catch (_) {
-      emit(const VideoPlayerFailure("لا يمكنك تشغيل الفيديو"));
+      emit(VideoPlayerFailure(S.current.cannot_play_video_error));
     }
   }
 
@@ -66,7 +67,7 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
   }
 
   void changeAspectRatio() {
-    playerService.asepectRatio.value = playerService.asepectRatio.value
+    playerService.aspectRatio.value = playerService.aspectRatio.value
         .switchAspect();
   }
 

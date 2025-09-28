@@ -15,6 +15,9 @@ class DarkColors {
   static const surface = Color(0xFF21364A);
   static const transparent = Color(0x35000000);
 
+  static const selected = Color(0xFFFFFFFF);
+  static const unSelected = Color(0xFF8FADCC);
+
   static const baseColor = Color(0xFF1F2331);
   static const fontMain = Color(0xFFE9E9E9);
   static const fontInputField = Color(0xFF969DAA);

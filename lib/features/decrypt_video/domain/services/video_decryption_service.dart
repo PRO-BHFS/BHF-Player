@@ -5,6 +5,7 @@ import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:path/path.dart' as p;
 
 import 'logic/video_decryptor.dart';
@@ -37,10 +38,10 @@ class VideoDecryptionService {
     try {
       final isDecrypted = await decryptor.startDecryption();
 
-      if (!isDecrypted) throw DecryptionException("فشل في عملية فك التشفير");
+      if (!isDecrypted) throw DecryptionException(S.current.decryption_failed);
 
       if (decryptor.resultVideoPath.isEmpty) {
-        throw DecryptionException("مسار الفيديو المفكوك غير صالح");
+        throw DecryptionException(S.current.decrypted_path_invalid);
       }
 
       return decryptor.video.copyWith(decryptedPath: decryptor.resultVideoPath);

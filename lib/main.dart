@@ -1,13 +1,14 @@
-import 'package:bhf_player/core/presentation/screens/main_screen.dart';
 import 'package:bhf_player/core/utils/setup_app/responsive_initializer/responsive_initializer.dart';
 import 'package:bhf_player/core/utils/setup_app/setup_app.dart';
 import 'package:bhf_player/core/utils/styles/app_themes/dark_theme/dark_theme.dart';
 import 'package:bhf_player/core/utils/styles/app_themes/light_theme/light_theme.dart';
+import 'package:bhf_player/features/bottom_navigation/presentation/screens/home_layout.dart';
 import 'package:flashy_flushbar/flashy_flushbar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/utils/setup_app/setup_multi_bloc_provider/setup_multi_bloc_provider.dart';
+import 'features/bottom_navigation/presentation/controllers/bottom_navigation/bottom_navigation_cubit.dart';
 import 'features/theme_mode/presentation/controllers/theme/theme.dart';
 import 'generated/l10n.dart';
 
@@ -42,7 +43,10 @@ class BHFPlayer extends StatelessWidget {
       themeMode: context.watch<ThemeCubit>().themeMode,
       theme: lightThemeData(),
       darkTheme: darkThemeData(),
-      home: const MainScreen(),
+      home: BlocProvider(
+        create: (context) => BottomNavigationCubit(),
+        child: const HomeLayout(),
+      ),
       builder: FlashyFlushbarProvider.init(),
     );
   }

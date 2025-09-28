@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -7,7 +8,7 @@ class DatabaseService {
   Database? _db;
 
   Database get db {
-    if (_db == null) throw Exception("لم يتم تهيئة البيانات بنجاح");
+    if (_db == null) throw Exception(S.current.database_not_initialized);
     return _db!;
   }
 

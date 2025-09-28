@@ -5,11 +5,12 @@ import 'package:bhf_player/features/course/presentation/controller/courses/cours
 import 'package:bhf_player/features/decrypt_video/presentation/controller/video_decryption/video_decryption_cubit.dart';
 import 'package:bhf_player/features/decrypt_video/presentation/controller/video_decryption/video_decryption_state.dart';
 import 'package:bhf_player/features/device_id/presentation/controller/device_id/device_id.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BuildPlayButton extends StatelessWidget {
-  const BuildPlayButton({super.key});
+class DecryptAndPlayButton extends StatelessWidget {
+  const DecryptAndPlayButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class BuildPlayButton extends StatelessWidget {
           isDisabled: isVideoNotSelected,
         );
         return BuildButton(
-          text: 'تشغيل الفيديو',
+          text: S.of(context).play_video,
           icon: icon,
           onPress: isVideoNotSelected
               ? null

@@ -4,6 +4,7 @@ import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_state.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,19 +18,21 @@ class BuildCoursesDropdown extends StatelessWidget {
       listener: (context, state) {
         if (state case CourseAdded(:final course)) {
           Notifications.showFlushbar(
-            message: "تم اضافة دورة ${course.courseTitle} بنجاح",
+            message:
+                "${S.of(context).course_added_successfully} ${course.courseTitle}",
             iconType: IconType.done,
           );
         }
         if (state case CourseRemoved(:final course)) {
           Notifications.showFlushbar(
-            message: 'تم حذف دورة ${course.courseTitle} بنجاح',
+            message:
+                '${S.of(context).course_deleted_successfully} ${course.courseTitle}',
             iconType: IconType.done,
           );
         }
         if (state is CourseUpdated) {
           Notifications.showFlushbar(
-            message: 'تم تعديل الدورة بنجاح',
+            message: S.of(context).course_updated_successfully,
             iconType: IconType.done,
           );
         }

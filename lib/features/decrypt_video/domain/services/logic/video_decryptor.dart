@@ -11,6 +11,7 @@ import 'package:bhf_player/features/decrypt_video/domain/entities/process_progre
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
 import 'package:bhf_player/features/decrypt_video/domain/helpers/decryption_pipeline.dart';
 import 'package:bhf_player/features/decrypt_video/domain/helpers/decryptor_initializer.dart';
+import 'package:bhf_player/generated/l10n.dart';
 
 class VideoDecryptor {
   VideoDecryptor({
@@ -79,13 +80,13 @@ class VideoDecryptor {
       _receivePort.listen((message) {
         if (message is! DecryptChunkResult) {
           _decryptionCompleter.completeError(
-            DecryptionException("رسالة غير صالحة"),
+            DecryptionException(S.current.invalid_message),
           );
           return;
         } else if (message.hasError) {
           _decryptionCompleter.completeError(
             DecryptionException(
-              "فشل فك التشفير للشريحة رقم ${message.chunkIndex}: ${message.error}",
+              "${S.current.decryption_failed_for_chunk} ${message.chunkIndex}: ${message.error}",
             ),
           );
           return;
@@ -100,7 +101,7 @@ class VideoDecryptor {
     } catch (e, trace) {
       e.logError(stack: trace, methodName: "_listenToDecryptionResults");
       _decryptionCompleter.completeError(
-        DecryptionException("حدث خطأ أثناء تشغيل الفيديو"),
+        DecryptionException(S.current.video_playback_error),
       );
     }
   }

@@ -6,18 +6,19 @@ import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
-import 'package:bhf_player/features/course/presentation/widgets/build_courses_dashboard.dart';
+import 'package:bhf_player/features/course/presentation/widgets/courses_panel.dart';
 import 'package:bhf_player/features/decrypt_video/presentation/controller/video_decryption/video_decryption_cubit.dart';
 import 'package:bhf_player/features/decrypt_video/presentation/controller/video_decryption/video_decryption_state.dart';
-import 'package:bhf_player/features/device_id/presentation/widgets/build_id_dashboard.dart';
-import 'package:bhf_player/features/decrypt_video/presentation/widgets/build_play_button.dart';
+import 'package:bhf_player/features/decrypt_video/presentation/widgets/decrypt_play_button.dart';
+import 'package:bhf_player/features/device_id/presentation/widgets/device_id_panel.dart';
 import 'package:bhf_player/features/video_player/presentation/controllers/video_player/video_player_controller.dart';
 import 'package:bhf_player/features/video_player/presentation/screens/video_player_screen.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ImportAndDecryptVideoScreen extends StatelessWidget {
-  const ImportAndDecryptVideoScreen({super.key});
+class VideoImportScreen extends StatelessWidget {
+  const VideoImportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,8 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
       listener: (context, state) async {
         if (state is VideoDecryptionImported) {
           Notifications.showFlushbar(
-            message: "تم استيراد الملف ${state.filename} بنجاح",
+            message:
+                "${S.of(context).file_imported_successfully} ${state.filename}",
             iconType: IconType.done,
           );
         }
@@ -66,12 +68,12 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
           padding: const EdgeInsets.all(AppSizes.mainPadding),
           shrinkWrap: true,
           children: [
-            const BuildIdDashboard(),
-            const BuildCoursesDashboard(),
+            const DeviceIdPanel(),
+            const CoursesPanel(),
             const SizedBox(height: AppSizes.spacingSmall),
 
             BuildButton(
-              text: 'اختر ملف مشفر',
+              text: S.of(context).choose_encrypted_file,
               icon: const BuildSvgIcon(AppIconsAssests.file),
               onPress: () async => await videoCubit.pickVideo(),
             ),
@@ -84,7 +86,7 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
                 spacing: 3,
                 children: [
                   Text(
-                    'تم اختيار:',
+                    S.of(context).selected,
                     style: theme.textTheme.labelMedium,
                   ),
                   Text(
@@ -101,7 +103,7 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
                 children: [
                   Flexible(
                     child: Text(
-                      "لم يتم اختيار اي ملف حتى الان",
+                      S.of(context).no_file_selected_yet,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: context.theme.disabledColor,
                       ),
@@ -116,7 +118,9 @@ class ImportAndDecryptVideoScreen extends StatelessWidget {
 
             const SizedBox(height: AppSizes.spacingSmall),
 
-            isLoading ? const BuildProgressLoading() : const BuildPlayButton(),
+            isLoading
+                ? const BuildProgressLoading()
+                : const DecryptAndPlayButton(),
           ].separatedBy(const SizedBox(height: AppSizes.spacingMiddle)),
         );
       },

@@ -7,6 +7,7 @@ import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/prepared_temp_file.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:path_provider/path_provider.dart';
 
@@ -17,7 +18,7 @@ Future<PreparedTempFile> prepareTempFile({
   RandomAccessFile? raf;
   try {
     if (video.encryptedPath == null || encryptionCode == null) {
-      throw DecryptionException("حدثت مشكلة اثناء فك التشفير");
+      throw DecryptionException(S.current.decryption_problem);
     }
     final videoDir = await getApplicationDocumentsDirectory();
 
@@ -31,14 +32,14 @@ Future<PreparedTempFile> prepareTempFile({
 
     final inputFile = File(video.encryptedPath!);
     if (!await inputFile.exists()) {
-      throw DecryptionException("الملف غير موجود");
+      throw DecryptionException(S.current.file_not_found);
     }
 
     raf = await inputFile.open();
     final ivBytes = await raf.read(16);
 
     if (!_isVideoIvCorrect(ivBytes.length)) {
-      throw DecryptionException("خطأ أثناء استخراج IV");
+      throw DecryptionException(S.current.iv_extraction_error);
     }
 
     final ivBase64 = _extractIvBase64(ivBytes);
@@ -60,7 +61,7 @@ bool _isVideoIvCorrect(num ivLength) => (ivLength == 16);
 String _extractIvBase64(Uint8List? ivBytes) {
   try {
     if (ivBytes == null) {
-      throw DecryptionException("حدثت مشكلة اثناء فك التشفير");
+      throw DecryptionException(S.current.decryption_problem);
     }
 
     return base64Encode(ivBytes);

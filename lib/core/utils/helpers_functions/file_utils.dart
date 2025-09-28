@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
+import 'package:bhf_player/generated/l10n.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -24,15 +25,15 @@ void deleteFile(String path) async {
   }
 }
 
-Future<String?> saveFile({required Uint8List bytes}) async {
+Future<String?> saveFile({required Uint8List bytes, required String filename,required String dialogTitle}) async {
   try {
     final result = await FilePicker.platform.saveFile(
-      fileName: "backup.bhf",
+      fileName:filename,
       bytes: bytes,
-      dialogTitle: "Save Backup File As",
+      dialogTitle: dialogTitle,
     );
 
-    if (result == null) throw Exception("لم يتم الحفظ");
+    if (result == null) throw Exception(S.current.file_save_error);
     return result;
   } catch (e, stack) {
     e.logError(stack: stack);
@@ -69,7 +70,6 @@ Future<String?> extractVideoThumbnail(VideoEntity video) async {
       timeMs: 3000,
       thumbnailPath: imageSavePath,
     );
-
 
     return thumbnailPath;
   } catch (e, stack) {
