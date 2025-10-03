@@ -128,5 +128,6 @@ class _ScannerQrCodeScreenState extends State<ScannerQrCodeScreen> {
         ].separatedBy(const SizedBox(height: 60)),
       ),
     );
+    
   }
 }
