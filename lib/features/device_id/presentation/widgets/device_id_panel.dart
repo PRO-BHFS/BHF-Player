@@ -3,6 +3,7 @@ import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/features/device_id/presentation/controller/device_id/device_id.dart';
+import 'package:bhf_player/features/qr_code/presentation/screens/generate_qr_code_screen.dart';
 import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,9 +47,13 @@ class DeviceIdPanel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CircleIconButton(
+                icon: const Icon(Icons.qr_code_2_rounded),
+                onPressed: () =>
+                    context.pushRoute(GenerateQrCodeScreen(data: userId)),
+              ),
+              CircleIconButton(
                 icon: const Icon(Icons.share),
                 onPressed: () async => await shareOnWhatsApp(userId),
-                circleColor: primaryColor,
               ),
               CircleIconButton(
                 icon: const Icon(Icons.copy_rounded),

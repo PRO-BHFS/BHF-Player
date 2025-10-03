@@ -5,6 +5,7 @@ import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/dark_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
+import 'package:bhf_player/features/qr_code/presentation/screens/scanner_qr_code_screen.dart';
 import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,12 +77,29 @@ abstract class BaseCourseSheet {
                   labelText: S.of(context).password,
                   hintText: S.of(context).enter_password,
                   controller: passwordController,
-                  suffixIcon: BuildIconButton(
-                    icon: BuildSvgIcon(
-                      AppIconsAssests.paste,
-                      color: context.colorScheme.primary,
-                    ),
-                    onPressed: passwordController.pasteFromClipboard,
+                  suffixIcon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      BuildIconButton(
+                        icon: const BuildIcon(Icons.qr_code_scanner_rounded),
+                        onPressed: () async {
+                          final password = await context.pushRoute<String>(
+                            const ScannerQrCodeScreen(),
+                          );
+                          if (password?.isEmpty ?? true) return;
+
+                          Notifications.showFlushbar(
+                            message: "تم مسح الباسورد بنجاح",
+                            iconType: IconType.done,
+                          );
+                          passwordController.text = password!;
+                        },
+                      ),
+                      BuildIconButton(
+                        icon: const BuildSvgIcon(AppIconsAssests.paste),
+                        onPressed: passwordController.pasteFromClipboard,
+                      ),
+                    ],
                   ),
                   validator: checkFieldEmpty,
                 ),
@@ -104,8 +122,13 @@ abstract class BaseCourseSheet {
                         height: 45.h,
                         child: BuildButton(
                           text: S.of(context).cancel,
-                      
-                          colorBackground: const Color.fromARGB(255, 250, 60, 63),
+
+                          colorBackground: const Color.fromARGB(
+                            255,
+                            250,
+                            60,
+                            63,
+                          ),
                           onPress: sheetContext.popRoute,
                         ),
                       ),
