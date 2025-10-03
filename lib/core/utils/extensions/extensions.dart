@@ -17,32 +17,17 @@ extension FilesPaths on Directory {
 }
 
 extension PageRoute on BuildContext {
-  Future<void> pushRoute(Widget page) async {
-    await Navigator.push(this, MaterialPageRoute(builder: (_) => page));
-  }
-
-  Future<void> pushReplacementRoute(Widget page) async {
-    await Navigator.pushReplacement(
-      this,
-      MaterialPageRoute(builder: (_) => page),
-    );
-  }
-
-  Future<void> pushAndRemoveAll(Widget page) async {
-    await Navigator.pushAndRemoveUntil(
-      this,
-      MaterialPageRoute(builder: (_) => page),
-      (route) => false, // تمسح كل الصفحات القديمة
-    );
-  }
-
-  void popRoute() {
-    Navigator.pop(this);
-  }
+ Future<T?> pushRoute<T>(Widget pageRoute) async =>
+      await Navigator.push(this, MaterialPageRoute(builder: (_) => pageRoute));
+  void pushReplacementRoute(Widget pageRoute) => Navigator.pushReplacement(
+    this,
+    MaterialPageRoute(builder: (_) => pageRoute),
+  );
+  void popRoute<T>([T? result]) => Navigator.pop(this, result);
 }
 
 extension Themes on BuildContext {
-  bool isDark() => Theme.of(this).brightness == Brightness.dark;
+  bool get isDark => Theme.of(this).brightness == Brightness.dark;
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   TextTheme get textTheme => Theme.of(this).textTheme;
   ThemeData get theme => Theme.of(this);

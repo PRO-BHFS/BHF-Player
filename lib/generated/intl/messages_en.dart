@@ -95,6 +95,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_password": MessageLookupByLibrary.simpleMessage(
       "Enter password here",
     ),
+    "error_generate_qr_code": MessageLookupByLibrary.simpleMessage(
+      "An Error Occurred While Generating QR Code.",
+    ),
     "error_occurred_while_restoring": MessageLookupByLibrary.simpleMessage(
       "Error occurred while restoring data",
     ),
@@ -118,6 +121,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "final_file_write_failed": MessageLookupByLibrary.simpleMessage(
       "Final file write failed",
     ),
+    "generate_qr_code": MessageLookupByLibrary.simpleMessage(
+      "Generate QR Code",
+    ),
     "id": MessageLookupByLibrary.simpleMessage("ID:"),
     "import": MessageLookupByLibrary.simpleMessage("Import"),
     "import_a_file": MessageLookupByLibrary.simpleMessage("Import a File"),
@@ -126,6 +132,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Error while extracting IV",
     ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "msg_scan_instruction": MessageLookupByLibrary.simpleMessage(
+      "Let the scan do the magic.\nIt starts on its own!",
+    ),
     "no_courses_added_yet": MessageLookupByLibrary.simpleMessage(
       "No courses added yet",
     ),
@@ -155,6 +164,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings_title": MessageLookupByLibrary.simpleMessage("Settings"),
     "title_duplicated": MessageLookupByLibrary.simpleMessage(
       "Title is duplicated",
+    ),
+    "title_password_scanner": MessageLookupByLibrary.simpleMessage(
+      "Password Scanner",
     ),
     "video_playback_error": MessageLookupByLibrary.simpleMessage(
       "Video playback error occurred",

@@ -37,11 +37,14 @@ class CardCourse extends Equatable {
   }
 
   factory CardCourse.fromMap(Map<String, dynamic> map) {
-    final videos = map[Keys.videosLibrary] as List<Map<String, dynamic>>;
+    final videos = (map[Keys.videosLibrary] as List<dynamic>);
+
     return CardCourse(
       courseId: map[Keys.courseId] as int,
       courseTitle: map[Keys.courseTitle] as String,
-      videos: videos.map((m) => VideoEntity.fromMap(m)).toSet(),
+      videos: videos
+          .map((e) => VideoEntity.fromMap(e as Map<String, dynamic>))
+          .toSet(),
     );
   }
 
@@ -61,8 +64,6 @@ class CardCourse extends Equatable {
       videos: videos ?? this.videos,
     );
   }
-
- 
 
   @override
   List<Object?> get props => [courseId, courseTitle];

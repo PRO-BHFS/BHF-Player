@@ -21,7 +21,7 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
   }
 
   Future<void> addVideo(VideoEntity video) async {
-    final decryptedVideo = await _setupVideoConfig(video);
+    final decryptedVideo = await _prepareVideoMetadata(video);
 
     final copiedCourses = {...state.courses};
 
@@ -55,7 +55,7 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
     emit(state.copyWith(courses: copiedCourses));
   }
 
-  Future<VideoEntity> _setupVideoConfig(VideoEntity video) async {
+  Future<VideoEntity> _prepareVideoMetadata(VideoEntity video) async {
     final videoInfo = await GetIt.I<GetVideoMetadataUseCase>().call(
       video.decryptedPath ?? "",
     );

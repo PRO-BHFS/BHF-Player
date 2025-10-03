@@ -20,9 +20,7 @@ class PopupMenuChild extends StatelessWidget {
     final fallback = (assetName != null)
         ? BuildSvgIcon(assetName!)
         : const SizedBox.shrink();
-    final iconColor = context.isDark()
-        ? DarkColors.icon
-        : LightColors.icon;
+    final iconColor = context.isDark ? DarkColors.icon : LightColors.icon;
     return Row(
       spacing: 10,
       children: [

@@ -66,5 +66,9 @@
   "field_cannot_be_empty": "لايمكن ان يكون الحقل فارغا",
   "field_cannot_contain_only_spaces": "لا يمكن ان يحتوي الحقل على مسافات فقط",
   "save_backup_file_as": "حفظ نسخة احتياطية باسم",
-  "open_shared_file_error": "حدث خطأ عند محاولة فتح الملف الذي تمت مشاركته أو فتحه عبر التطبيق"
+  "open_shared_file_error": "حدث خطأ عند محاولة فتح الملف الذي تمت مشاركته أو فتحه عبر التطبيق",
+  "error_generate_qr_code": "حدث خطأ اثناء توليد QR Code",
+  "generate_qr_code": "QR Code توليد",
+  "title_password_scanner": "ماسح كلمة المرور",
+  "msg_scan_instruction": "ضع رمز QR داخل الإطار، وسيتم مسحه تلقائيًا!"
 }

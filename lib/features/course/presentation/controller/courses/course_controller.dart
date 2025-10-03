@@ -74,13 +74,19 @@ class CourseCubit extends HydratedCubit<CourseState> {
 
     _currentCourse = state.courses.firstWhere((c) => c.id == courseId);
 
+    if (_currentCourse == null) return;
+
     emit(CourseSelected(state.courses, courseId: _currentSelectedCourseId));
   }
 
   Future<void> _getRecentSelectedCourse() async {
-    if (_currentSelectedCourseId != null) {
-      await selectCourse(_currentSelectedCourseId);
+    if (_currentSelectedCourseId == null ||
+        state.courses.any((c) => c.id == _currentSelectedCourseId)) {
+      return;
     }
+
+    
+    await selectCourse(_currentSelectedCourseId);
   }
 
   // إذا لم توجد دورات، يعيد عداد الـ ID إلى الصفر
@@ -98,10 +104,16 @@ class CourseCubit extends HydratedCubit<CourseState> {
       final courseStorage = UserCourseStorage.fromJson(json);
       final updatedCourse = {...state.courses, ...courseStorage.courses};
 
-      _currentSelectedCourseId = courseStorage.recentSelectedCourse;
-      _getRecentSelectedCourse();
+      final newState = CourseLoaded(state.copyWith(courses: updatedCourse));
 
-      return CourseLoaded(state.copyWith(courses: updatedCourse));
+      emit(newState);
+
+      Future.microtask(() {
+        _currentSelectedCourseId = courseStorage.recentSelectedCourse;
+        _getRecentSelectedCourse();
+      });
+
+      return newState;
     } catch (_) {
       return const CourseInitial({});
     }

@@ -93,6 +93,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "اكتب اسم الدورة هنا",
     ),
     "enter_password": MessageLookupByLibrary.simpleMessage("اكتب الباسورد هنا"),
+    "error_generate_qr_code": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ اثناء توليد QR Code",
+    ),
     "error_occurred_while_restoring": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ أثناء استعادة البيانات",
     ),
@@ -116,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "final_file_write_failed": MessageLookupByLibrary.simpleMessage(
       "فشل كتابة الملف النهائي",
     ),
+    "generate_qr_code": MessageLookupByLibrary.simpleMessage("QR Code توليد"),
     "id": MessageLookupByLibrary.simpleMessage("المعرف:"),
     "import": MessageLookupByLibrary.simpleMessage("استيراد"),
     "import_a_file": MessageLookupByLibrary.simpleMessage("استيراد ملف"),
@@ -124,6 +128,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "خطأ أثناء استخراج IV",
     ),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+    "msg_scan_instruction": MessageLookupByLibrary.simpleMessage(
+      "ضع رمز QR داخل الإطار، وسيتم مسحه تلقائيًا!",
+    ),
     "no_courses_added_yet": MessageLookupByLibrary.simpleMessage(
       "لم يتم اضافة دورات بعد",
     ),
@@ -152,6 +159,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
     "settings_title": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "title_duplicated": MessageLookupByLibrary.simpleMessage("العنوان مكرر"),
+    "title_password_scanner": MessageLookupByLibrary.simpleMessage(
+      "ماسح كلمة المرور",
+    ),
     "video_playback_error": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ أثناء تشغيل الفيديو",
     ),

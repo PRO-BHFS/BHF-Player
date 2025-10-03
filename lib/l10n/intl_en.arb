@@ -66,5 +66,9 @@
   "field_cannot_be_empty": "Field cannot be empty",
   "field_cannot_contain_only_spaces": "Field cannot contain only spaces",
   "save_backup_file_as": "Save Backup File As",
-  "open_shared_file_error": "Error: Can not Open this Shared File"
+  "open_shared_file_error": "Error: Can not Open this Shared File",
+  "error_generate_qr_code": "An Error Occurred While Generating QR Code.",
+  "generate_qr_code": "Generate QR Code",
+  "title_password_scanner": "Password Scanner",
+  "msg_scan_instruction": "Let the scan do the magic.\nIt starts on its own!"
 }

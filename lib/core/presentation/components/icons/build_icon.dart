@@ -16,7 +16,7 @@ class BuildIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color color;
 
-    color = (isBlack == false || context.isDark())
+    color = (isBlack == false || context.isDark)
         ? DarkColors.icon
         : LightColors.icon;
     return Icon(icon, size: size ?? AppSizes.icon, color: this.color ?? color);

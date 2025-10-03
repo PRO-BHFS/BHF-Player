@@ -20,14 +20,16 @@ class DecryptedVideoState extends Equatable {
   List<Object?> get props => [courses];
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      Keys.coursesList: courses.map((x) => x.toMap()).toList(),
-    };
+    return {Keys.coursesList: courses.map((x) => x.toMap()).toList()};
   }
 
   factory DecryptedVideoState.fromMap(Map<String, dynamic> map) {
     if (map.isEmpty) return const DecryptedVideoState.empty();
-    final coursesList = map[Keys.coursesList] as List<Map<String, dynamic>>;
+
+final coursesList = (map[Keys.coursesList] as List)
+        .map((x) => Map<String, dynamic>.from(x as Map))
+        .toList();
+
     return DecryptedVideoState(
       coursesList.map((x) => CardCourse.fromMap(x)).toSet(),
     );

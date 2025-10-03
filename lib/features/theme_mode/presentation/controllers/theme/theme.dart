@@ -1,5 +1,3 @@
-
-
 import 'package:bhf_player/core/utils/app_constants/keys.dart';
 import 'package:bhf_player/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +11,10 @@ class ThemeCubit extends HydratedCubit<ThemeMode> {
 
   void selectTheme(bool isDark) {
     emit(isDark ? ThemeMode.dark : ThemeMode.light);
+  }
+
+  void switchTheme() {
+    emit(isDarkMode ? ThemeMode.light : ThemeMode.dark);
   }
 
   @override

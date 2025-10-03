@@ -35,12 +35,11 @@ class BuildFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
     return TextFormField(
-      
       readOnly: readOnly,
       controller: controller,
       autofocus: autoFocus,
       textCapitalization: TextCapitalization.words,
-    
+
       textInputAction: textInputAction,
       decoration: InputDecoration(
         label: Text(labelText, style: textTheme.labelSmall),
@@ -50,13 +49,11 @@ class BuildFormField extends StatelessWidget {
             color: Theme.of(context).hintColor,
           ),
         ),
-    
+
         suffixIcon: suffixIcon,
       ),
       style: textTheme.labelSmall,
-      cursorColor: context.isDark()
-          ? DarkColors.fontMain
-          : LightColors.fontMain,
+      cursorColor: context.isDark ? DarkColors.fontMain : LightColors.fontMain,
       onChanged: onChanged,
       maxLines: maxLines,
       validator: validator,

@@ -16,6 +16,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = context.watch<ThemeCubit>().isDarkMode;
     final language = context.watch<LanguageCubit>().state;
+    const switchKey = ValueKey("switchTheme");
     return Scaffold(
       appBar: AppBar(title: Text(S.of(context).settings)),
       body: ListView(
@@ -23,19 +24,24 @@ class SettingsScreen extends StatelessWidget {
         shrinkWrap: true,
 
         children: [
-          RoundedContainer(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TitleSettingSection(
-                  icon: const BuildIcon(Icons.dark_mode_outlined),
-                  title: S.of(context).dark_mode,
-                ),
-                Switch(
-                  value: isDarkMode,
-                  onChanged: context.read<ThemeCubit>().selectTheme,
-                ),
-              ],
+          GestureDetector(
+
+            onTap: context.read<ThemeCubit>().switchTheme,
+            child: RoundedContainer(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TitleSettingSection(
+                    icon: const BuildIcon(Icons.dark_mode_outlined),
+                    title: S.of(context).dark_mode,
+                  ),
+                  Switch(
+                    key: switchKey,
+                    value: isDarkMode,
+                    onChanged: context.read<ThemeCubit>().selectTheme,
+                  ),
+                ],
+              ),
             ),
           ),
           RoundedContainer(
@@ -57,7 +63,7 @@ class SettingsScreen extends StatelessWidget {
               ],
             ),
           ),
-           RoundedContainer(
+          RoundedContainer(
             child: Row(
               children: [
                 TitleSettingSection(

@@ -618,6 +618,46 @@ class S {
       args: [],
     );
   }
+
+  /// `An Error Occurred While Generating QR Code.`
+  String get error_generate_qr_code {
+    return Intl.message(
+      'An Error Occurred While Generating QR Code.',
+      name: 'error_generate_qr_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate QR Code`
+  String get generate_qr_code {
+    return Intl.message(
+      'Generate QR Code',
+      name: 'generate_qr_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password Scanner`
+  String get title_password_scanner {
+    return Intl.message(
+      'Password Scanner',
+      name: 'title_password_scanner',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let the scan do the magic.\nIt starts on its own!`
+  String get msg_scan_instruction {
+    return Intl.message(
+      'Let the scan do the magic.\nIt starts on its own!',
+      name: 'msg_scan_instruction',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
