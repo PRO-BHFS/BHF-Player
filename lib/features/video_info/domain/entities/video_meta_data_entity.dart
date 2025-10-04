@@ -39,15 +39,8 @@ class VideoMetadata extends Equatable with FileSizeHelper {
 
   @override
   List<Object?> get props => [
-    path,
-    title,
-    author,
     duration,
-    fileSize,
-    date,
-    frameRate,
-    width,
-    height,
+  
   ];
 
   Map<String, dynamic> toMap() {

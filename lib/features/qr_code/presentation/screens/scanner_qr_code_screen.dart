@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bhf_player/core/presentation/components/buttons/build_icon_button.dart';
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/light_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/generated/l10n.dart';
@@ -128,6 +128,5 @@ class _ScannerQrCodeScreenState extends State<ScannerQrCodeScreen> {
         ].separatedBy(const SizedBox(height: 60)),
       ),
     );
-    
   }
 }

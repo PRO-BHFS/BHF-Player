@@ -1,5 +1,5 @@
 import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/dark_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/light_colors.dart';
 import 'package:flutter/material.dart';

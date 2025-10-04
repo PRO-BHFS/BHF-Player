@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/generated/l10n.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:path/path.dart';

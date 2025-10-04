@@ -1,4 +1,4 @@
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
@@ -8,7 +8,8 @@ class BuildSvgIcon extends StatelessWidget {
     this.assetName, {
     super.key,
     this.size,
-    this.isDisabled = false, this.color,
+    this.isDisabled = false,
+    this.color,
   });
 
   final String assetName;

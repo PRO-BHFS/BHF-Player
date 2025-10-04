@@ -1,6 +1,6 @@
 import 'package:bhf_player/core/presentation/components/rounded_container.dart';
 import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/decrypted_videos_library/domain/entities/card_course.dart';
 import 'package:bhf_player/features/decrypted_videos_library/presentation/screens/course_details_screen.dart';

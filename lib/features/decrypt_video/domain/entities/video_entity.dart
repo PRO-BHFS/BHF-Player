@@ -12,6 +12,7 @@ class VideoEntity extends Equatable with FileSizeHelper {
   final String? thumbnailPath;
   final VideoMetadata metadata;
   final int bytesSize;
+  final String? videoHash;
 
   const VideoEntity({
     required this.filename,
@@ -21,6 +22,7 @@ class VideoEntity extends Equatable with FileSizeHelper {
     required this.metadata,
     this.decryptedPath,
     this.thumbnailPath,
+    this.videoHash
   });
 
   factory VideoEntity.encrypted({
@@ -43,6 +45,7 @@ class VideoEntity extends Equatable with FileSizeHelper {
     String? decryptedPath,
     int? bytesSize,
     String? thumbnailPath,
+    String? videoHash,
     VideoMetadata? metadata,
   }) => VideoEntity(
     filename: filename ?? this.filename,
@@ -52,6 +55,7 @@ class VideoEntity extends Equatable with FileSizeHelper {
     bytesSize: bytesSize ?? this.bytesSize,
     thumbnailPath: thumbnailPath ?? this.thumbnailPath,
     metadata: metadata ?? this.metadata,
+    videoHash: videoHash?? this.videoHash
   );
 
   String get videoTitle => p.basename(decryptedPath ?? filename);
@@ -83,5 +87,5 @@ class VideoEntity extends Equatable with FileSizeHelper {
   }
 
   @override
-  List<Object?> get props => [filename, encryptedPath, decryptedPath, courseId];
+  List<Object?> get props => [courseId, metadata, videoHash];
 }

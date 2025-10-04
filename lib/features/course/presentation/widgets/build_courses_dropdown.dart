@@ -1,5 +1,5 @@
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';

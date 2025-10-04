@@ -1,4 +1,4 @@
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:flutter/services.dart';
 
 class ScreenshotProtector {
@@ -7,7 +7,7 @@ class ScreenshotProtector {
   static Future<void> disableScreenshot() async {
     try {
       await _platform.invokeMethod('disableScreenshot');
-    } catch (e,s) {
+    } catch (e, s) {
       e.logError(stack: s);
     }
   }
@@ -15,7 +15,7 @@ class ScreenshotProtector {
   static Future<void> enableScreenshot() async {
     try {
       await _platform.invokeMethod('enableScreenshot');
-    } catch (e,s) {
+    } catch (e, s) {
       e.logError(stack: s);
     }
   }

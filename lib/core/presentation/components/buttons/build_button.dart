@@ -1,4 +1,4 @@
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/light_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -32,10 +32,14 @@ class BuildButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 3,
         children: [
-          Text(text, style: context.textTheme.labelMedium?.copyWith(
-            color: onPress == null ? disabledForegroundColor : LightColors.main,
-
-          )),
+          Text(
+            text,
+            style: context.textTheme.labelMedium?.copyWith(
+              color: onPress == null
+                  ? disabledForegroundColor
+                  : LightColors.main,
+            ),
+          ),
           icon ?? const SizedBox.shrink(),
         ],
       ),

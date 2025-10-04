@@ -1,4 +1,4 @@
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:bhf_player/core/utils/app_constants/app_constants.dart';
 import 'package:volume_controller/volume_controller.dart';

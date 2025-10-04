@@ -1,6 +1,6 @@
 import 'package:bhf_player/core/presentation/components/rounded_container.dart';
 import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/features/device_id/presentation/controller/device_id/device_id.dart';
 import 'package:bhf_player/features/qr_code/presentation/screens/generate_qr_code_screen.dart';

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/mixins/single_runner/single_runner.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';

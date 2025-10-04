@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/course/domain/entities/sub_entity/course_password.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
@@ -26,8 +26,6 @@ class AddCourseSheet extends BaseCourseSheet {
     );
 
     if (!context.mounted) return;
-
-
 
     final courseId = await context.read<CourseCubit>().addCourse(course);
 

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:bhf_player/core/errors/app_exceptions/app_exceptions.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';

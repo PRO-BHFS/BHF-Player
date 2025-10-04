@@ -2,9 +2,10 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
 import 'package:bhf_player/generated/l10n.dart';
+import 'package:crypto/crypto.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -25,10 +26,14 @@ void deleteFile(String path) async {
   }
 }
 
-Future<String?> saveFile({required Uint8List bytes, required String filename,required String dialogTitle}) async {
+Future<String?> saveFile({
+  required Uint8List bytes,
+  required String filename,
+  required String dialogTitle,
+}) async {
   try {
     final result = await FilePicker.platform.saveFile(
-      fileName:filename,
+      fileName: filename,
       bytes: bytes,
       dialogTitle: dialogTitle,
     );
@@ -90,4 +95,52 @@ double? calculateAspectRatio({int? width, int? height}) {
   if ((ratio - 1).abs() < 0.01) return 1 / 1;
 
   return width / height;
+}
+
+Future<String?> hashingVideo(VideoEntity video) async {
+  if (video.decryptedPath == null) return null;
+  String? hash;
+  RandomAccessFile? raf;
+
+  try {
+    final file = File(video.decryptedPath!);
+    if (!await file.exists()) {
+      return null;
+    }
+
+    const bytesOfMb = 1024 * 1024;
+    const minMegaBytes = 4;
+    const blockMb = 2;
+    const blockBytes = blockMb * bytesOfMb;
+    final fileBytesSize = await file.length();
+    final fileMbSize = fileBytesSize / bytesOfMb;
+    raf = await file.open();
+
+    Uint8List firstBytes;
+    Uint8List? lastBytes;
+
+    // قراءة أول 2 ميغابايت وآخر 2 ميغابايت إذا الملف كبير
+    if (fileMbSize < minMegaBytes) {
+      firstBytes = await file.readAsBytes();
+    } else {
+      firstBytes = await raf.read(blockBytes);
+
+      // تحديد الموضع للقراءة الأخيرة بشكل آمن
+
+      await raf.setPosition(fileBytesSize - blockBytes);
+      lastBytes = await raf.read(blockBytes);
+    }
+    final duration = video.metadata.duration;
+    final durationBytes = duration?.inMilliseconds.toBytes();
+
+    final combinedBytes = [...firstBytes, ...?durationBytes, ...?lastBytes];
+
+    final digest = sha256.convert(combinedBytes);
+    hash = digest.toString();
+  } catch (e, stack) {
+    e.logError(stack: stack);
+  } finally {
+    await raf?.close();
+  }
+  return hash;
 }

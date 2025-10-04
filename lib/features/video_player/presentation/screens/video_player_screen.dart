@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:bhf_player/core/native_codes/screenshot_protector.dart';
 import 'package:bhf_player/core/presentation/components/conditional_builder.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
@@ -77,7 +77,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               fallback: (_) => Stack(
                 alignment: Alignment.center,
                 children: [
-                   VideoPlayerView(widget.video),
+                  VideoPlayerView(widget.video),
                   Positioned.fill(
                     child: GestureDetector(onTap: playerCubit.toggleControls),
                   ),
@@ -94,7 +94,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             alignment: Alignment.center,
 
             children: [
-               VideoPlayerView(widget.video),
+              VideoPlayerView(widget.video),
               VideoPlayerGestures(playerCubit: playerCubit),
               ValueListenableBuilder(
                 valueListenable: playerCubit.playerService.isShowControllers,

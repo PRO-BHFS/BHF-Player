@@ -27,6 +27,7 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
 
     final filteredCourse = copiedCourses.firstWhere(
       (c) => c.courseId == video.courseId,
+      
     );
 
     filteredCourse.videos.add(decryptedVideo);
@@ -66,7 +67,9 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
       metadata: videoInfo,
     );
 
-    return decryptedVideo;
+    final hashVideo =await hashingVideo(decryptedVideo);
+
+    return decryptedVideo.copyWith(videoHash: hashVideo);
   }
 
   @override

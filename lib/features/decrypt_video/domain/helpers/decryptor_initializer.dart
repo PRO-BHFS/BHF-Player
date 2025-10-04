@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 import 'package:bhf_player/core/errors/app_exceptions/app_exceptions.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/prepared_temp_file.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
 import 'package:bhf_player/generated/l10n.dart';

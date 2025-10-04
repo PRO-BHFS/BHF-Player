@@ -1,7 +1,7 @@
 import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart'
     show AppIconsAssests;
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
 import 'package:bhf_player/features/course/presentation/sheets/exports.dart';
 import 'package:bhf_player/generated/l10n.dart';

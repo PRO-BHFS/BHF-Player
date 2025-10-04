@@ -1,6 +1,6 @@
 import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
 import 'package:bhf_player/core/utils/app_constants/app_assests/app_icons_assests.dart';
-import 'package:bhf_player/core/utils/extensions/extensions.dart';
+import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/dark_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
