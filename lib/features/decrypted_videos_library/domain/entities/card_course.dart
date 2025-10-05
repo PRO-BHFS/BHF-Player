@@ -66,5 +66,5 @@ class CardCourse extends Equatable {
   }
 
   @override
-  List<Object?> get props => [courseId, courseTitle];
+  List<Object?> get props => [courseId, courseTitle,videos];
 }

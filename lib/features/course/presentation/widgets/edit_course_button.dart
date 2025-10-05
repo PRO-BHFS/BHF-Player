@@ -14,7 +14,6 @@ class EditCourseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentCourse = context.watch<CourseCubit>().currentCourse;
-    print(currentCourse);
     return CircleIconButton(
       circleColor: context.colorScheme.secondary,
       onPressed: () async => await EditCourseSheet(

@@ -33,4 +33,5 @@ class Keys {
 
   static const videosLibrary = "videosLibrary";
   static const courseTitle = "courseTitle";
+  static const videoHash = "videoHash";
 }

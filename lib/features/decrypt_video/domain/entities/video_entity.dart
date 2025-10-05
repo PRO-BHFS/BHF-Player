@@ -71,6 +71,7 @@ class VideoEntity extends Equatable with FileSizeHelper {
       Keys.thumbnailPath: thumbnailPath,
       Keys.size: bytesSize,
       Keys.videoMetadata: metadata.toMap(),
+      Keys.videoHash: videoHash
     };
   }
 
@@ -83,6 +84,7 @@ class VideoEntity extends Equatable with FileSizeHelper {
       thumbnailPath: map[Keys.thumbnailPath] as String?,
       bytesSize: map[Keys.size] as int,
       metadata: VideoMetadata.fromMap(map[Keys.videoMetadata] ?? {}),
+      videoHash: map[Keys.videoHash]
     );
   }
 

@@ -25,7 +25,7 @@ class SetupMultiBlocProvider extends StatelessWidget {
         BlocProvider<CourseCubit>(create: (_) => CourseCubit()),
         BlocProvider<DecryptedVideoCubit>(
           create: (context) {
-            final courseCubit = CourseCubit();
+            final courseCubit = context.read<CourseCubit>();
             return DecryptedVideoCubit(courseCubit);
           },
         ),

@@ -25,11 +25,18 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
 
     final copiedCourses = {...state.courses};
 
-    final filteredCourse = copiedCourses.firstWhere(
+    final existingCourse = copiedCourses.firstWhere(
       (c) => c.courseId == video.courseId,
     );
 
-    filteredCourse.videos.add(decryptedVideo);
+    // Create a new videos set to avoid mutating a Set element referenced in another Set
+    final updatedVideos = {...existingCourse.videos, decryptedVideo};
+    final updatedCourse = existingCourse.copyWith(videos: updatedVideos);
+
+    // Replace the course instance in the set
+    copiedCourses
+      ..remove(existingCourse)
+      ..add(updatedCourse);
 
     emit(state.copyWith(courses: copiedCourses));
   }
@@ -81,10 +88,20 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
   DecryptedVideoState? fromJson(Map<String, dynamic> json) {
     final state = DecryptedVideoState.fromMap(json);
     final coursesEntities = _courseCubit.courses;
-    final coursesIds = coursesEntities.map((c) => c.id).toSet();
+    final coursesIds = coursesEntities
+        .map((c) => c.id)
+        .whereType<int>()
+        .toSet();
+
+    // If courses are not yet loaded, keep hydrated state as-is to avoid losing videos
+    if (coursesIds.isEmpty) {
+      return state;
+    }
+
     final filteredCourses = state.courses
         .where((cardCourse) => coursesIds.contains(cardCourse.courseId))
         .toSet();
+        
     return state.copyWith(courses: filteredCourses);
   }
 }
