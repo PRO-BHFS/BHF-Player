@@ -5,6 +5,7 @@ import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_colors/dark_colors.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
+import 'package:bhf_player/features/course/presentation/sheets/edit_course_sheet.dart';
 import 'package:bhf_player/features/qr_code/presentation/screens/scanner_qr_code_screen.dart';
 import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ abstract class BaseCourseSheet {
   Future<void> onSubmit(BuildContext sheetContext);
 
   Future<void> show({required String title}) async {
-    final courses = context.read<CourseCubit>().state.courses;
+    final courses = context.read<CourseCubit>().courses;
 
     Future<void> future = showModalBottomSheet(
       context: context,
@@ -62,6 +63,9 @@ abstract class BaseCourseSheet {
                   autoFocus: true,
                   controller: courseNameController,
                   validator: (courseTitle) {
+                    if (this is EditCourseSheet) {
+                      return checkFieldEmpty(courseTitle);
+                    }
                     final isTitleDublicated = courses.any(
                       (c) => c.courseTitle == courseTitle,
                     );

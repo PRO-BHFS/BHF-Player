@@ -27,7 +27,7 @@ class BackupCubit extends Cubit<BackupState> {
     emit(BackupLoading());
     try {
       final isRestored = await restoreDb();
-      await _userCourseCubit.loadCourses();
+      await _userCourseCubit.loadBackupCourses();
       if (isRestored) emit(RestoreSuccess());
     } catch (e) {
       emit(RestoreError(e.toString()));

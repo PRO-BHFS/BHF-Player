@@ -74,6 +74,11 @@ class CoursePassword {
   factory CoursePassword.fromJson(Map<String, dynamic> json) {
     return CoursePassword(json[DbColumns.fullPassword] ?? "");
   }
+
+  @override
+  String toString() {
+    return "Password: $_fullPassword";
+  }
 }
 
 class _DecryptedPassword {

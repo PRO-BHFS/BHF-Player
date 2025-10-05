@@ -10,7 +10,7 @@ class RoundedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
-    final seecondColor = colorScheme.surface.withAlpha(140);
+    final seecondColor = colorScheme.surface.withAlpha(210);
     final isDarkTheme = context.isDark;
     return Container(
       padding: padding ?? const EdgeInsets.all(AppSizes.secondPadding),
@@ -18,8 +18,8 @@ class RoundedContainer extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: [.8, .99],
+          end: Alignment.bottomLeft,
+          stops: [.75, .9999],
           colors: isDarkTheme
               ? [seecondColor, colorScheme.surface]
               : [colorScheme.surface, seecondColor],
@@ -27,9 +27,9 @@ class RoundedContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppSizes.borderRadiusMiddle),
         boxShadow: [
           const BoxShadow(
-            color: Color(0x2C919191),
-            blurRadius: 2,
-            offset: Offset(0, 2),
+            color: Color(0x26000000),
+            blurRadius: 0.5,
+            offset: Offset(1, 1),
           ),
         ],
       ),

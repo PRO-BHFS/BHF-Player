@@ -44,7 +44,7 @@ class CardCourse extends Equatable {
       courseTitle: map[Keys.courseTitle] as String,
       videos: videos
           .map((e) => VideoEntity.fromMap(e as Map<String, dynamic>))
-          .toSet(),
+          .toList().toSet(),
     );
   }
 

@@ -1,6 +1,5 @@
 import 'package:bhf_player/core/utils/styles/app_colors/light_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CircleIconButton extends StatelessWidget {
   final Widget icon;
@@ -20,8 +19,11 @@ class CircleIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor: isActive ? LightColors.primary : circleColor,
-      radius: 45.r / 2,
+
+      radius: 20,
+
       child: IconButton(
+        iconSize: 20,
         onPressed: onPressed,
         icon: icon,
       ),

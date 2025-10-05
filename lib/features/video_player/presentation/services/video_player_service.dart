@@ -48,6 +48,10 @@ class VideoPlayerService {
   Future<void> dispose() async {
     inactivityTimer?.cancel();
     uiIconTimer?.cancel();
+    
+    await player?.dispose();
+    player = null;
+    videoController = null;
 
     isFullScreen.dispose();
     isShowControllers.dispose();
@@ -56,16 +60,13 @@ class VideoPlayerService {
     playerSliderProgress.dispose();
     volume.dispose();
     playbackSpeed.dispose();
-    videoDuration.dispose();
-    currentPosition.dispose();
     activeGesture.dispose();
     isUiLocked.dispose();
     videoActionState.dispose();
     brightness.dispose();
     aspectRatio.dispose();
-    await player?.dispose();
-    player = null;
-    videoController = null;
+    videoDuration.dispose();
+    currentPosition.dispose();
     _instance = null;
   }
 }

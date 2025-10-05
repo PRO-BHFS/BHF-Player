@@ -46,7 +46,7 @@ class _CourseSetupScreenState extends State<CourseSetupScreen> {
   Widget build(BuildContext context) {
 
     return BlocSelector<CourseCubit, CourseState, Set<CourseEntity>>(
-      selector: (state) => state.courses,
+      selector: (state) => state.courseStorage.courses,
       builder: (context, courses) {
 
         if (courses.isNotEmpty) {

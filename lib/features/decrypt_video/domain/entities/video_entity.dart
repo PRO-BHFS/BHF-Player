@@ -87,5 +87,5 @@ class VideoEntity extends Equatable with FileSizeHelper {
   }
 
   @override
-  List<Object?> get props => [courseId, metadata, videoHash];
+  List<Object?> get props => [courseId, videoHash];
 }

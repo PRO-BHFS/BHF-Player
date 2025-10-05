@@ -61,7 +61,7 @@ class BuildCoursesDropdown extends StatelessWidget {
             alignment: AlignmentDirectional.bottomStart,
           ),
 
-          dropdownMenuEntries: controller.state.courses.map((course) {
+          dropdownMenuEntries: controller.courses.map((course) {
             return DropdownMenuEntry<int>(
               value: course.id!,
               label: course.courseTitle,
@@ -78,8 +78,7 @@ class BuildCoursesDropdown extends StatelessWidget {
               ),
             );
           }).toList(),
-          onSelected: (courseId) async =>
-              await controller.selectCourse(courseId),
+          onSelected: context.read<CourseCubit>().selectCourse,
         );
       },
     );

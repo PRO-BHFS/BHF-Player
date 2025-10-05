@@ -32,16 +32,11 @@ class CourseEntity extends Equatable {
   );
 
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{
+    return {
+      DbColumns.id: ?id,
       DbColumns.courseTitle: courseTitle,
       ...password.toJson(),
     };
-
-    if (id != null) {
-      data[DbColumns.id] = id;
-    }
-
-    return data;
   }
 
   factory CourseEntity.fromJson(Map<String, dynamic> json) {
@@ -57,6 +52,7 @@ class CourseEntity extends Equatable {
     return """
     ID: $id
     Title: $courseTitle
+    ${password.toString()}
     """;
   }
 

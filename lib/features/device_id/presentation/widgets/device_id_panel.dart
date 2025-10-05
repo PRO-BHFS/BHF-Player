@@ -18,7 +18,7 @@ class DeviceIdPanel extends StatelessWidget {
     final primaryColor = context.colorScheme.primary;
     return RoundedContainer(
       child: Column(
-        spacing: 10,
+        spacing: 15,
         children: [
           BlocBuilder<DeviceIdCubit, String>(
             builder: (_, id) {
@@ -50,10 +50,12 @@ class DeviceIdPanel extends StatelessWidget {
                 icon: const Icon(Icons.qr_code_2_rounded),
                 onPressed: () =>
                     context.pushRoute(GenerateQrCodeScreen(data: userId)),
+                circleColor: primaryColor,
               ),
               CircleIconButton(
                 icon: const Icon(Icons.share),
                 onPressed: () async => await shareOnWhatsApp(userId),
+                circleColor: primaryColor,
               ),
               CircleIconButton(
                 icon: const Icon(Icons.copy_rounded),

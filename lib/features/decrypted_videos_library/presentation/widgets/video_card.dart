@@ -60,6 +60,8 @@ class BuildVideoCard extends StatelessWidget {
                     spacing: 10,
                     children: [
                       TextTag(text: metadata.formatBytes(metadata.fileSize)),
+                      if (video.metadata.author != null)
+                        TextTag(text: "${video.metadata.author}"),
                       if (video.metadata.date != null)
                         TextTag(text: "${video.metadata.date}"),
                     ],

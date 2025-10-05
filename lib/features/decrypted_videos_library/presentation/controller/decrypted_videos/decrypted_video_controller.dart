@@ -27,7 +27,6 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
 
     final filteredCourse = copiedCourses.firstWhere(
       (c) => c.courseId == video.courseId,
-      
     );
 
     filteredCourse.videos.add(decryptedVideo);
@@ -58,18 +57,19 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
 
   Future<VideoEntity> _prepareVideoMetadata(VideoEntity video) async {
     final videoInfo = await GetIt.I<GetVideoMetadataUseCase>().call(
-      video.decryptedPath ?? "",
+      video.decryptedPath,
     );
 
     final thumbnailPath = await extractVideoThumbnail(video);
-    final decryptedVideo = video.copyWith(
+    final videoHash = await hashingVideo(video);
+
+    final resultVideo = video.copyWith(
       thumbnailPath: thumbnailPath,
       metadata: videoInfo,
+      videoHash: videoHash,
     );
 
-    final hashVideo =await hashingVideo(decryptedVideo);
-
-    return decryptedVideo.copyWith(videoHash: hashVideo);
+    return resultVideo;
   }
 
   @override
@@ -80,7 +80,7 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
   @override
   DecryptedVideoState? fromJson(Map<String, dynamic> json) {
     final state = DecryptedVideoState.fromMap(json);
-    final coursesEntities = _courseCubit.state.courses;
+    final coursesEntities = _courseCubit.courses;
     final coursesIds = coursesEntities.map((c) => c.id).toSet();
     final filteredCourses = state.courses
         .where((cardCourse) => coursesIds.contains(cardCourse.courseId))
