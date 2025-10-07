@@ -70,5 +70,6 @@
   "error_generate_qr_code": "حدث خطأ اثناء توليد QR Code",
   "generate_qr_code": "QR Code توليد",
   "title_password_scanner": "ماسح كلمة المرور",
-  "msg_scan_instruction": "ضع رمز QR داخل الإطار، وسيتم مسحه تلقائيًا!"
+  "msg_scan_instruction": "ضع رمز QR داخل الإطار، وسيتم مسحه تلقائيًا!",
+  "file_extension_required": "يجب أن يكون امتداد الملف ‎({extension})"
 }

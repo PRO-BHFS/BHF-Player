@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:bhf_player/core/errors/app_exceptions/app_exceptions.dart';
+import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/mixins/single_runner/single_runner.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
@@ -71,6 +73,10 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
 
       _selectedVideo = video;
       emit(VideoDecryptionImported(_selectedVideo!));
+    } on InvalidFileExtensionException catch (_) {
+      _handleError(
+        S.current.file_extension_required(AppConsts.encryptedfileExtension),
+      );
     } catch (_) {
       _handleError(S.current.file_read_error);
     }
@@ -109,7 +115,9 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
         resultVideo.decryptedPath ?? "",
       );
 
+      if(videoInfo.duration ==null) throw Exception();
       _selectedVideo = resultVideo.copyWith(metadata: videoInfo);
+      
       emit(VideoDecryptionCompleted(_selectedVideo!));
 
       await _decrtptedVideoCubit.addVideo(_selectedVideo!);

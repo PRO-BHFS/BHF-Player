@@ -658,6 +658,16 @@ class S {
       args: [],
     );
   }
+
+  /// `The file must have ({extension}) extension`
+  String file_extension_required(Object extension) {
+    return Intl.message(
+      'The file must have ($extension) extension',
+      name: 'file_extension_required',
+      desc: '',
+      args: [extension],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

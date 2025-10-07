@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
+  static String m0(String extension) => "يجب أن يكون امتداد الملف ‎(${extension})";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about_us": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
@@ -108,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "field_cannot_contain_only_spaces": MessageLookupByLibrary.simpleMessage(
       "لا يمكن ان يحتوي الحقل على مسافات فقط",
     ),
+    "file_extension_required": m0,
     "file_imported_successfully": MessageLookupByLibrary.simpleMessage(
       "تم استيراد الملف بنجاح",
     ),

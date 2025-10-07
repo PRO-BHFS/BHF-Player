@@ -27,3 +27,7 @@ class FileWriteException extends AppException {
 class IsolateException extends AppException {
   IsolateException(super.message);
 }
+
+class InvalidFileExtensionException extends AppException {
+  InvalidFileExtensionException(super.message);
+}

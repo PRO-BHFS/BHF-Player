@@ -22,7 +22,7 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
 
   Future<void> addVideo(VideoEntity video) async {
     final decryptedVideo = await _prepareVideoMetadata(video);
-
+    if (decryptedVideo.metadata.duration == null) return;
     final copiedCourses = {...state.courses};
 
     final existingCourse = copiedCourses.firstWhere(
@@ -101,7 +101,7 @@ class DecryptedVideoCubit extends HydratedCubit<DecryptedVideoState> {
     final filteredCourses = state.courses
         .where((cardCourse) => coursesIds.contains(cardCourse.courseId))
         .toSet();
-        
+
     return state.copyWith(courses: filteredCourses);
   }
 }

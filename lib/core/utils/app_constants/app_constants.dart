@@ -22,6 +22,6 @@ class AppConsts {
   static const fadeInDuration = Duration(milliseconds: 200);
   static const fadeOutDuration = Duration(seconds: 1);
 
-  static const fileExtension = "bhf";
+  static const encryptedfileExtension = ".bhf";
   static const imagesFolder = "images";
 }

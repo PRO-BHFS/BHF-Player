@@ -53,10 +53,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       if (Platform.isAndroid) {
         await ScreenshotProtector.enableScreenshot();
       }
-      await setNormalScreenMode();
-      if (context.mounted) context.popRoute();
     } catch (e, stackTrace) {
       logError(stack: stackTrace, methodName: "_handleExit");
+    }finally{
+      if (context.mounted) context.popRoute();
+      await setNormalScreenMode();
+
     }
   }
 
@@ -66,7 +68,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (_, _) async => await _handleExit(context),
       child: Scaffold(
         body: ValueListenableBuilder(
           valueListenable: playerCubit.playerService.isUiLocked,
@@ -105,7 +106,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   );
                 },
                 child: TopControllersActions(
-                  handleExit: () async => await _handleExit(context),
+                  handleExit: _handleExit,
                   filename: videoName,
                   playerCubit: playerCubit,
                 ),

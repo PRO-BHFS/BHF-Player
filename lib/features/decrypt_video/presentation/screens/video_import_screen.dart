@@ -1,5 +1,6 @@
 import 'package:bhf_player/core/presentation/components/buttons/build_button.dart';
 import 'package:bhf_player/core/presentation/components/build_progress_loading.dart';
+import 'package:bhf_player/core/presentation/components/conditional_builder.dart';
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
 import 'package:bhf_player/core/presentation/components/icons/build_svg_icon.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
@@ -74,14 +75,12 @@ class VideoImportScreen extends StatelessWidget {
           children: [
             const DeviceIdPanel(),
             const CoursesPanel(),
-            const SizedBox(height: AppSizes.spacingSmall),
 
             BuildButton(
               text: S.of(context).choose_encrypted_file,
               icon: const BuildSvgIcon(AppIconsAssests.file),
               onPress: () async => await videoCubit.pickVideo(),
             ),
-            const SizedBox(height: AppSizes.spacingSmall),
 
             if (isVideoSelected)
               Column(
@@ -120,11 +119,11 @@ class VideoImportScreen extends StatelessWidget {
                 ],
               ),
 
-            const SizedBox(height: AppSizes.spacingSmall),
-
-            isLoading
-                ? const BuildProgressLoading()
-                : const DecryptAndPlayButton(),
+            ConditionalBuilder(
+              condition: isLoading,
+              builder: (context) => const BuildProgressLoading(),
+              fallback: (context) => const DecryptAndPlayButton(),
+            ),
           ].separatedBy(const SizedBox(height: AppSizes.spacingMiddle)),
         );
       },

@@ -70,5 +70,6 @@
   "error_generate_qr_code": "An Error Occurred While Generating QR Code.",
   "generate_qr_code": "Generate QR Code",
   "title_password_scanner": "Password Scanner",
-  "msg_scan_instruction": "Let the scan do the magic.\nIt starts on its own!"
+  "msg_scan_instruction": "Let the scan do the magic.\nIt starts on its own!",
+  "file_extension_required": "The file must have ({extension}) extension"
 }

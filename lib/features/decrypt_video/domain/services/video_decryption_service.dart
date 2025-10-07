@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bhf_player/core/errors/app_exceptions/app_exceptions.dart';
+import 'package:bhf_player/core/utils/app_constants/app_constants.dart';
 import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
@@ -19,6 +20,9 @@ class VideoDecryptionService {
   Future<VideoEntity?> pickEncryptedVideo(int courseId) async {
     final path = await pickFile();
     if (path == null) return null;
+    if (p.extension(path) != AppConsts.encryptedfileExtension) {
+      throw InvalidFileExtensionException(path);
+    }
 
     final fileSize = await File(path).length();
 

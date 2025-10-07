@@ -17,8 +17,9 @@ class LockUiAction extends StatelessWidget {
           builder: (context, isShowControllers, child) {
             return Visibility(
               visible: isShowControllers,
-              child: BuildIconButton(
+              child: CircleIconButton(
                 onPressed: playerCubit.toggleUiLock,
+                isCircleRadius: isUiLocked,
                 icon: isUiLocked
                     ? const BuildSvgIcon(AppIconsAssests.lock)
                     : const BuildSvgIcon(AppIconsAssests.unlock),
