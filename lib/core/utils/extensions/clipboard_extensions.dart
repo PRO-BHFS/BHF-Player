@@ -6,6 +6,7 @@ extension ClipboardExtensions on String {
   Future<void> copyToClipboard() async {
     try {
       await Clipboard.setData(ClipboardData(text: this));
+    
       Notifications.showFlushbar(
         message: 'تم النسخ إلى الحافظة',
         iconType: IconType.done,

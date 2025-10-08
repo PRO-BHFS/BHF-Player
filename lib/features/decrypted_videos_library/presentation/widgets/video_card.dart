@@ -15,7 +15,6 @@ class BuildVideoCard extends StatelessWidget {
   const BuildVideoCard(this.video, {super.key});
 
   final VideoEntity video;
-
   VideoMetadata get metadata => video.metadata;
 
   @override
@@ -25,7 +24,7 @@ class BuildVideoCard extends StatelessWidget {
     return GestureDetector(
       onTap: () async => context.pushRoute(
         BlocProvider<VideoPlayerCubit>(
-          create: (context) => VideoPlayerCubit(),
+          create: (_) => VideoPlayerCubit(),
           child: VideoPlayerScreen(video),
         ),
       ),

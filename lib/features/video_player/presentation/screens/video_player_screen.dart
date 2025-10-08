@@ -49,17 +49,21 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   Future<void> _handleExit(BuildContext context) async {
     try {
       if (playerCubit.playerService.isUiLocked.value) return;
-      await playerCubit.disposePlayer();
       if (Platform.isAndroid) {
         await ScreenshotProtector.enableScreenshot();
       }
     } catch (e, stackTrace) {
       logError(stack: stackTrace, methodName: "_handleExit");
-    }finally{
-      if (context.mounted) context.popRoute();
+    } finally {
+      if (context.mounted) Navigator.pop(context);
       await setNormalScreenMode();
-
     }
+  }
+
+  @override
+  void dispose() {
+    playerCubit.disposePlayer();
+    super.dispose();
   }
 
   String get videoName => widget.video.filename;
@@ -68,6 +72,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
+      onPopInvokedWithResult: (didPop, _) async {
+        // Avoid double-pop when we already popped programmatically
+        if (!didPop) await _handleExit(context);
+      },
       child: Scaffold(
         body: ValueListenableBuilder(
           valueListenable: playerCubit.playerService.isUiLocked,
@@ -106,7 +114,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   );
                 },
                 child: TopControllersActions(
-                  handleExit: _handleExit,
+                  handleExit: () => _handleExit(context),
                   filename: videoName,
                   playerCubit: playerCubit,
                 ),

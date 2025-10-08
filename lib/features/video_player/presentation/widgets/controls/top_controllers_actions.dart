@@ -12,7 +12,7 @@ class TopControllersActions extends StatelessWidget {
     required this.filename,
     required this.playerCubit,
   });
-  final Future<void> Function(BuildContext) handleExit;
+  final Future<void> Function() handleExit;
   final String filename;
   final VideoPlayerCubit playerCubit;
   @override
@@ -30,7 +30,7 @@ class TopControllersActions extends StatelessWidget {
               spacing: AppSizes.spacingSmall,
               children: [
                 CircleIconButton(
-                  onPressed: () async => await handleExit(context),
+                  onPressed: () async => await handleExit(),
                   icon: const Icon(Icons.arrow_back),
                 ),
                 Flexible(

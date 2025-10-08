@@ -43,12 +43,13 @@ class VideoPlayerService {
     player = Player();
     videoController = VideoController(player!);
     await player?.open(Media(videoPath));
+    await player?.setVolume(200.0);
   }
 
   Future<void> dispose() async {
     inactivityTimer?.cancel();
     uiIconTimer?.cancel();
-    
+
     await player?.dispose();
     player = null;
     videoController = null;

@@ -20,7 +20,7 @@ class VideoPlayerGestures extends StatelessWidget {
         children: [
           Expanded(
             child: BuildGestureArea(
-              area: GestureArea.left,
+              gestureArea: GestureArea.left,
               onDoubleTap: () async {
                 await playerCubit.backward();
                 await playerCubit.changeUiIcon(
@@ -47,7 +47,7 @@ class VideoPlayerGestures extends StatelessWidget {
               valueListenable: playerCubit.playerService.isPlaying,
               builder: (context, isPlaying, _) {
                 return BuildGestureArea(
-                  area: GestureArea.center,
+                  gestureArea: GestureArea.center,
                   onDoubleTap: () async {
                     await playerCubit.playOrPause();
                     await playerCubit.changeUiIcon(
@@ -68,7 +68,7 @@ class VideoPlayerGestures extends StatelessWidget {
 
           Expanded(
             child: BuildGestureArea(
-              area: GestureArea.right,
+              gestureArea: GestureArea.right,
               onDoubleTap: () async {
                 await playerCubit.forward();
                 await playerCubit.changeUiIcon(

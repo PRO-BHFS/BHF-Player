@@ -19,7 +19,7 @@ class CourseDetailsScreen extends StatelessWidget {
               itemCount: course.videos.length,
               itemBuilder: (context, index) {
                 final videoCard = course.videos.elementAt(index);
-                return BuildVideoCard(videoCard);
+                return BuildVideoCard(videoCard,);
               },
             ),
     );

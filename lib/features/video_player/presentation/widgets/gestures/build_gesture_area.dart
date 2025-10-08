@@ -7,31 +7,63 @@ import 'package:bhf_player/features/video_player/presentation/controllers/video_
 import 'package:flutter/material.dart';
 
 class BuildGestureArea extends StatelessWidget {
-  final GestureArea area;
+  final GestureArea gestureArea;
   final VoidCallback onDoubleTap;
   final void Function(DragUpdateDetails)? onVerticalDragUpdate;
   final VideoPlayerCubit playerCubit;
 
   const BuildGestureArea({
     super.key,
-    required this.area,
+    required this.gestureArea,
     required this.onDoubleTap,
     required this.playerCubit,
     this.onVerticalDragUpdate,
   });
 
+  BorderRadius getBorderRadiusForGesture(GestureArea? activeGesture) {
+    const double radius = 200.0;
+    return BorderRadius.horizontal(
+      left: Radius.circular(activeGesture == GestureArea.right ? radius : 0),
+      right: Radius.circular(activeGesture == GestureArea.left ? radius : 0),
+    );
+  }
+
+  Widget buildGestureBackground(
+    ValueNotifier<Color> colorBackground,
+    GestureArea? activeGesture,
+    Widget uiIcon,
+  ) {
+    return ValueListenableBuilder(
+      valueListenable: colorBackground,
+      builder: (context, color, _) {
+        final screenHeight = context.screenHeight;
+        return Container(
+          height: screenHeight,
+          width: screenHeight,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: getBorderRadiusForGesture(activeGesture),
+          ),
+          child: Center(
+            child: uiIcon),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final colorBackground = ValueNotifier(Colors.transparent);
+    final backgroundColorNotifier = ValueNotifier(Colors.transparent);
+
     return GestureDetector(
       onTap: playerCubit.toggleControls,
       onDoubleTap: () {
         onDoubleTap();
-        if (area == GestureArea.center) return;
-        colorBackground.value = const Color(0x5B000000);
+        if (gestureArea == GestureArea.center) return;
+        backgroundColorNotifier.value = const Color(0x5B000000);
       },
       onHorizontalDragUpdate: playerCubit.seekHorizontal,
-      onHorizontalDragEnd:(_)=> playerCubit.resetInactivityTimer(),
+      onHorizontalDragEnd: (_) => playerCubit.resetInactivityTimer(),
       onVerticalDragUpdate: onVerticalDragUpdate,
       onLongPressStart: (_) {
         playerCubit.playerService.lastSpeed =
@@ -54,23 +86,15 @@ class BuildGestureArea extends StatelessWidget {
         builder: (context, activeGesture, _) {
           return ValueListenableBuilder(
             valueListenable: playerCubit.playerService.uiIcon,
-            builder: (context, uiIcon, _) {
+            builder: (context, gestureIcon, _) {
               return AnimatedOpacity(
-                duration: AppConsts.fadeInDuration,
-                opacity: activeGesture == area ? 1.0 : 0.0,
-                child: ValueListenableBuilder(
-                  valueListenable: colorBackground,
-                  builder: (context, color, _) {
-                    return Container(
-                      height: context.screenHeight,
-                      width: context.screenHeight,
-                      decoration: BoxDecoration(
-                        color: color,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(child: uiIcon),
-                    );
-                  },
+                duration: Duration.zero,
+                
+                opacity: activeGesture == gestureArea ? 1.0 : 0.0,
+                child: buildGestureBackground(
+                  backgroundColorNotifier,
+                  activeGesture,
+                  gestureIcon,
                 ),
               );
             },
