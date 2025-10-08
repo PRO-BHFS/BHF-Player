@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:bhf_player/core/exceptions/device_security/device_security_exception.dart';
-import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
+import 'package:bhf_player/core/utils/extensions/error_extensions.dart';
 
 import 'device_security_info.dart';
 
@@ -18,20 +18,13 @@ class SecurityChecker {
   }
 
   void _validateSecurity() {
-    try {
-      throw JailBrokenDeviceException();
-      if (_deviceInfo.hasRootOrJailbreak) {
-        if (Platform.isIOS) throw JailBrokenDeviceException();
-        throw RootedDeviceException();
-      } else if (_deviceInfo.isEmulator) {
-        throw EmulatorDeviceException();
-      } else if (_deviceInfo.isOnExternalStorage) {
-        throw ExternalStorageException();
-      } else if (_deviceInfo.isUsbDebuggingEnabled) {
-        throw UsbDebuggingEnabledException();
-      }
-    } catch (_) {
-      rethrow;
+    if (_deviceInfo.hasRootOrJailbreak) {
+      if (Platform.isIOS) throw JailBrokenDeviceException();
+      throw RootedDeviceException();
+    } else if (_deviceInfo.isEmulator) {
+      throw EmulatorDeviceException();
+    } else if (_deviceInfo.isOnExternalStorage) {
+      throw ExternalStorageException();
     }
   }
 

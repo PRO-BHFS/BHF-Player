@@ -1,6 +1,7 @@
 import 'package:bhf_player/core/presentation/components/icons/build_svg_icon.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/enums/enums.dart';
+import 'package:bhf_player/core/utils/extensions/context_extensions.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/video_player/presentation/controllers/video_player/video_player_controller.dart';
 import 'package:flutter/material.dart';
@@ -61,9 +62,11 @@ class BuildGestureArea extends StatelessWidget {
                   valueListenable: colorBackground,
                   builder: (context, color, _) {
                     return Container(
+                      height: context.screenHeight,
+                      width: context.screenHeight,
                       decoration: BoxDecoration(
                         color: color,
-                        borderRadius: BorderRadius.circular(250),
+                        shape: BoxShape.circle,
                       ),
                       child: Center(child: uiIcon),
                     );

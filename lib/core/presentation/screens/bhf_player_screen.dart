@@ -13,6 +13,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 class BHFPlayer extends StatelessWidget {
   const BHFPlayer({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     final languageCode = context.watch<LanguageCubit>().language.code;

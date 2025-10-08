@@ -8,25 +8,25 @@ abstract class DeviceSecurityException extends AppException {
 }
 
 class RootedDeviceException extends DeviceSecurityException {
-  RootedDeviceException() : super("⚠️ الجهاز مروّت (Rooted).");
+  RootedDeviceException() : super("الجهاز مروّت (Rooted).");
 }
 
 class JailBrokenDeviceException extends DeviceSecurityException {
-  JailBrokenDeviceException() : super("⚠️ الجهاز مكسور الحماية (Jailbroken).");
+  JailBrokenDeviceException() : super("الجهاز مكسور الحماية (Jailbroken).");
 }
 
 class EmulatorDeviceException extends DeviceSecurityException {
-  EmulatorDeviceException() : super("⚠️ التطبيق يعمل على محاكي (Emulator).");
+  EmulatorDeviceException() : super("التطبيق يعمل على محاكي (Emulator).");
 }
 
 class ExternalStorageException extends DeviceSecurityException {
-  ExternalStorageException() : super("⚠️ التطبيق مثبت على وحدة تخزين خارجية.");
+  ExternalStorageException() : super("التطبيق مثبت على وحدة تخزين خارجية.");
 }
 
 class UsbDebuggingEnabledException extends DeviceSecurityException {
-  UsbDebuggingEnabledException() : super("⚠️ وضع تصحيح USB مفعل.");
+  UsbDebuggingEnabledException() : super("وضع تصحيح USB مفعل.");
 }
 
 class MockLocationException extends DeviceSecurityException {
-  MockLocationException() : super("⚠️ هناك موقع وهمي (Mock Location).");
+  MockLocationException() : super("هناك موقع وهمي (Mock Location).");
 }

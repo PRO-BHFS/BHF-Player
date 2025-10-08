@@ -81,13 +81,13 @@ class VideoImportScreen extends StatelessWidget {
               icon: const BuildSvgIcon(AppIconsAssests.file),
               onPress: () async => await videoCubit.pickVideo(),
             ),
-
             if (isVideoSelected)
               Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 spacing: 3,
                 children: [
+                  const SizedBox(height: 12),
                   Text(
                     S.of(context).selected,
                     style: theme.textTheme.labelMedium,
