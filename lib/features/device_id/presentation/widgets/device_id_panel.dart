@@ -54,7 +54,7 @@ class DeviceIdPanel extends StatelessWidget {
               ),
               CircleIconButton(
                 icon: const Icon(Icons.share),
-                onPressed: () async => await shareOnWhatsApp(userId),
+                onPressed: () async => await shareOnWhatsApp(message:  userId),
                 circleColor: primaryColor,
               ),
               CircleIconButton(
