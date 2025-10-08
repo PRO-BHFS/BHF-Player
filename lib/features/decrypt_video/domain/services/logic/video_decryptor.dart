@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 import 'dart:typed_data';
-import 'package:bhf_player/core/errors/app_exceptions/app_exceptions.dart';
+import 'package:bhf_player/core/exceptions/app_exceptions/app_exceptions.dart';
 import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/decrypt_chunk_result.dart';

@@ -9,6 +9,7 @@ import 'package:bhf_player/features/decrypt_video/presentation/screens/video_imp
 import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path/path.dart' as p;
 
 import 'empty_state_screen.dart';
 
@@ -27,28 +28,41 @@ class _CourseSetupScreenState extends State<CourseSetupScreen> {
     super.initState();
 
     // عند فتح التطبيق بملف
-    FileIntentHandler.getInitialFile().then((initialFile) {
-      if (initialFile != null) setState(() => sharedFilePath = initialFile);
-    });
+    FileIntentHandler.getInitialFile().then(_handleFilePath);
 
     // أثناء عمل التطبيق
-    FileIntentHandler.listenNewFiles((path) {
-
+    FileIntentHandler.listenNewFiles((filePath) {
       Notifications.showFlushbar(
         message: "تم استقبال ملف جديد أثناء عمل التطبيق",
         iconType: IconType.done,
       );
-      setState(() => sharedFilePath = path);
+
+      _handleFilePath(filePath);
     });
+  }
+
+  void _handleFilePath(String? filePath) {
+    if (filePath == null) return;
+
+    final fileExtension = p.extension(filePath);
+    const fitExtension = AppConsts.encryptedfileExtension;
+
+    if (fileExtension == fitExtension) {
+      setState(() => sharedFilePath = filePath);
+      return;
+    }
+    
+    Notifications.showFlushbar(
+      message: S.of(context).file_extension_required(fitExtension),
+      iconType: IconType.info,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocSelector<CourseCubit, CourseState, Set<CourseEntity>>(
       selector: (state) => state.courseStorage.courses,
       builder: (context, courses) {
-
         if (courses.isNotEmpty) {
           return VideoImportScreen(sharedFilePath: sharedFilePath);
         }

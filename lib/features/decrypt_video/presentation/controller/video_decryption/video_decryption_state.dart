@@ -1,32 +1,24 @@
 import 'package:bhf_player/features/decrypt_video/domain/entities/video_entity.dart';
-import 'package:equatable/equatable.dart';
 
-sealed class VideoDecryptionState extends Equatable {
+sealed class VideoDecryptionState {
   const VideoDecryptionState();
-
-  @override
-  List<Object?> get props => [];
 }
 
-class VideoDecryptionInitial extends VideoDecryptionState {}
+class VideoDecryptionInitial extends VideoDecryptionState {
+  const VideoDecryptionInitial();
+}
 
 class VideoDecryptionImported extends VideoDecryptionState {
   final VideoEntity video;
   String get filename => video.filename;
 
   const VideoDecryptionImported(this.video);
-
-  @override
-  List<Object?> get props => [video];
 }
 
 class VideoDecryptionFailure extends VideoDecryptionState {
   final String errorMessage;
 
   const VideoDecryptionFailure(this.errorMessage);
-
-  @override
-  List<Object?> get props => [errorMessage];
 }
 
 class VideoDecryptionIncrementProgress extends VideoDecryptionState {
@@ -34,8 +26,6 @@ class VideoDecryptionIncrementProgress extends VideoDecryptionState {
 
   const VideoDecryptionIncrementProgress(this.progress);
 
-  @override
-  List<Object?> get props => [progress];
 }
 
 class VideoDecryptionCompleted extends VideoDecryptionState {
@@ -43,7 +33,4 @@ class VideoDecryptionCompleted extends VideoDecryptionState {
 
   const VideoDecryptionCompleted(this.resultVideo);
 
-  @override
-  List<Object?> get props => [resultVideo];
 }
-

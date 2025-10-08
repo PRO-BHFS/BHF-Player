@@ -1,5 +1,4 @@
-import 'package:get_it/get_it.dart';
-
+import 'package:bhf_player/core/utils/setup_app/service_locator/service_locator.dart';
 import 'data/repository/course_repository_impl.dart';
 import 'domain/repository/course_repository.dart';
 import 'domain/usecases/add_course.dart';
@@ -8,7 +7,7 @@ import 'domain/usecases/reset_courses_id.dart';
 import 'domain/usecases/update_course.dart';
 import 'domain/usecases/get_all_courses.dart';
 
-void setupUserCourseLocators(GetIt s1) {
+void setupUserCourseLocators() {
   s1.registerLazySingleton<CourseRepository>(() => CourseRepositoryImpl(s1()));
   s1.registerLazySingleton(() => AddCourseUseCase(s1()));
   s1.registerLazySingleton(() => UpdateCourseUseCase(s1()));

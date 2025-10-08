@@ -1,4 +1,3 @@
-
 abstract class AppException implements Exception {
   final String message;
 
@@ -30,4 +29,8 @@ class IsolateException extends AppException {
 
 class InvalidFileExtensionException extends AppException {
   InvalidFileExtensionException(super.message);
+}
+
+class WhatsAppLaunchException extends AppException {
+  WhatsAppLaunchException(super.message);
 }

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:bhf_player/core/errors/app_exceptions/app_exceptions.dart';
+import 'package:bhf_player/core/exceptions/app_exceptions/app_exceptions.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/extensions/export/all_extensions.dart';
 import 'package:bhf_player/core/utils/mixins/single_runner/single_runner.dart';
@@ -22,7 +22,7 @@ import 'video_decryption_state.dart';
 class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
     with SingleRunner {
   VideoDecryptionCubit(this._decrtptedVideoCubit, this._courseCubit)
-    : super(VideoDecryptionInitial());
+    : super(const VideoDecryptionInitial());
   final DecryptedVideoCubit _decrtptedVideoCubit;
   final CourseCubit _courseCubit;
   final states = <VideoDecryptionState>[];
@@ -115,9 +115,9 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
         resultVideo.decryptedPath ?? "",
       );
 
-      if(videoInfo.duration ==null) throw Exception();
+      if (videoInfo.duration == null) throw Exception();
       _selectedVideo = resultVideo.copyWith(metadata: videoInfo);
-      
+
       emit(VideoDecryptionCompleted(_selectedVideo!));
 
       await _decrtptedVideoCubit.addVideo(_selectedVideo!);
@@ -136,6 +136,6 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
 
   void resetState() {
     states.clear();
-    emit(VideoDecryptionInitial());
+    emit(const VideoDecryptionInitial());
   }
 }

@@ -20,7 +20,7 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(String extension) => "يجب أن يكون امتداد الملف ‎(${extension})";
+  static String m0(extension) => "يجب أن يكون امتداد الملف ‎(${extension})";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "cannot_play_video": MessageLookupByLibrary.simpleMessage(
-      "لايمكنك تشغيل هذا الفيديو",
+      "لايمكنك تشغيل هذا الملف",
     ),
     "cannot_play_video_error": MessageLookupByLibrary.simpleMessage(
       "لا يمكنك تشغيل الفيديو",

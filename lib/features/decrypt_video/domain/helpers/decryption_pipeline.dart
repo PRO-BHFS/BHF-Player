@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:typed_data';
-import 'package:bhf_player/core/errors/app_exceptions/app_exceptions.dart';
+import 'package:bhf_player/core/exceptions/app_exceptions/app_exceptions.dart';
 import 'package:bhf_player/core/utils/helpers_functions/platform_utils/platform_utils.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/decrypt_chunk_message.dart';
 import 'package:bhf_player/features/decrypt_video/domain/entities/prepared_temp_file.dart';

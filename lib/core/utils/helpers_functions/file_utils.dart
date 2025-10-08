@@ -12,7 +12,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
 Future<String?> pickFile() async {
-  final result = await FilePicker.platform.pickFiles();
+  final result = await FilePicker.platform.pickFiles(
+  );
 
   return result?.files.single.path;
 }

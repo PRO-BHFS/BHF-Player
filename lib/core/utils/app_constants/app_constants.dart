@@ -2,7 +2,7 @@ class AppConsts {
   AppConsts._();
 
   static const appVersion = "1.0";
-  static const contactPhone = "776793111";
+  static const contactPhone = "+967776793111";
 
   static const englishCode = 'en';
   static const arabicCode = 'ar';

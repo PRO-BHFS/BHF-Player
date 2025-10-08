@@ -4,9 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:bhf_player/core/database/local/local_exports.dart';
 
 final s1 = GetIt.instance;
-Future<void> setupUserServicesLocator() async {
+Future<void> injectUserServicesLocator() async {
   await s1.reset();
-
 
   s1.registerSingletonAsync<DatabaseService>(() async {
     final dbService = DatabaseService();
@@ -14,6 +13,6 @@ Future<void> setupUserServicesLocator() async {
     return dbService;
   });
 
-  setupUserCourseLocators(s1);
-  setupUserIdLocators(s1);
+  setupUserCourseLocators();
+  setupUserIdLocators();
 }

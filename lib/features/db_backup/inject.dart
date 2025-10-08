@@ -6,7 +6,7 @@ import 'data/datasources/backup_local_datasource.dart';
 import 'domain/usecases/backup_db.dart';
 import 'domain/usecases/restore_db.dart';
 
-void setupLocatorsBackupDb() {
+void injectBackupDb() {
   s1.registerLazySingleton(() => BackupLocalDataSource(s1<DatabaseService>()));
   s1.registerLazySingleton<BackupRepository>(() => BackupRepositoryImpl(s1()));
   s1.registerLazySingleton(() => BackupDbUseCase(s1<BackupRepository>()));

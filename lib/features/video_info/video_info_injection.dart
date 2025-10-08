@@ -6,7 +6,7 @@ import 'package:bhf_player/features/video_info/domain/repository/video_info_repo
 import 'package:bhf_player/features/video_info/domain/usecases/get_video_metadata_usecase.dart';
 
 /// حقن التبعيات لميزة معلومات الفيديو
-void setupVideoInfo() {
+void injectVideoInfo() {
   // Data Source
   s1.registerLazySingleton<VideoInfoDataSource>(
     () => VideoInfoDataSource(FlutterVideoInfo()),
