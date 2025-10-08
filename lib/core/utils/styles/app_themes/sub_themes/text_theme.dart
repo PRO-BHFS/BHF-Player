@@ -28,7 +28,7 @@ class AppTextTheme {
 
     titleSmall: const TextStyle(
       fontWeight: FontWeight.w700,
-      fontSize: 13,
+      fontSize: 15,
       height: 1.8,
       color: Colors.white,
       overflow: TextOverflow.fade,

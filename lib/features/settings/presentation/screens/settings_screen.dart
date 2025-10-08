@@ -3,6 +3,7 @@ import 'package:bhf_player/core/presentation/components/widgets_exports.dart';
 import 'package:bhf_player/core/utils/styles/app_sizes/app_sizes.dart';
 import 'package:bhf_player/features/language/presentation/controllers/language/language.dart';
 import 'package:bhf_player/features/language/presentation/widgets/language_dropdown.dart';
+import 'package:bhf_player/features/settings/presentation/widgets/about_section.dart';
 import 'package:bhf_player/features/settings/presentation/widgets/title_setting_section.dart';
 import 'package:bhf_player/features/theme_mode/presentation/controllers/theme/theme.dart';
 import 'package:bhf_player/generated/l10n.dart';
@@ -17,6 +18,7 @@ class SettingsScreen extends StatelessWidget {
     final isDarkMode = context.watch<ThemeCubit>().isDarkMode;
     final language = context.watch<LanguageCubit>().state;
     const switchKey = ValueKey("switchTheme");
+
     return Scaffold(
       appBar: AppBar(title: Text(S.of(context).settings)),
       body: ListView(
@@ -25,7 +27,6 @@ class SettingsScreen extends StatelessWidget {
 
         children: [
           GestureDetector(
-
             onTap: context.read<ThemeCubit>().switchTheme,
             child: RoundedContainer(
               child: Row(
@@ -63,16 +64,8 @@ class SettingsScreen extends StatelessWidget {
               ],
             ),
           ),
-          RoundedContainer(
-            child: Row(
-              children: [
-                TitleSettingSection(
-                  icon: const BuildIcon(Icons.info_outline),
-                  title: S.of(context).about_us,
-                ),
-              ],
-            ),
-          ),
+
+          const BuildAboutSection(),
         ],
       ),
     );

@@ -21,7 +21,7 @@ void main() async {
 
 /// Runs the app depending on device security check.
 Future<void> _runApp() async {
-  late String? reason;
+  String? reason;
   try {
     reason = await _checkSecurity();
   } catch (e) {

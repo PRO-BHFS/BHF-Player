@@ -1,3 +1,4 @@
+import 'package:bhf_player/core/presentation/components/buttons/circle_icon_button.dart';
 import 'package:bhf_player/core/presentation/components/icons/build_icon.dart';
 import 'package:bhf_player/core/presentation/components/icons/build_svg_icon.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
@@ -51,11 +52,14 @@ class VideoPlayerGestures extends StatelessWidget {
                   onDoubleTap: () async {
                     await playerCubit.playOrPause();
                     await playerCubit.changeUiIcon(
-                      icon: BuildIcon(
-                        isPlaying
-                            ? Icons.play_arrow_rounded
-                            : Icons.pause_rounded,
+                      icon: CircleIconButton(
+                        circleRadius: 40,
+                        icon: BuildIcon(
+                          isPlaying
+                              ? Icons.play_arrow_rounded
+                              : Icons.pause_rounded,
                         size: AppSizes.bigIcon,
+                        ),
                       ),
                       area: GestureArea.center,
                     );

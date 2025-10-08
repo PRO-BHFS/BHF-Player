@@ -7,25 +7,28 @@ class CircleIconButton extends StatelessWidget {
   final Color circleColor;
   final bool isActive;
   final bool isCircleRadius;
+  final double? circleRadius;
 
   const CircleIconButton({
     super.key,
     this.onPressed,
-    this.circleColor = const Color(0x75000000),
+    this.circleColor = const Color(0x4E000000),
     required this.icon,
     this.isActive = false,
-     this.isCircleRadius=true,
+    this.isCircleRadius = true,
+    this.circleRadius
   });
 
   @override
   Widget build(BuildContext context) {
-    return  CircleAvatar(
-      
+    final child = IconButton(iconSize: 24, onPressed: onPressed, icon: icon);
+
+    final circleAvatar = CircleAvatar(
       backgroundColor: isActive ? LightColors.primary : circleColor,
-
-      radius:isCircleRadius? 20: 0,
-
-      child: IconButton(iconSize: 20, onPressed: onPressed, icon: icon),
+      radius:circleRadius?? 20,
+      child: child,
     );
+
+    return isCircleRadius ? circleAvatar : child;
   }
 }

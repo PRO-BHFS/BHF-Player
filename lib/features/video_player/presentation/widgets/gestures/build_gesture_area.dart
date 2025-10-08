@@ -1,3 +1,4 @@
+import 'package:bhf_player/core/presentation/components/buttons/circle_icon_button.dart';
 import 'package:bhf_player/core/presentation/components/icons/build_svg_icon.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
 import 'package:bhf_player/core/utils/enums/enums.dart';
@@ -44,8 +45,7 @@ class BuildGestureArea extends StatelessWidget {
             color: color,
             borderRadius: getBorderRadiusForGesture(activeGesture),
           ),
-          child: Center(
-            child: uiIcon),
+          child: Center(child: uiIcon),
         );
       },
     );
@@ -69,14 +69,18 @@ class BuildGestureArea extends StatelessWidget {
         playerCubit.playerService.lastSpeed =
             playerCubit.playerService.playbackSpeed.value;
       },
-      onLongPressMoveUpdate: (_) async {
+      onLongPress: () async {
+
         await playerCubit.changePlaybackSpeed(2.0);
         await playerCubit.changeUiIcon(
-          icon: BuildSvgIcon(AppIconsAssests.speed2x, size: AppSizes.bigIcon),
+          icon: CircleIconButton(
+            icon: BuildSvgIcon(AppIconsAssests.speed2x, size: AppSizes.bigIcon),
+            circleRadius: 40,
+          ),
           area: GestureArea.center,
         );
       },
-      onLongPressDown: (_) async {
+      onLongPressUp: () async {
         await playerCubit.changePlaybackSpeed(
           playerCubit.playerService.lastSpeed,
         );
@@ -89,7 +93,7 @@ class BuildGestureArea extends StatelessWidget {
             builder: (context, gestureIcon, _) {
               return AnimatedOpacity(
                 duration: Duration.zero,
-                
+
                 opacity: activeGesture == gestureArea ? 1.0 : 0.0,
                 child: buildGestureBackground(
                   backgroundColorNotifier,

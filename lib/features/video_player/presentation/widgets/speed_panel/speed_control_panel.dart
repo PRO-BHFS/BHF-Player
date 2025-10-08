@@ -10,6 +10,8 @@ class SpeedControlPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
+    final labelSmall = textTheme.labelSmall?.copyWith(letterSpacing: 2);
+    final headlineSmall = textTheme.headlineSmall?.copyWith(letterSpacing: 2);
 
     return Container(
       padding: const EdgeInsets.all(AppSizes.secondPadding),
@@ -40,7 +42,7 @@ class SpeedControlPanel extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("$speed", style: textTheme.headlineSmall),
+                        Text("$speed", style: headlineSmall),
                         child!,
                       ],
                     ),
@@ -48,7 +50,7 @@ class SpeedControlPanel extends StatelessWidget {
                 },
                 child: Text(
                   "X",
-                  style: textTheme.headlineSmall,
+                  style: headlineSmall,
                   textScaler: const TextScaler.linear(0.7),
                 ),
               ),
@@ -61,7 +63,7 @@ class SpeedControlPanel extends StatelessWidget {
           Row(
             spacing: AppSizes.spacingSmall,
             children: [
-              const Text("0.25X"),
+              Text("0.25X", style: labelSmall),
               Expanded(
                 child: ValueListenableBuilder(
                   valueListenable: playerCubit.playerService.playbackSpeed,
@@ -78,7 +80,7 @@ class SpeedControlPanel extends StatelessWidget {
                   },
                 ),
               ),
-              const Text("4.0X"),
+              Text("4.0X", style: labelSmall),
 
               BuildIconButton(
                 onPressed: () async {

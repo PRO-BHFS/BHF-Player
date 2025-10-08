@@ -19,6 +19,7 @@ class AppIconsAssests {
   static const expandRight = 'assets/icons/expand_right.svg';
   static const previous = 'assets/icons/previous.svg';
   static const next = 'assets/icons/next.svg';
+  static const whatsapp = 'assets/icons/whatsapp.svg';
 
 
 }

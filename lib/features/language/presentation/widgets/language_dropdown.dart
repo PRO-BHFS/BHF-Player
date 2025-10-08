@@ -18,7 +18,7 @@ class LanguageDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = context.textTheme.labelMedium;
+    final textTheme = context.textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold);
     return DropdownButtonFormField<Language>(
       value: value,
       style: textTheme,

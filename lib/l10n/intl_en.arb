@@ -26,7 +26,7 @@
   "settings": "Settings",
   "dark_mode": "Dark Mode",
   "change_language": "Change Language",
-  "about_us": "About Us",
+  "about_us": "About",
   "english": "English",
   "arabic": "العربية",
   "save_backup": "Save Backup",
@@ -71,5 +71,7 @@
   "generate_qr_code": "Generate QR Code",
   "title_password_scanner": "Password Scanner",
   "msg_scan_instruction": "Let the scan do the magic.\nIt starts on its own!",
-  "file_extension_required": "The file must have ({extension}) extension"
+  "file_extension_required": "The file must have ({extension}) extension",
+  "aboutDescription": "يوفّر تجربة آمنة وسلسة لفك تشفير الفيديوهات وتشغيلها بجودة عالية مع واجهة سهلة الاستخدام."
+
 }

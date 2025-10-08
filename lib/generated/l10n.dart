@@ -244,9 +244,9 @@ class S {
     );
   }
 
-  /// `About Us`
+  /// `About`
   String get about_us {
-    return Intl.message('About Us', name: 'about_us', desc: '', args: []);
+    return Intl.message('About', name: 'about_us', desc: '', args: []);
   }
 
   /// `English`
@@ -666,6 +666,16 @@ class S {
       name: 'file_extension_required',
       desc: '',
       args: [extension],
+    );
+  }
+
+  /// `يوفّر تجربة آمنة وسلسة لفك تشفير الفيديوهات وتشغيلها بجودة عالية مع واجهة سهلة الاستخدام.`
+  String get aboutDescription {
+    return Intl.message(
+      'يوفّر تجربة آمنة وسلسة لفك تشفير الفيديوهات وتشغيلها بجودة عالية مع واجهة سهلة الاستخدام.',
+      name: 'aboutDescription',
+      desc: '',
+      args: [],
     );
   }
 }

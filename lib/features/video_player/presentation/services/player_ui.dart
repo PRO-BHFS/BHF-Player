@@ -96,12 +96,11 @@ class PlayerUi {
   void showSpeedControlPanel(BuildContext context, VideoPlayerCubit cubit) {
     showDialog(
       context: context,
-      barrierColor: Colors.transparent,
       barrierDismissible: true,
       builder: (context) => Dialog(
         alignment: Alignment.bottomCenter,
         backgroundColor: const Color(0xA8000000),
-        insetPadding: const EdgeInsets.all(AppSizes.mainPadding),
+        insetPadding: const EdgeInsets.all(80),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSizes.borderRadiusSmall),
         ),

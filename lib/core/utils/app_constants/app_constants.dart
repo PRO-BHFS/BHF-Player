@@ -1,15 +1,16 @@
-class AppConsts {
+ class AppConsts {
   AppConsts._();
 
-  static const appVersion = "1.0";
+  static const appVersion = "1.0.1";
   static const contactPhone = "+967776793111";
+  static const supportWhatsApp = "+14314458048";
 
   static const englishCode = 'en';
   static const arabicCode = 'ar';
 
   static const maxCacheSizeBytes = 100 * 1024 * 1024; // 100 ميجابايت
 
-  static const dateFormat = "yyyy/MM/dd";
+  static const appName = "BHF Player";
   static const _sizeMegaOfChunk = 5;
   static const sizeBytesOfChunk = 1024 * 1024 * _sizeMegaOfChunk;
   static const encryptedDataStart = 16;

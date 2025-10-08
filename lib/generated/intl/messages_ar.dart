@@ -20,11 +20,14 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(extension) => "يجب أن يكون امتداد الملف ‎(${extension})";
+  static String m0(extension) => "يجب أن يكون امتداد الملف (${extension})";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "about_us": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
+    "aboutDescription": MessageLookupByLibrary.simpleMessage(
+      "Provides a secure and seamless experience to decrypt and play videos in high quality with an easy-to-use interface.",
+    ),
+    "about_us": MessageLookupByLibrary.simpleMessage("حول"),
     "add_course": MessageLookupByLibrary.simpleMessage("إضافة دورة"),
     "add_new_course": MessageLookupByLibrary.simpleMessage("إضافة دورة جديدة"),
     "app_title": MessageLookupByLibrary.simpleMessage("مشغل BHF"),

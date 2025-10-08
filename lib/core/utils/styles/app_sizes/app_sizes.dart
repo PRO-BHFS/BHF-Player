@@ -8,7 +8,7 @@ class AppSizes {
   static const spacingSmall = 3.0;
   static const spacingMiddle = 20.0;
   static const icon = 24.0;
-  static double bigIcon = 80.r;
+  static double bigIcon = 40.r;
   static double borderRadiusBig = 35.r;
   static double borderRadiusMiddle = 15.r;
   static const borderRadiusSmall = 6.0;

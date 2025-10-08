@@ -48,7 +48,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   Future<void> _handleExit(BuildContext context) async {
     try {
-      if (playerCubit.playerService.isUiLocked.value) return;
+      
       if (Platform.isAndroid) {
         await ScreenshotProtector.enableScreenshot();
       }
@@ -73,6 +73,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) async {
+        if (playerCubit.playerService.isUiLocked.value) return;
         // Avoid double-pop when we already popped programmatically
         if (!didPop) await _handleExit(context);
       },

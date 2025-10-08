@@ -11,10 +11,10 @@ class LockUiAction extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: playerCubit.playerService.isUiLocked,
-      builder: (context, isUiLocked, child) {
+      builder: (context, isUiLocked, _) {
         return ValueListenableBuilder(
           valueListenable: playerCubit.playerService.isShowControllers,
-          builder: (context, isShowControllers, child) {
+          builder: (context, isShowControllers, _) {
             return Visibility(
               visible: isShowControllers,
               child: CircleIconButton(
