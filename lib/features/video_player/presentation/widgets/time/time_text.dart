@@ -14,7 +14,13 @@ class TimeText extends StatelessWidget {
       builder: (_, time, _) {
         final label = time.formattedVideoDuration;
 
-        return Text(label, style: context.textTheme.displaySmall);
+        return Text(
+          label,
+          style: context.textTheme.displaySmall?.copyWith(color: Colors.white,
+          fontSize: 9
+          
+          ),
+        );
       },
     );
   }

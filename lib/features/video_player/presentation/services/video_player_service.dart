@@ -43,7 +43,7 @@ class VideoPlayerService {
     player = Player();
     videoController = VideoController(player!);
     await player?.open(Media(videoPath));
-    await player?.setVolume(200.0);
+    await player?.setVolume(150.0);
   }
 
   Future<void> dispose() async {

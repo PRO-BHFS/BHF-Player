@@ -12,21 +12,19 @@ class PlayerListeners {
   }
 
   void listenIsPlaying(VideoPlayerService service) {
-     service.player?.stream.playing.listen((isPlaying) {
+    service.player?.stream.playing.listen((isPlaying) {
       service.isPlaying.value = isPlaying;
     });
   }
 
-  
-
   void listenPlaybackSpeed(VideoPlayerService service) {
-   service.player?.stream.rate.listen((rate) {
+    service.player?.stream.rate.listen((rate) {
       service.playbackSpeed.value = rate;
     });
   }
 
   void listenVideoProgress(VideoPlayerService service) {
-service.player?.stream.position.listen((position) {
+    service.player?.stream.position.listen((position) {
       service.videoDuration.value = service.player!.state.duration;
       service.currentPosition.value = position;
       service.playerSliderProgress.value =

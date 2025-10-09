@@ -39,11 +39,9 @@ class PlayerControls {
     await _changeVolume(service, newVolume);
   }
 
-  Future<void> backward(VideoPlayerService service) async {
-    await service.player?.seek(
-      service.currentPosition.value - AppConsts.seekStepDuration,
-    );
-  }
+  Future<void>? backward(VideoPlayerService service) => service.player?.seek(
+    service.currentPosition.value - AppConsts.seekStepDuration,
+  );
 
   Future<void> forward(VideoPlayerService service) async {
     await service.player?.seek(
@@ -55,11 +53,12 @@ class PlayerControls {
     await service.player?.playOrPause();
   }
 
-  Future<double> changePlaybackSpeed(
+  Future<void> changePlaybackSpeed(
     VideoPlayerService service,
     double speed,
   ) async {
-    final fitSpeed = speed.toStringAsFixed(2).toDouble;
+    service.lastSpeed = service.playbackSpeed.value;
+    final fitSpeed = speed.toStringAsFixed(2).toDouble.clamp(0.25, 4.0);
     await service.player?.setRate(fitSpeed);
 
     final isSpeedControlActive = (fitSpeed != 1.0);
@@ -69,8 +68,21 @@ class PlayerControls {
       isSpeedControlActive: isSpeedControlActive,
     );
 
-    return fitSpeed;
+    // return fitSpeed;
   }
+
+  Future<void> incrementPlaybackSpeed(
+    VideoPlayerService service,
+    double incrementValue,
+  ) async {
+    final updatedSpeed = service.playbackSpeed.value + incrementValue;
+    await changePlaybackSpeed(service, updatedSpeed);
+  }
+
+  Future<void> decremntPlaybackSpeed(
+    VideoPlayerService service,
+    double decrementValue,
+  ) => incrementPlaybackSpeed(service, -1 * decrementValue);
 
   Future<void> _changeVolume(
     VideoPlayerService service,

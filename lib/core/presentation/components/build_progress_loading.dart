@@ -13,7 +13,18 @@ class BuildProgressLoading extends StatelessWidget {
         begin: 0.0,
         end: context.watch<VideoDecryptionCubit>().progressValue,
       ),
-      builder: (_, value, _) => LinearProgressIndicator(value: value),
+      builder: (_, value, _) => Container(
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x1C000000),
+              spreadRadius: .3,
+              blurRadius: 6,
+            ),
+          ],
+        ),
+        child: LinearProgressIndicator(value: value),
+      ),
     );
   }
 }

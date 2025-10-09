@@ -11,6 +11,7 @@ class AppTextTheme {
       fontSize: 24.sp,
       color: DarkColors.fontMain,
       overflow: TextOverflow.ellipsis,
+      
     ),
 
     headlineMedium: TextStyle(

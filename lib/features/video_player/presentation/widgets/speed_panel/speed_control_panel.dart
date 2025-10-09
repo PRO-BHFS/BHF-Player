@@ -22,8 +22,11 @@ class SpeedControlPanel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CircleIconButton(
-                onPressed: () {},
-                icon: const BuildIcon(Icons.remove_rounded),
+                onPressed: playerCubit.decremntPlaybackSpeed,
+                icon: const BuildIcon(
+                  Icons.remove_rounded,
+                  color: Colors.white,
+                ),
               ),
               ValueListenableBuilder(
                 valueListenable: playerCubit.playerService.playbackSpeed,
@@ -42,7 +45,10 @@ class SpeedControlPanel extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("$speed", style: headlineSmall),
+                        Text(
+                          "$speed",
+                          style: headlineSmall?.copyWith(color: Colors.white),
+                        ),
                         child!,
                       ],
                     ),
@@ -50,44 +56,40 @@ class SpeedControlPanel extends StatelessWidget {
                 },
                 child: Text(
                   "X",
-                  style: headlineSmall,
+                  style: headlineSmall?.copyWith(color: Colors.white),
                   textScaler: const TextScaler.linear(0.7),
                 ),
               ),
               CircleIconButton(
-                onPressed: () {},
-                icon: const BuildIcon(Icons.add_rounded),
+                onPressed: playerCubit.incrementPlaybackSpeed,
+                icon: const BuildIcon(Icons.add_rounded, color: Colors.white),
               ),
             ],
           ),
           Row(
             spacing: AppSizes.spacingSmall,
             children: [
-              Text("0.25X", style: labelSmall),
+              Text("0.25X", style: labelSmall?.copyWith(color: Colors.white)),
               Expanded(
                 child: ValueListenableBuilder(
                   valueListenable: playerCubit.playerService.playbackSpeed,
                   builder: (context, speed, child) {
                     return Slider(
-                      onChanged: (newSpeed) async {
-                        playerCubit.playerService.lastSpeed = await playerCubit
-                            .changePlaybackSpeed(newSpeed.clamp(0.25, 4.0));
-                      },
-                      value: speed.clamp(0.25, 4.0),
+                      onChanged: (newSpeed) async =>
+                          await playerCubit.changePlaybackSpeed(newSpeed),
+                      value: speed,
                       min: 0.25,
                       max: 4.0,
                     );
                   },
                 ),
               ),
-              Text("4.0X", style: labelSmall),
+              Text("4.0X", style: labelSmall?.copyWith(color: Colors.white)),
 
               BuildIconButton(
-                onPressed: () async {
-                  playerCubit.playerService.lastSpeed = await playerCubit
-                      .changePlaybackSpeed(1.0);
-                },
-                icon: const BuildIcon(Icons.refresh),
+                onPressed: () async =>
+                    await playerCubit.changePlaybackSpeed(1.0),
+                icon: const BuildIcon(Icons.refresh, color: Colors.white),
               ),
             ],
           ),

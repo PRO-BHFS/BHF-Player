@@ -28,7 +28,7 @@
     </queries>
 
     <application
-        android:label="bhf_player"
+        android:label="BHF Player"
         android:name="${applicationName}"
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/launcher_icon">

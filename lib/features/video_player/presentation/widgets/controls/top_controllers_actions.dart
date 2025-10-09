@@ -36,7 +36,9 @@ class TopControllersActions extends StatelessWidget {
                 Flexible(
                   child: Text(
                     filename,
-                    style: context.textTheme.titleSmall,
+                    style: context.textTheme.titleSmall?.copyWith(
+                      color: Colors.white,
+                    ),
                     maxLines: 2,
                   ),
                 ),
@@ -74,6 +76,7 @@ class TopControllersActions extends StatelessWidget {
                                 "${speed}X",
                                 style: context.textTheme.labelSmall?.copyWith(
                                   fontWeight: FontWeight.w900,
+                                  color: Colors.white,
                                 ),
                               ),
                             );
@@ -93,6 +96,7 @@ class TopControllersActions extends StatelessWidget {
                         icon: const BuildIcon(
                           Icons.screen_rotation_rounded,
                           size: 20,
+                          color: Colors.white,
                         ),
                       ),
                     ],

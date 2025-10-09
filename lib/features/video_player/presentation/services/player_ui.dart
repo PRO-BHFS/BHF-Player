@@ -24,10 +24,10 @@ class PlayerUi {
 
     service.inactivityTimer = Timer(AppConsts.videoControlsDuration, () async {
       if (!service.isPlaying.value) {
-        await showOrHideControls(service, true);
+        showOrHideControls(service, true);
         return;
       }
-      await showOrHideControls(service, false);
+      showOrHideControls(service, false);
 
       await setSystemUIVisibility(false);
     });
@@ -40,10 +40,7 @@ class PlayerUi {
         : await setNormalScreenMode();
 
     if (!Platform.isWindows) return;
-    await showOrHideControls(
-      service,
-      service.isFullScreen.value ? false : true,
-    );
+    showOrHideControls(service, service.isFullScreen.value ? false : true);
   }
 
   Future<void> toggleControls(VideoPlayerService service) async {
@@ -54,10 +51,7 @@ class PlayerUi {
     await resetInactivityTimer(service);
   }
 
-  Future<void> showOrHideControls(
-    VideoPlayerService service,
-    bool isShow,
-  ) async {
+  void showOrHideControls(VideoPlayerService service, bool isShow) {
     service.isShowControllers.value = isShow;
   }
 
@@ -109,7 +103,6 @@ class PlayerUi {
     );
   }
 
-  Future<void> disopse(VideoPlayerService service) async {
-    await changeVerticalBrightness(service, isInit: true);
-  }
+  Future<void> disopse(VideoPlayerService service) =>
+      changeVerticalBrightness(service, isInit: true);
 }

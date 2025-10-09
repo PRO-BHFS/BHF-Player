@@ -20,14 +20,14 @@ class BHFPlayer extends StatelessWidget {
     return MaterialApp(
       title: 'BHF Player',
       debugShowCheckedModeBanner: false,
+      locale: Locale(languageCode,""),
+      supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: Locale(languageCode),
-      supportedLocales: S.delegate.supportedLocales,
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const BouncingScrollPhysics(),

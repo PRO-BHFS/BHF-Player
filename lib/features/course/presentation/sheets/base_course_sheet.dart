@@ -100,7 +100,7 @@ abstract class BaseCourseSheet {
                         },
                       ),
                       BuildIconButton(
-                        icon: const BuildSvgIcon(AppIconsAssests.paste),
+                        icon:  BuildSvgIcon(AppIconsAssests.paste,color: context.colorScheme.onSecondary,),
                         onPressed: passwordController.pasteFromClipboard,
                       ),
                     ],
@@ -109,10 +109,8 @@ abstract class BaseCourseSheet {
                 ),
 
                 Row(
-                  spacing: 20,
                   children: [
-                    Expanded(
-                      flex: 2,
+                    Flexible(
                       child: SizedBox(
                         height: 45.h,
                         child: BuildButton(
@@ -121,18 +119,14 @@ abstract class BaseCourseSheet {
                         ),
                       ),
                     ),
-                    Expanded(
+                    const SizedBox(width: 8),
+                    Flexible(
                       child: SizedBox(
                         height: 45.h,
                         child: BuildButton(
                           text: S.of(context).cancel,
 
-                          colorBackground: const Color.fromARGB(
-                            255,
-                            250,
-                            60,
-                            63,
-                          ),
+                          colorBackground: const Color(0xFFFA3C3F),
                           onPress: sheetContext.popRoute,
                         ),
                       ),

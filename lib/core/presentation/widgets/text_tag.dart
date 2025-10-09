@@ -26,7 +26,8 @@ class TextTag extends StatelessWidget {
         style: textTheme.labelSmall?.copyWith(
           fontSize: 11,
           fontWeight: FontWeight.bold,
-          color: textTheme.labelSmall?.color?.withAlpha(180),
+          color: Colors.white,
+          letterSpacing: 1.3
         ),
       ),
     );

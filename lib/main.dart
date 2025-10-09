@@ -31,7 +31,7 @@ Future<void> _runApp() async {
   }
 }
 
-/// Checks if the device is secure (root/jailbreak/emulator/debugging).
+/// Checks if the device is secure (root/jailbreak/emulator).
 Future<String?> _checkSecurity() async {
   final deviceStatus = await GetIt.I<GetDeviceSecurityStatusUseCase>().call();
   final securityChecker = SecurityChecker(deviceStatus);

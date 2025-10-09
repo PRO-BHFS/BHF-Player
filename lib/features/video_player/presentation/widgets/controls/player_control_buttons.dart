@@ -32,6 +32,7 @@ class PlayerControlButtons extends StatelessWidget {
               iconBuilder: (isPlaying) {
                 return BuildIcon(
                   isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                  color: Colors.white,
                 );
               },
               onPressed: () async => await playerCubit.playOrPause(),
@@ -51,7 +52,7 @@ class PlayerControlButtons extends StatelessWidget {
                   AspectRatioPlayer.fill => Icons.width_full_rounded,
                 };
 
-                return BuildIcon(icon);
+                return BuildIcon(icon, color: Colors.white);
               },
               onPressed: playerCubit.changeAspectRatio,
             ),

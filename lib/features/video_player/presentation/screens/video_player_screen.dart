@@ -48,7 +48,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   Future<void> _handleExit(BuildContext context) async {
     try {
-      
       if (Platform.isAndroid) {
         await ScreenshotProtector.enableScreenshot();
       }
@@ -129,10 +128,20 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   );
                 },
                 child: Align(
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.topCenter,
+
                   child: Padding(
-                    padding: const EdgeInsets.all(AppSizes.secondPadding),
-                    child: PlayerTimeDisplay(playerCubit: playerCubit),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: AppSizes.secondPadding,
+                      horizontal: AppSizes.mainPadding,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        PlayerTimeDisplay(playerCubit: playerCubit),
+                        PlayerTimeDisplay(playerCubit: playerCubit),
+                      ],
+                    ),
                   ),
                 ),
               ),

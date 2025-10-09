@@ -32,60 +32,54 @@ class VideoPlayerCubit extends Cubit<VideoPlayerState> {
 
   void resetInactivityTimer() => playerUi.resetInactivityTimer(playerService);
 
-  void seekTo(double value) {
-    playerControls.seekTo(playerService, value);
-  }
+  void seekTo(double value) => playerControls.seekTo(playerService, value);
 
-  Future<void> seekHorizontal(DragUpdateDetails details) async {
-    await playerUi.showOrHideControls(playerService, true);
+  void seekHorizontal(DragUpdateDetails details) {
+    playerUi.showOrHideControls(playerService, true);
     playerControls.seekHorizontal(playerService, details);
   }
 
-  Future<void> changeVerticalVolume(DragUpdateDetails details) async {
-    await playerControls.changeVerticalVolume(playerService, details);
-  }
+  Future<void> changeVerticalVolume(DragUpdateDetails details) =>
+      playerControls.changeVerticalVolume(playerService, details);
 
-  Future<void> changeVerticalBrightness(DragUpdateDetails details) async {
-    await playerUi.changeVerticalBrightness(playerService, details: details);
-  }
+  Future<void> changeVerticalBrightness(DragUpdateDetails details) =>
+      playerUi.changeVerticalBrightness(playerService, details: details);
 
   Future<void> changeUiIcon({
     required Widget icon,
     required GestureArea area,
   }) => playerUi.changeUiIcon(playerService, icon, area);
 
-  Future<void> backward() async {
-    await playerControls.backward(playerService);
-  }
+  Future<void>? backward() => playerControls.backward(playerService);
 
-  Future<void> forward() async {
-    await playerControls.forward(playerService);
-  }
+  Future<void> forward() => playerControls.forward(playerService);
 
-  Future<void> playOrPause() async {
-    await playerControls.playOrPause(playerService);
-  }
+  Future<void> playOrPause() => playerControls.playOrPause(playerService);
 
   void changeAspectRatio() {
     playerService.aspectRatio.value = playerService.aspectRatio.value
         .switchAspect();
   }
 
-  Future<double> changePlaybackSpeed(double speed) async =>
-      await playerControls.changePlaybackSpeed(playerService, speed);
+  Future<void> changePlaybackSpeed(double speed) =>
+      playerControls.changePlaybackSpeed(playerService, speed);
 
-  Future<void> toggleFullscreen() async {
-    await playerUi.toggleFullscreen(playerService);
-  }
+  Future<void> incrementPlaybackSpeed([double incrementValue = 0.05]) =>
+      playerControls.incrementPlaybackSpeed(playerService, incrementValue);
 
-  Future<void> toggleControls() async =>
-      await playerUi.toggleControls(playerService);
+  Future<void> decremntPlaybackSpeed([double decremntValue = 0.05]) =>
+      playerControls.decremntPlaybackSpeed(playerService, decremntValue);
+
+  Future<void> toggleFullscreen() => playerUi.toggleFullscreen(playerService);
+
+  Future<void> toggleControls() => playerUi.toggleControls(playerService);
 
   void toggleUiLock() => playerControls.toggleUiLock(playerService);
+
   void toggleThemePlayerUi() =>
       playerControls.toggleThemePlayerUi(playerService);
-  Future<void> toggleMute() async =>
-      await playerControls.toggleMute(playerService);
+
+  Future<void> toggleMute() => playerControls.toggleMute(playerService);
 
   Future<void> disposePlayer() async {
     emit(VideoPlayerInitial());

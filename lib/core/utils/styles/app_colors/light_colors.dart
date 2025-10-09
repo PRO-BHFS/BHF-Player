@@ -15,7 +15,6 @@ class LightColors {
 
   static const appBar = Color(0xFFFFFFFF);
 
-
   static const selected = Color(0xFF172633);
   static const unSelected = Color(0xFF888888);
 
@@ -23,7 +22,7 @@ class LightColors {
   static const borderField = Color(0x6E939393);
   static const borderFieldError = Color(0x6CD87878);
 
-  static const fontMain = Color(0xD4091F3C);
+  static const fontMain = Color(0xD2010B18);
   static const fontInputField = Color(0xFF60748A);
   static const fontError = Color(0xA9D93A3A);
 }

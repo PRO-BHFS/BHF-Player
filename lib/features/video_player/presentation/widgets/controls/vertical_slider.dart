@@ -36,6 +36,7 @@ class VerticalSlider extends StatelessWidget {
                 progress.range(0, 15).toString(),
                 style: context.textTheme.displaySmall?.copyWith(
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
               Expanded(
@@ -49,7 +50,10 @@ class VerticalSlider extends StatelessWidget {
                   ),
                 ),
               ),
-              BuildIcon(progress > 0.0 ? icon : emptyIcon ?? icon),
+              BuildIcon(
+                progress > 0.0 ? icon : emptyIcon ?? icon,
+                color: Colors.white,
+              ),
             ],
           ),
         );

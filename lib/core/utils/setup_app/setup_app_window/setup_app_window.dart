@@ -5,13 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> setupScreenWindow() async {
+  if (!Platform.isWindows) return;
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
-  if (!Platform.isWindows) return;
   await windowManager.ensureInitialized();
 
   const windowOptions = WindowOptions(

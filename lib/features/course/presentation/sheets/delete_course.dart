@@ -13,9 +13,15 @@ Future<void> deleteCourse(BuildContext context, CourseEntity? course) async {
     context: context,
     builder: (dialogContext) {
       final textTheme = dialogContext.textTheme;
+      final labelSmall = textTheme.labelSmall?.copyWith(
+        fontWeight: FontWeight.w500,
+      );
       return AlertDialog(
-        title: Text(S.of(context).confirm_delete, textAlign: TextAlign.center),
-        actionsAlignment: MainAxisAlignment.center,
+        title: Text(
+          S.of(context).confirm_delete,
+          style: textTheme.titleMedium,
+          // textAlign: TextAlign.center,
+        ),
         actionsOverflowButtonSpacing: 10,
         titlePadding: const EdgeInsets.all(AppSizes.mainPadding),
         contentPadding: const EdgeInsets.only(
@@ -33,9 +39,17 @@ Future<void> deleteCourse(BuildContext context, CourseEntity? course) async {
           crossAxisAlignment: CrossAxisAlignment.center,
           spacing: 8,
           children: [
-            Text(S.of(context).are_you_sure_delete_course),
+            Text(
+              S.of(context).are_you_sure_delete_course,
+              textAlign: TextAlign.center,
+              style: labelSmall,
+            ),
             Text("${course?.courseTitle ?? ""}?", style: textTheme.labelMedium),
-            Text(S.of(context).cannot_undo_this_action),
+            Text(
+              S.of(context).cannot_undo_this_action,
+              textAlign: TextAlign.center,
+              style: labelSmall,
+            ),
           ],
         ),
         actions: [
