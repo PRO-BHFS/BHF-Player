@@ -1,6 +1,5 @@
 import 'package:bhf_player/core/native_codes/file_intent_handler.dart';
 import 'package:bhf_player/core/utils/app_constants/constants_exports.dart';
-import 'package:bhf_player/core/utils/helpers_functions/helpers_exports.dart';
 import 'package:bhf_player/features/course/domain/entities/course.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_controller.dart';
 import 'package:bhf_player/features/course/presentation/controller/courses/course_state.dart';
@@ -10,7 +9,6 @@ import 'package:bhf_player/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart' as p;
-
 import 'empty_state_screen.dart';
 
 class CourseSetupScreen extends StatefulWidget {
@@ -32,11 +30,6 @@ class _CourseSetupScreenState extends State<CourseSetupScreen> {
 
     // أثناء عمل التطبيق
     FileIntentHandler.listenNewFiles((filePath) {
-      Notifications.showFlushbar(
-        message: "تم استقبال ملف جديد أثناء عمل التطبيق",
-        iconType: IconType.done,
-      );
-
       _handleFilePath(filePath);
     });
   }
@@ -51,11 +44,6 @@ class _CourseSetupScreenState extends State<CourseSetupScreen> {
       setState(() => sharedFilePath = filePath);
       return;
     }
-    
-    Notifications.showFlushbar(
-      message: S.of(context).file_extension_required(fitExtension),
-      iconType: IconType.info,
-    );
   }
 
   @override

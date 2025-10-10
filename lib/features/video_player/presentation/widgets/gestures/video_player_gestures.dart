@@ -58,7 +58,8 @@ class VideoPlayerGestures extends StatelessWidget {
                           isPlaying
                               ? Icons.play_arrow_rounded
                               : Icons.pause_rounded,
-                        size: AppSizes.bigIcon,
+                          size: AppSizes.bigIcon,
+                          color: Colors.white,
                         ),
                       ),
                       area: GestureArea.center,
