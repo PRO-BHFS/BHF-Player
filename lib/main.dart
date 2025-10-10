@@ -1,4 +1,6 @@
+import 'package:clarity_flutter/clarity_flutter.dart';
 import 'package:flashy_flushbar/flashy_flushbar_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get_it/get_it.dart';
@@ -27,7 +29,12 @@ Future<void> _runApp() async {
   } catch (e) {
     reason = e is DeviceSecurityException ? e.message : null;
   } finally {
-    runApp(_buildEntryPoint(reason));
+    runApp(
+      ClarityWidget(
+        clarityConfig: _getConfigClarity(),
+        app: _buildEntryPoint(reason),
+      ),
+    );
   }
 }
 
@@ -52,5 +59,12 @@ Widget _buildEntryPoint(String? reason) {
 
   return const SetupMultiBlocProvider(
     child: ResponsiveInitializer(child: BHFPlayer()),
+  );
+}
+
+ClarityConfig _getConfigClarity() {
+  return ClarityConfig(
+    projectId: "sll05zdd3u",
+    logLevel: kDebugMode ? LogLevel.Debug : LogLevel.None,
   );
 }
