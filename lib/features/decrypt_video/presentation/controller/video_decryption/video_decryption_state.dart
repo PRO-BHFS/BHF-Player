@@ -10,9 +10,10 @@ class VideoDecryptionInitial extends VideoDecryptionState {
 
 class VideoDecryptionImported extends VideoDecryptionState {
   final VideoEntity video;
+  final bool isSharedFile;
   String get filename => video.filename;
 
-  const VideoDecryptionImported(this.video);
+  const VideoDecryptionImported(this.video, {this.isSharedFile = false});
 }
 
 class VideoDecryptionFailure extends VideoDecryptionState {
@@ -25,12 +26,10 @@ class VideoDecryptionIncrementProgress extends VideoDecryptionState {
   final double progress;
 
   const VideoDecryptionIncrementProgress(this.progress);
-
 }
 
 class VideoDecryptionCompleted extends VideoDecryptionState {
   final VideoEntity resultVideo;
 
   const VideoDecryptionCompleted(this.resultVideo);
-
 }

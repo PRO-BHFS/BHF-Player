@@ -57,7 +57,7 @@ class VideoDecryptionCubit extends Cubit<VideoDecryptionState>
         bytesSize: await file.length(),
       );
 
-      emit(VideoDecryptionImported(_selectedVideo!));
+      emit(VideoDecryptionImported(_selectedVideo!, isSharedFile: true));
     } catch (e, stack) {
       e.logError(stack: stack);
     }

@@ -26,7 +26,7 @@ class VideoImportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<VideoDecryptionCubit, VideoDecryptionState>(
       listener: (context, state) async {
-        if (state is VideoDecryptionImported) {
+        if (state is VideoDecryptionImported && !state.isSharedFile) {
           Notifications.showFlushbar(
             message:
                 "${S.of(context).file_imported_successfully} ${state.filename}",

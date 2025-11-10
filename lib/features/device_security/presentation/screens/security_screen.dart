@@ -20,9 +20,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
   @override
   void initState() {
     super.initState();
-    // Future.delayed(Duration(seconds: seconds), () {
-    //   closeApp();
-    // });
+    Future.delayed(Duration(seconds: seconds), closeApp);
   }
 
   @override

@@ -669,10 +669,10 @@ class S {
     );
   }
 
-  /// `يوفّر تجربة آمنة وسلسة لفك تشفير الفيديوهات وتشغيلها بجودة عالية مع واجهة سهلة الاستخدام.`
+  /// `Provides a secure and seamless experience to decrypt and play videos in high quality with an easy-to-use interface.`
   String get aboutDescription {
     return Intl.message(
-      'يوفّر تجربة آمنة وسلسة لفك تشفير الفيديوهات وتشغيلها بجودة عالية مع واجهة سهلة الاستخدام.',
+      'Provides a secure and seamless experience to decrypt and play videos in high quality with an easy-to-use interface.',
       name: 'aboutDescription',
       desc: '',
       args: [],

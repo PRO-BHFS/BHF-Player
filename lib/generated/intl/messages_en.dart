@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "aboutDescription": MessageLookupByLibrary.simpleMessage(
-      "يوفّر تجربة آمنة وسلسة لفك تشفير الفيديوهات وتشغيلها بجودة عالية مع واجهة سهلة الاستخدام.",
+      "Provides a secure and seamless experience to decrypt and play videos in high quality with an easy-to-use interface.",
     ),
     "about_us": MessageLookupByLibrary.simpleMessage("About"),
     "add_course": MessageLookupByLibrary.simpleMessage("Add Course"),
