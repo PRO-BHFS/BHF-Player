@@ -100,8 +100,12 @@ abstract class BaseCourseSheet {
                         },
                       ),
                       BuildIconButton(
-                        icon:  BuildSvgIcon(AppIconsAssests.paste,color: context.colorScheme.onSecondary,),
-                        onPressed: passwordController.pasteFromClipboard,
+                        icon: BuildSvgIcon(
+                          AppIconsAssests.paste,
+                          color: context.colorScheme.onSecondary,
+                        ),
+                        onPressed: () async =>
+                            await passwordController.pasteFromClipboard(),
                       ),
                     ],
                   ),

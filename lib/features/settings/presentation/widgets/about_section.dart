@@ -29,7 +29,7 @@ class BuildAboutSection extends StatelessWidget {
 
             const InfoRow(label: "Version:", value: "v${AppConsts.appVersion}"),
 
-            const InfoRow(label: "Build:", value: "1"),
+            const InfoRow(label: "Build:", value: AppConsts.appVersion),
 
             const InfoRow(
               label: "Our WhatsApp:",

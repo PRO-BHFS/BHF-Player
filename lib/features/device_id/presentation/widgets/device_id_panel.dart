@@ -13,59 +13,63 @@ class DeviceIdPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = context.textTheme;
-    final userId = context.read<DeviceIdCubit>().userId;
-    final primaryColor = context.colorScheme.primary;
-    return RoundedContainer(
-      child: Column(
-        spacing: 15,
-        children: [
-          BlocBuilder<DeviceIdCubit, String>(
-            builder: (_, id) {
-              return FittedBox(
+    return BlocBuilder<DeviceIdCubit, String>(
+      builder: (_, userId) {
+        final textTheme = context.textTheme;
+        final primaryColor = context.colorScheme.primary;
+
+        return RoundedContainer(
+          child: Column(
+            spacing: 15,
+            children: [
+              FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Row(
                   spacing: 15,
                   children: [
                     Text("ID:", style: textTheme.labelMedium),
                     SelectableText(
-                      id.isEmpty ? S.of(context).device_id_placeholder : id,
+                      userId.isEmpty
+                          ? S.of(context).device_id_placeholder
+                          : userId,
                       maxLines: 1,
 
                       style: textTheme.labelMedium?.copyWith(
                         color: context.colorScheme.onSurface,
                       ),
-                      onTap: () => id.copyToClipboard,
+                      onTap: () async => userId.copyToClipboard(),
                     ),
                   ],
                 ),
-              );
-            },
-          ),
-          Row(
-            spacing: 10,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CircleIconButton(
-                icon: const Icon(Icons.qr_code_2_rounded),
-                onPressed: () =>
-                    context.pushRoute(GenerateQrCodeScreen(data: userId)),
-                circleColor: primaryColor,
               ),
-              CircleIconButton(
-                icon: const Icon(Icons.share),
-                onPressed: () async => await shareOnWhatsApp(message:  userId),
-                circleColor: primaryColor,
-              ),
-              CircleIconButton(
-                icon: const Icon(Icons.copy_rounded),
-                onPressed: userId.copyToClipboard,
-                circleColor: primaryColor,
+              Row(
+                spacing: 10,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CircleIconButton(
+                    icon: const Icon(Icons.qr_code_2_rounded),
+                    onPressed: () async => await context.pushRoute(
+                      GenerateQrCodeScreen(data: userId),
+                    ),
+                    circleColor: primaryColor,
+                  ),
+                  CircleIconButton(
+                    icon: const Icon(Icons.share),
+                    onPressed: () async =>
+                        await shareOnWhatsApp(message: userId),
+                    circleColor: primaryColor,
+                  ),
+                  CircleIconButton(
+                    icon: const Icon(Icons.copy_rounded),
+                    onPressed: () async => userId.copyToClipboard(),
+                    circleColor: primaryColor,
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

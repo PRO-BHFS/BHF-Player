@@ -1,4 +1,3 @@
-
 import 'package:safe_device/safe_device.dart';
 
 class DeviceSecuritySource {

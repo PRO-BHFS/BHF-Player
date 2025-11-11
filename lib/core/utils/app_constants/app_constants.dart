@@ -1,7 +1,8 @@
  class AppConsts {
   AppConsts._();
 
-  static const appVersion = "1.0.1";
+  static const appVersion = "1.0.2";
+  static const buildNumber = "2";
   static const contactPhone = "+967776793111";
   static const supportWhatsApp = "+14314458048";
 

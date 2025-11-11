@@ -20,7 +20,7 @@ class LanguageDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = context.textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold);
     return DropdownButtonFormField<Language>(
-      value: value,
+      initialValue: value,
       style: textTheme,
       icon: const BuildIcon(Icons.language),
       decoration: const InputDecoration(
