@@ -11,11 +11,11 @@ class DeviceSecuritySource {
 
     return DeviceSecuritySourceResult(
       isRooted: isRooted,
-      isEmulator: !isRealDevice,
       isJailBroken: isRooted,
+      isJailBrokenCustom: isJailBrokenCustom,
+      isEmulator: !isRealDevice,
       isOnExternalStorage: isOnExternalStorage,
       isUsbDebuggingEnabled: isUsbDebuggingEnabled,
-      isJailBrokenCustom: isJailBrokenCustom,
       isMockLocation: isMockLocation,
     );
   }
